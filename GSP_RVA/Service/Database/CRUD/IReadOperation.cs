@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Service.Database.Operations.Vozac.Create
+namespace Service.Database.Operations
 {
-    internal interface ICreate
+    public interface IReadOperation<T> where T : class
     {
     }
 }
