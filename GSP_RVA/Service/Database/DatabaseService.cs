@@ -1,9 +1,4 @@
 ﻿using Service.Database.Context;
-using Service.Database.Models;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
 
 namespace Service.Database
 {
@@ -34,6 +29,6 @@ namespace Service.Database
                     return _instance;
                 }
             }
-        }    
+        }
     }
 }
