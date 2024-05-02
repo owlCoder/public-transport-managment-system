@@ -1,6 +1,7 @@
 ﻿using Service.Database.Context;
 using Service.Database.Models;
 using Service.Database.Operations;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Service.Database.CRUDOperations.VozacCrud
@@ -21,6 +22,15 @@ namespace Service.Database.CRUDOperations.VozacCrud
             lock (_lock)
             {
                 return _context.Vozaci.AsNoTracking().FirstOrDefault(u => u.Id == id);
+            }
+        }
+
+        public List<Vozac> ReadAll()
+        {
+            // Use a lock to ensure thread safety
+            lock (_lock)
+            {
+                return _context.Vozaci.AsNoTracking().ToList();
             }
         }
     }

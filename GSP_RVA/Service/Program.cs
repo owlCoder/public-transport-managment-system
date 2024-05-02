@@ -4,6 +4,7 @@ using Service.Database.CRUDOperations.LinijaCrud.FindLinija;
 using Service.Database.CRUDOperations.VozacCrud;
 using Service.Database.Models;
 using System;
+using System.Collections.Generic;
 
 namespace Service
 {
@@ -13,10 +14,19 @@ namespace Service
         {
             var db = DatabaseService.Instance;
 
+
+            //readall vozac
+            // service find
+            /// FindService(IFindOperation op, string Criteria)
+            /// --> findService( new FindByOdrediste(), "Detelinara");
+            /// telo  FindService(IFindOperation op, string Criteria)
+            /// list<linija> podaci = _context.readall();
+            /// op.find(podaci, criteria);
+
             // Dependency injection
             IFindOperation<Linija> findop = new FindByOdrediste();
 
-            findop.FindByCriteria("critea");
+            findop.FindByCriteria(new List<Linija>(), "critea");
 
             //DeleteVozac  del = new DeleteVozac(db.Context);
 
