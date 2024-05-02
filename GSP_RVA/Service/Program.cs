@@ -9,14 +9,20 @@ namespace Service
         static void Main(string[] args)
         {
             var db = DatabaseService.Instance;
-           
+
             InsertVozac insert = new InsertVozac(db.Context);
 
-            insert.Insert(new Database.Models.Vozac() {  Ime = "ime", Prezime = "prezime", Password = "password", Username = "ol", Role = Common.Enums.UserRole.Admin, Oznaka = "ORR1" });
+            insert.Insert(new Database.Models.Vozac() { Ime = "ime", Prezime = "prezime", Password = "password", Username = "ol", Role = Common.Enums.UserRole.Admin, Oznaka = "ORR1" });
 
             ReadVozac read = new ReadVozac(db.Context);
 
             var usr = read.Read(1);
+
+            UpdateVozac update = new UpdateVozac(db.Context);
+
+            usr.Ime = "Olivera";
+
+            update.Update(1, usr);
 
             Console.ReadLine();
         }

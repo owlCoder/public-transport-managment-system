@@ -1,20 +1,29 @@
 ﻿using Service.Database.Context;
-using Service.Database.CRUD;
 using Service.Database.Models;
 
 namespace Service.Database.CRUDOperations.VozacCrud
 {
-    public class UpdateVozac : IUpdateOperation<Vozac>
+    public class DeleteVozac
     {
         private readonly DatabaseContext _context;
         private static readonly object _lock = new object();
 
-        public UpdateVozac(DatabaseContext context)
+        public DeleteVozac(DatabaseContext context)
         {
             _context = context;
         }
 
-        public bool Update(int id, Vozac vozac)
+        public bool Delete(Vozac vozac)
+        {
+            // Use a lock to ensure thread safety
+            lock (_lock)
+            {
+                _context.Vozaci.Remove(vozac);
+                return _context.SaveChanges() > 0;
+            }
+        }
+
+        public bool Delete(int id)
         {
             // Use a lock to ensure thread safety
             lock (_lock)
@@ -24,10 +33,7 @@ namespace Service.Database.CRUDOperations.VozacCrud
                 if (find == null)
                     return false;
 
-                // Update fields
-                find.Ime = vozac.Ime;
-                find.Prezime = vozac.Prezime;
-                find.Oznaka = vozac.Oznaka;
+                _context.Vozaci.Remove(find);
 
                 return _context.SaveChanges() > 0;
             }

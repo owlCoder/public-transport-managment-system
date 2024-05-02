@@ -110,8 +110,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Database\Context\DatabaseContext.cs" />
+    <Compile Include="Database\CRUDOperations\VozacCrud\DeleteVozac.cs" />
     <Compile Include="Database\CRUDOperations\VozacCrud\InsertVozac.cs" />
     <Compile Include="Database\CRUDOperations\VozacCrud\ReadVozac.cs" />
+    <Compile Include="Database\CRUDOperations\VozacCrud\UpdateVozac.cs" />
     <Compile Include="Database\CRUD\IDeleteOperation.cs" />
     <Compile Include="Database\CRUD\IUpdateOperation.cs" />
     <Compile Include="Database\DatabaseService.cs" />
