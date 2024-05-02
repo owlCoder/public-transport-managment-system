@@ -119,12 +119,11 @@
     <Compile Include="Database\Models\Vozac.cs" />
     <Compile Include="Database\CRUD\ICreateOperation.cs" />
     <Compile Include="Database\CRUD\IReadOperation.cs" />
-    <Compile Include="Migrations\202405021938225_v1.cs" />
-    <Compile Include="Migrations\202405021938225_v1.Designer.cs">
-      <DependentUpon>202405021938225_v1.cs</DependentUpon>
+    <Compile Include="Migrations\202405021948511_v1.cs" />
+    <Compile Include="Migrations\202405021948511_v1.Designer.cs">
+      <DependentUpon>202405021948511_v1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Migrations\MigrationGenerator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -146,8 +145,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202405021938225_v1.resx">
-      <DependentUpon>202405021938225_v1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202405021948511_v1.resx">
+      <DependentUpon>202405021948511_v1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,25 +1,23 @@
-﻿using Service.Database.Context;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity.Migrations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Service.Migrations
+﻿namespace Service.Migrations
 {
-    internal sealed class Configuration : DbMigrationsConfiguration<DatabaseContext>
+    using System;
+    using System.Data.Entity;
+    using System.Data.Entity.Migrations;
+    using System.Linq;
+
+    internal sealed class Configuration : DbMigrationsConfiguration<Service.Database.Context.DatabaseContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            // Register the custom Migration SQL Generator for MySQL
-            SetSqlGenerator("MySql.Data.MySqlClient", new MySqlMigrationSqlGenerator());
         }
 
-        protected override void Seed(DatabaseContext context)
+        protected override void Seed(Service.Database.Context.DatabaseContext context)
         {
-            // Seed data if needed
+            //  This method will be called after migrating to the latest version.
+
+            //  You can use the DbSet<T>.AddOrUpdate() helper extension method
+            //  to avoid creating duplicate seed data.
         }
     }
 }
