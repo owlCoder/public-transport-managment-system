@@ -14,7 +14,6 @@ namespace Service.Database.Models
 
         [Required]
         [StringLength(50)]
-        [Index(nameof(Username), IsUnique = true)]
         public string Username { get; set; }
 
         [Required]

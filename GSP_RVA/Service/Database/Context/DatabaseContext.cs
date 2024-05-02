@@ -14,5 +14,7 @@ namespace Service.Database.Context
         public DbSet<Vozac> Vozaci { get; set; }
 
         public DbSet<Linija> Linije { get; set; }
+
+        /// busevi 
     }
 }

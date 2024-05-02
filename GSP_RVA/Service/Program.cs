@@ -1,5 +1,8 @@
 ﻿using Service.Database;
+using Service.Database.CRUD;
+using Service.Database.CRUDOperations.LinijaCrud.FindLinija;
 using Service.Database.CRUDOperations.VozacCrud;
+using Service.Database.Models;
 using System;
 
 namespace Service
@@ -10,22 +13,27 @@ namespace Service
         {
             var db = DatabaseService.Instance;
 
-            DeleteVozac  del = new DeleteVozac(db.Context);
+            // Dependency injection
+            IFindOperation<Linija> findop = new FindByOdrediste();
 
-            del.Delete(1);
-            InsertVozac insert = new InsertVozac(db.Context);
+            findop.FindByCriteria("critea");
 
-            insert.Insert(new Database.Models.Vozac() { Ime = "ime", Prezime = "prezime", Password = "password", Username = "ol", Role = Common.Enums.UserRole.Admin.ToString(), Oznaka = "ORR1" });
+            //DeleteVozac  del = new DeleteVozac(db.Context);
 
-            ReadVozac read = new ReadVozac(db.Context);
+            //del.Delete(1);
+            //InsertVozac insert = new InsertVozac(db.Context);
 
-            var usr = read.Read(1);
+            //insert.Insert(new Database.Models.Vozac() { Ime = "ime", Prezime = "prezime", Password = "password", Username = "ol", Role = Common.Enums.UserRole.Admin.ToString(), Oznaka = "ORR1" });
 
-            UpdateVozac update = new UpdateVozac(db.Context);
+            //ReadVozac read = new ReadVozac(db.Context);
 
-            usr.Ime = "Olivera";
+            //var usr = read.Read(1);
 
-            update.Update(1, usr);
+            //UpdateVozac update = new UpdateVozac(db.Context);
+
+            //usr.Ime = "Olivera";
+
+            //update.Update(1, usr);
 
             Console.ReadLine();
         }
