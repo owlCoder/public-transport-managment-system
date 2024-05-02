@@ -110,11 +110,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Database\Context\DatabaseContext.cs" />
+    <Compile Include="Database\CRUDOperations\LinijaCrud\FindLinija\FindByOdrediste.cs" />
+    <Compile Include="Database\CRUDOperations\LinijaCrud\FindLinija\FindByPolaziste.cs" />
     <Compile Include="Database\CRUDOperations\VozacCrud\DeleteVozac.cs" />
     <Compile Include="Database\CRUDOperations\VozacCrud\InsertVozac.cs" />
     <Compile Include="Database\CRUDOperations\VozacCrud\ReadVozac.cs" />
     <Compile Include="Database\CRUDOperations\VozacCrud\UpdateVozac.cs" />
     <Compile Include="Database\CRUD\IDeleteOperation.cs" />
+    <Compile Include="Database\CRUD\IFindOperation.cs" />
     <Compile Include="Database\CRUD\IUpdateOperation.cs" />
     <Compile Include="Database\DatabaseService.cs" />
     <Compile Include="Database\Models\Linija.cs" />
@@ -135,7 +138,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Database\CRUDOperations\AutobusCrud\" />
-    <Folder Include="Database\CRUDOperations\LinijaCrud\" />
     <Folder Include="Services\Autobus\" />
     <Folder Include="Services\Linija\" />
     <Folder Include="Services\Vozac\" />
