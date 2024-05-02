@@ -1,6 +1,7 @@
 ﻿using Service.Database.Context;
 using Service.Database.Models;
 using Service.Database.Operations;
+using System.Linq;
 
 namespace Service.Database.CRUDOperations.VozacCrud
 {
@@ -19,7 +20,7 @@ namespace Service.Database.CRUDOperations.VozacCrud
             // Use a lock to ensure thread safety
             lock (_lock)
             {
-                return _context.Vozaci.Find(id);
+                return _context.Vozaci.AsNoTracking().FirstOrDefault(u => u.Id == id);
             }
         }
     }

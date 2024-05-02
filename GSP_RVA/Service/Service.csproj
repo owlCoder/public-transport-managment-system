@@ -110,8 +110,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Database\Context\DatabaseContext.cs" />
+    <Compile Include="Database\CRUDOperations\VozacCrud\InsertVozac.cs" />
+    <Compile Include="Database\CRUDOperations\VozacCrud\ReadVozac.cs" />
+    <Compile Include="Database\CRUD\IDeleteOperation.cs" />
+    <Compile Include="Database\CRUD\IUpdateOperation.cs" />
+    <Compile Include="Database\DatabaseService.cs" />
     <Compile Include="Database\Models\Linija.cs" />
     <Compile Include="Database\Models\Vozac.cs" />
+    <Compile Include="Database\CRUD\ICreateOperation.cs" />
+    <Compile Include="Database\CRUD\IReadOperation.cs" />
+    <Compile Include="Migrations\202405021922029_v1.cs" />
+    <Compile Include="Migrations\202405021922029_v1.Designer.cs">
+      <DependentUpon>202405021922029_v1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202405021924574_v2.cs" />
+    <Compile Include="Migrations\202405021924574_v2.Designer.cs">
+      <DependentUpon>202405021924574_v2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -120,7 +136,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Database\Operations\" />
+    <Folder Include="Database\CRUDOperations\AutobusCrud\" />
+    <Folder Include="Database\CRUDOperations\LinijaCrud\" />
     <Folder Include="Services\Autobus\" />
     <Folder Include="Services\Linija\" />
     <Folder Include="Services\Vozac\" />
@@ -130,6 +147,14 @@
       <Project>{b99b969a-f18e-42f4-984c-f660f492281e}</Project>
       <Name>Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202405021922029_v1.resx">
+      <DependentUpon>202405021922029_v1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405021924574_v2.resx">
+      <DependentUpon>202405021924574_v2.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

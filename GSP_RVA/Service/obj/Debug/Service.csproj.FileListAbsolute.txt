@@ -45,3 +45,6 @@ D:\Faks\projekat_RVA\GSP_RVA\Service\obj\Debug\Service.csproj.CoreCompileInputs.
 D:\Faks\projekat_RVA\GSP_RVA\Service\obj\Debug\Service.csproj.Up2Date
 D:\Faks\projekat_RVA\GSP_RVA\Service\obj\Debug\Service.exe
 D:\Faks\projekat_RVA\GSP_RVA\Service\obj\Debug\Service.pdb
+D:\Faks\projekat_RVA\GSP_RVA\Service\obj\Debug\Service.Migrations.v1.resources
+D:\Faks\projekat_RVA\GSP_RVA\Service\obj\Debug\Service.csproj.GenerateResource.cache
+D:\Faks\projekat_RVA\GSP_RVA\Service\obj\Debug\Service.Migrations.v2.resources

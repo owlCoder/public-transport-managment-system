@@ -30,5 +30,7 @@ namespace Service.Database
                 }
             }
         }
+
+        public DatabaseContext Context { get => _context; }
     }
 }

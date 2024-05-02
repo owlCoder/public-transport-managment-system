@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity;
 
 namespace Service.Database.Models
 {
@@ -38,6 +39,6 @@ namespace Service.Database.Models
         public string Oznaka { get; set; }
 
         // proveri
-        public List<Linija> Linije { get; set; }
+        public virtual DbSet<Linija> Linije { get; set; }
     }
 }
