@@ -12,23 +12,20 @@
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Vozac_Id = c.Int(),
                     })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Vozacs", t => t.Vozac_Id)
-                .Index(t => t.Vozac_Id);
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.Vozacs",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Username = c.String(nullable: false, maxLength: 50),
-                        Password = c.String(nullable: false, maxLength: 50),
-                        Ime = c.String(nullable: false, maxLength: 50),
-                        Prezime = c.String(nullable: false, maxLength: 50),
+                        Username = c.String(nullable: false, maxLength: 50, storeType: "nvarchar"),
+                        Password = c.String(nullable: false, maxLength: 50, storeType: "nvarchar"),
+                        Ime = c.String(nullable: false, maxLength: 50, storeType: "nvarchar"),
+                        Prezime = c.String(nullable: false, maxLength: 50, storeType: "nvarchar"),
                         Role = c.Int(nullable: false),
-                        Oznaka = c.String(nullable: false, maxLength: 8),
+                        Oznaka = c.String(nullable: false, maxLength: 8, storeType: "nvarchar"),
                     })
                 .PrimaryKey(t => t.Id)
                 .Index(t => t.Username, unique: true, name: "Username");
@@ -37,9 +34,7 @@
         
         public override void Down()
         {
-            DropForeignKey("dbo.Linijas", "Vozac_Id", "dbo.Vozacs");
             DropIndex("dbo.Vozacs", "Username");
-            DropIndex("dbo.Linijas", new[] { "Vozac_Id" });
             DropTable("dbo.Vozacs");
             DropTable("dbo.Linijas");
         }
