@@ -7,6 +7,7 @@ using System.Data.Entity;
 
 namespace Service.Database.Models
 {
+    [Table("Vozaci")]
     public class Vozac
     {
         [Key]

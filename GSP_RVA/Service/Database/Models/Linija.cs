@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Service.Database.Models
 {
+    [Table("Linije")]
     public class Linija
     {
         [Key]
