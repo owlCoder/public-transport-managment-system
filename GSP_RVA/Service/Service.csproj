@@ -109,12 +109,27 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Database\Context\DatabaseContext.cs" />
+    <Compile Include="Database\Models\Linija.cs" />
+    <Compile Include="Database\Models\Vozac.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Database\Operations\" />
+    <Folder Include="Services\Autobus\" />
+    <Folder Include="Services\Linija\" />
+    <Folder Include="Services\Vozac\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{b99b969a-f18e-42f4-984c-f660f492281e}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

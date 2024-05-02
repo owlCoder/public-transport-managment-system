@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Service.Database.Models
+namespace Service.Database.Operations.Vozac.Create
 {
-    public class Linija
+    internal interface ICreate
     {
     }
 }
