@@ -1,5 +1,4 @@
 ﻿using Common.Enums;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
@@ -31,8 +30,8 @@ namespace Service.Database.Models
         public string Prezime { get; set; }
 
         [Required]
-        [DefaultValue(UserRole.Vozac)]
-        public UserRole Role { get; set; }
+        [EnumDataType(typeof(UserRole))]
+        public string Role { get; set; }
 
         [Required]
         [StringLength(8)]

@@ -10,9 +10,12 @@ namespace Service
         {
             var db = DatabaseService.Instance;
 
+            DeleteVozac  del = new DeleteVozac(db.Context);
+
+            del.Delete(1);
             InsertVozac insert = new InsertVozac(db.Context);
 
-            insert.Insert(new Database.Models.Vozac() { Ime = "ime", Prezime = "prezime", Password = "password", Username = "ol", Role = Common.Enums.UserRole.Admin, Oznaka = "ORR1" });
+            insert.Insert(new Database.Models.Vozac() { Ime = "ime", Prezime = "prezime", Password = "password", Username = "ol", Role = Common.Enums.UserRole.Admin.ToString(), Oznaka = "ORR1" });
 
             ReadVozac read = new ReadVozac(db.Context);
 
