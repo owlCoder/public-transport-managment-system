@@ -16,18 +16,18 @@ namespace Service
         {
             var db = DatabaseService.Instance;
 
-            InsertLinija insertLinija = new InsertLinija(db.Context);
-            insertLinija.Insert(new Database.Models.Linija() { Oznaka = "ko", Polaziste = "centar", Odrediste = "liman1" });
+            //InsertLinija insertLinija = new InsertLinija(db.Context);
+            //insertLinija.Insert(new Database.Models.Linija() { Oznaka = "ko", Polaziste = "centar", Odrediste = "liman1" });
 
-            DeleteLinija  del = new DeleteLinija(db.Context);
-            del.Delete(2);
+            //DeleteLinija  del = new DeleteLinija(db.Context);
+            //del.Delete(2);
 
-            ReadLinija read = new ReadLinija(db.Context);
-            var usr = read.Read(3);
+            //readlinija read = new readlinija(db.context);
+            //var usr = read.read(3);
 
-            UpdateLinija update = new UpdateLinija(db.Context);
-            usr.Polaziste = "klisa";
-            update.Update(4, usr);
+            //updatelinija update = new updatelinija(db.context);
+            //usr.polaziste = "klisa";
+            //update.update(4, usr);
 
 
             //readall vozac
