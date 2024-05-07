@@ -1,10 +1,12 @@
 ﻿using Service.Database;
 using Service.Database.CRUD;
+using Service.Database.CRUDOperations.LinijaCrud;
 using Service.Database.CRUDOperations.LinijaCrud.FindLinija;
 using Service.Database.CRUDOperations.VozacCrud;
 using Service.Database.Models;
 using System;
 using System.Collections.Generic;
+using System.Runtime.Remoting.Proxies;
 
 namespace Service
 {
@@ -13,6 +15,19 @@ namespace Service
         static void Main(string[] args)
         {
             var db = DatabaseService.Instance;
+
+            InsertLinija insertLinija = new InsertLinija(db.Context);
+            insertLinija.Insert(new Database.Models.Linija() { Oznaka = "ko", Polaziste = "centar", Odrediste = "liman1" });
+
+            DeleteLinija  del = new DeleteLinija(db.Context);
+            del.Delete(2);
+
+            ReadLinija read = new ReadLinija(db.Context);
+            var usr = read.Read(3);
+
+            UpdateLinija update = new UpdateLinija(db.Context);
+            usr.Polaziste = "klisa";
+            update.Update(4, usr);
 
 
             //readall vozac
@@ -24,9 +39,9 @@ namespace Service
             /// op.find(podaci, criteria);
 
             // Dependency injection
-            IFindOperation<Linija> findop = new FindByOdrediste();
+            //IFindOperation<Linija> findop = new FindByOdrediste();
 
-            findop.FindByCriteria(new List<Linija>(), "critea");
+            //findop.FindByCriteria(new List<Linija>(), "critea");
 
             //DeleteVozac  del = new DeleteVozac(db.Context);
 

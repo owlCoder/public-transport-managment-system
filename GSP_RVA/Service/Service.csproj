@@ -110,8 +110,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Database\Context\DatabaseContext.cs" />
+    <Compile Include="Database\CRUDOperations\LinijaCrud\DeleteLinija.cs" />
     <Compile Include="Database\CRUDOperations\LinijaCrud\FindLinija\FindByOdrediste.cs" />
     <Compile Include="Database\CRUDOperations\LinijaCrud\FindLinija\FindByPolaziste.cs" />
+    <Compile Include="Database\CRUDOperations\LinijaCrud\InsertLinija.cs" />
+    <Compile Include="Database\CRUDOperations\LinijaCrud\ReadLinija.cs" />
+    <Compile Include="Database\CRUDOperations\LinijaCrud\UpdateLinija.cs" />
     <Compile Include="Database\CRUDOperations\VozacCrud\DeleteVozac.cs" />
     <Compile Include="Database\CRUDOperations\VozacCrud\InsertVozac.cs" />
     <Compile Include="Database\CRUDOperations\VozacCrud\ReadVozac.cs" />
@@ -120,13 +124,14 @@
     <Compile Include="Database\CRUD\IFindOperation.cs" />
     <Compile Include="Database\CRUD\IUpdateOperation.cs" />
     <Compile Include="Database\DatabaseService.cs" />
+    <Compile Include="Database\Models\Autobus.cs" />
     <Compile Include="Database\Models\Linija.cs" />
     <Compile Include="Database\Models\Vozac.cs" />
     <Compile Include="Database\CRUD\ICreateOperation.cs" />
     <Compile Include="Database\CRUD\IReadOperation.cs" />
-    <Compile Include="Migrations\202405022008205_v1.cs" />
-    <Compile Include="Migrations\202405022008205_v1.Designer.cs">
-      <DependentUpon>202405022008205_v1.cs</DependentUpon>
+    <Compile Include="Migrations\202405070901536_v1.cs" />
+    <Compile Include="Migrations\202405070901536_v1.designer.cs">
+      <DependentUpon>202405070901536_v1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
@@ -149,8 +154,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202405022008205_v1.resx">
-      <DependentUpon>202405022008205_v1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202405070901536_v1.resx">
+      <DependentUpon>202405070901536_v1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

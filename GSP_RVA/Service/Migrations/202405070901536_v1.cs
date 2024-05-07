@@ -12,6 +12,9 @@
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
+                        Oznaka = c.String(nullable: false, maxLength: 8, storeType: "nvarchar"),
+                        Polaziste = c.String(nullable: false, maxLength: 50, storeType: "nvarchar"),
+                        Odrediste = c.String(nullable: false, maxLength: 50, storeType: "nvarchar"),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -27,14 +30,12 @@
                         Role = c.String(nullable: false, unicode: false),
                         Oznaka = c.String(nullable: false, maxLength: 8, storeType: "nvarchar"),
                     })
-                .PrimaryKey(t => t.Id)
-                .Index(t => t.Username, unique: true, name: "Username");
+                .PrimaryKey(t => t.Id);
             
         }
         
         public override void Down()
         {
-            DropIndex("dbo.Vozaci", "Username");
             DropTable("dbo.Vozaci");
             DropTable("dbo.Linije");
         }
