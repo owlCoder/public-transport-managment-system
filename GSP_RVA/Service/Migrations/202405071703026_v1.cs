@@ -8,6 +8,16 @@
         public override void Up()
         {
             CreateTable(
+                "dbo.Autobusi",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Oznaka = c.String(nullable: false, maxLength: 8, storeType: "nvarchar"),
+                        IdLinije = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
                 "dbo.Linije",
                 c => new
                     {
@@ -38,6 +48,7 @@
         {
             DropTable("dbo.Vozaci");
             DropTable("dbo.Linije");
+            DropTable("dbo.Autobusi");
         }
     }
 }
