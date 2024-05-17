@@ -1,0 +1,17 @@
+C:\Users\Olivera\Desktop\rva projekat\projekat_RVA\GSP_RVA\Client\bin\Debug\Client.exe.config
+C:\Users\Olivera\Desktop\rva projekat\projekat_RVA\GSP_RVA\Client\bin\Debug\Client.exe
+C:\Users\Olivera\Desktop\rva projekat\projekat_RVA\GSP_RVA\Client\bin\Debug\Client.pdb
+C:\Users\Olivera\Desktop\rva projekat\projekat_RVA\GSP_RVA\Client\obj\Debug\Client.csproj.AssemblyReference.cache
+C:\Users\Olivera\Desktop\rva projekat\projekat_RVA\GSP_RVA\Client\obj\Debug\MainWindow.g.cs
+C:\Users\Olivera\Desktop\rva projekat\projekat_RVA\GSP_RVA\Client\obj\Debug\Views\GSP.g.cs
+C:\Users\Olivera\Desktop\rva projekat\projekat_RVA\GSP_RVA\Client\obj\Debug\App.g.cs
+C:\Users\Olivera\Desktop\rva projekat\projekat_RVA\GSP_RVA\Client\obj\Debug\Client_MarkupCompile.cache
+C:\Users\Olivera\Desktop\rva projekat\projekat_RVA\GSP_RVA\Client\obj\Debug\Client_MarkupCompile.lref
+C:\Users\Olivera\Desktop\rva projekat\projekat_RVA\GSP_RVA\Client\obj\Debug\MainWindow.baml
+C:\Users\Olivera\Desktop\rva projekat\projekat_RVA\GSP_RVA\Client\obj\Debug\Views\GSP.baml
+C:\Users\Olivera\Desktop\rva projekat\projekat_RVA\GSP_RVA\Client\obj\Debug\Client.g.resources
+C:\Users\Olivera\Desktop\rva projekat\projekat_RVA\GSP_RVA\Client\obj\Debug\Client.Properties.Resources.resources
+C:\Users\Olivera\Desktop\rva projekat\projekat_RVA\GSP_RVA\Client\obj\Debug\Client.csproj.GenerateResource.cache
+C:\Users\Olivera\Desktop\rva projekat\projekat_RVA\GSP_RVA\Client\obj\Debug\Client.csproj.CoreCompileInputs.cache
+C:\Users\Olivera\Desktop\rva projekat\projekat_RVA\GSP_RVA\Client\obj\Debug\Client.exe
+C:\Users\Olivera\Desktop\rva projekat\projekat_RVA\GSP_RVA\Client\obj\Debug\Client.pdb

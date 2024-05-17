@@ -97,12 +97,73 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="slike\slika15.webp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ViewModel\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\slika.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\slika2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\slika3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\slika4.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\slika5.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\slika6.jpg" />
+    <Resource Include="slike\slika7.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\slika8.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\slika9.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\slika10.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\slika11.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\slika12.jpg" />
+    <Resource Include="slike\slika13.jpg" />
+    <Resource Include="slike\slika14.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\slika16.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\slika17.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\slika18.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\slika19.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\slika20.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\slika21.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\slika22.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\slika23.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
