@@ -110,6 +110,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Database\Context\DatabaseContext.cs" />
+    <Compile Include="Database\CRUDOperations\AutobusCrud\DeleteAutobus.cs" />
+    <Compile Include="Database\CRUDOperations\AutobusCrud\InsertAutobus.cs" />
+    <Compile Include="Database\CRUDOperations\AutobusCrud\ReadAutobus.cs" />
+    <Compile Include="Database\CRUDOperations\AutobusCrud\UpdateAutobus.cs" />
     <Compile Include="Database\CRUDOperations\LinijaCrud\DeleteLinija.cs" />
     <Compile Include="Database\CRUDOperations\LinijaCrud\FindLinija\FindByOdrediste.cs" />
     <Compile Include="Database\CRUDOperations\LinijaCrud\FindLinija\FindByPolaziste.cs" />
@@ -129,9 +133,9 @@
     <Compile Include="Database\Models\Vozac.cs" />
     <Compile Include="Database\CRUD\ICreateOperation.cs" />
     <Compile Include="Database\CRUD\IReadOperation.cs" />
-    <Compile Include="Migrations\202405070901536_v1.cs" />
-    <Compile Include="Migrations\202405070901536_v1.designer.cs">
-      <DependentUpon>202405070901536_v1.cs</DependentUpon>
+    <Compile Include="Migrations\202405071703026_v1.cs" />
+    <Compile Include="Migrations\202405071703026_v1.designer.cs">
+      <DependentUpon>202405071703026_v1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
@@ -142,7 +146,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Database\CRUDOperations\AutobusCrud\" />
     <Folder Include="Services\Autobus\" />
     <Folder Include="Services\Linija\" />
     <Folder Include="Services\Vozac\" />
@@ -154,8 +157,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202405070901536_v1.resx">
-      <DependentUpon>202405070901536_v1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202405071703026_v1.resx">
+      <DependentUpon>202405071703026_v1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

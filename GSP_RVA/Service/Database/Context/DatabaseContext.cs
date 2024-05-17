@@ -26,6 +26,12 @@ namespace Service.Database.Context
         public DbSet<Linija> Linije { get; set; }
 
         /// <summary>
+        /// Gets or sets the <see cref="DbSet{Autobus}"/> for the Autobus entity set (table).
+        /// </summary>
+        public DbSet<Autobus> Autobusi { get; set; }
+
+
+        /// <summary>
         /// Busevi
         /// </summary>
         // TODO: add more tables

@@ -1,5 +1,6 @@
 ﻿using Service.Database;
 using Service.Database.CRUD;
+using Service.Database.CRUDOperations.AutobusCrud;
 using Service.Database.CRUDOperations.LinijaCrud;
 using Service.Database.CRUDOperations.LinijaCrud.FindLinija;
 using Service.Database.CRUDOperations.VozacCrud;
@@ -15,6 +16,19 @@ namespace Service
         static void Main(string[] args)
         {
             var db = DatabaseService.Instance;
+
+            /*InsertAutobus insertAutobus = new InsertAutobus(db.Context);
+            insertAutobus.Insert(new Database.Models.Autobus() { Oznaka = "sombor" });
+
+            ReadAutobus read = new ReadAutobus(db.Context);
+            var user = read.Read(1);
+
+            UpdateAutobus update = new UpdateAutobus(db.Context);
+            user.Oznaka = "Kragujevac";
+            update.Update(1, user);
+
+            DeleteAutobus delete = new DeleteAutobus(db.Context);
+            delete.Delete(1);*/
 
             //InsertLinija insertLinija = new InsertLinija(db.Context);
             //insertLinija.Insert(new Database.Models.Linija() { Oznaka = "ko", Polaziste = "centar", Odrediste = "liman1" });
