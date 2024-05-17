@@ -5,8 +5,100 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Client"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="GSP" 
+        Height="800"
+        Width="1300">
     <Grid>
-        
+        <Grid.Background>
+            <ImageBrush ImageSource="C:\Users\Jovana\Desktop\pozadina\slika.jpg" Stretch="UniformToFill"/>
+        </Grid.Background>
+        <Grid VerticalAlignment="Center"
+          HorizontalAlignment="Center"
+          >
+            <Grid.RowDefinitions >
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Image Grid.Row="0"
+               Grid.ColumnSpan ="2"
+               Width="Auto" 
+               Height="Auto" 
+               HorizontalAlignment="Stretch" 
+               VerticalAlignment="Stretch" Margin="0"
+               Source="C:\Users\Jovana\Desktop\pozadina\log.png"/>
+            <Label Grid.Row="1"
+               Grid.Column="0"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Left"
+               Content="USERNAME"
+               FontWeight="SemiBold"
+               FontSize="30"
+               Foreground="Black"
+        />
+            <TextBox Grid.Row="2"
+                 Grid.ColumnSpan="2"
+                 Height="45"
+                 Width="Auto"
+                 HorizontalAlignment="Stretch" 
+                 VerticalAlignment="Stretch" 
+                 Margin="5"
+                 FontSize="20"
+                 Padding="5"
+                 FontWeight="SemiBold"
+                 Foreground="White"
+                 Background="DimGray"/>
+            <Label Grid.Row="3"
+               Grid.Column="0"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Left"
+               Content="PASSWORD"
+               FontWeight="SemiBold"
+               FontSize="30"
+               Foreground="Black"
+        />
+            <PasswordBox Grid.Row="4"
+                 Grid.ColumnSpan="2"
+                 Height="45"
+                 HorizontalAlignment="Stretch" 
+                 VerticalAlignment="Stretch" 
+                 Margin="5"
+                 FontSize="20"
+                 Foreground="White"
+                 Padding="5"
+                 FontWeight="SemiBold"
+                 Background="DimGray"/>
+            <Button Grid.Column="0"
+                Grid.Row="5"
+                Content="LOGIN"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Left"
+                Width="150"
+                Height="30"
+                Margin="10"
+                Background="CadetBlue"
+                Foreground="White"
+                FontSize="20"
+                FontWeight="SemiBold"/>
+            <Button Grid.Column="1"
+                Grid.Row="5"
+                Content="EXIT"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Right"
+                Width="150"
+                Height="30"
+                Margin="10"
+                Background="Tomato"
+                Foreground="White"
+                FontSize="20"
+                FontWeight="SemiBold" Click="Button_Click"/>
+        </Grid>
     </Grid>
 </Window>
