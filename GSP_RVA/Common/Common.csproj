@@ -51,16 +51,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTO\AutobusDTO.cs" />
+    <Compile Include="DTO\LinijaDTO.cs" />
+    <Compile Include="DTO\VozacDTO.cs" />
+    <Compile Include="Enums\LogLevel.cs" />
     <Compile Include="Enums\UserRole.cs" />
+    <Compile Include="Contracts\IAutobusService.cs" />
+    <Compile Include="Contracts\ILinijaService.cs" />
+    <Compile Include="Interfaces\ILogger.cs" />
+    <Compile Include="Contracts\IVozacService.cs" />
+    <Compile Include="Loggers\FileLogger.cs" />
+    <Compile Include="Loggers\InMemoryLogger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Contracts\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

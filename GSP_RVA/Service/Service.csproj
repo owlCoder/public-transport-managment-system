@@ -140,16 +140,15 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Autobus\AutobusService.cs" />
+    <Compile Include="Services\Linija\LinijaService.cs" />
+    <Compile Include="Services\Vozac\VozacService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Services\Autobus\" />
-    <Folder Include="Services\Linija\" />
-    <Folder Include="Services\Vozac\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{b99b969a-f18e-42f4-984c-f660f492281e}</Project>
