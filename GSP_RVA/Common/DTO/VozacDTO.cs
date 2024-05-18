@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace GSP_RVA.Diagram.Common
+namespace Common.DTO
 {
 	public class VozacDTO
 	{

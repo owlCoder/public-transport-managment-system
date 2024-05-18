@@ -2,56 +2,28 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace GSP_RVA.Diagram.Common
+namespace Common.DTO
 {
 	public class AutobusDTO
 	{
 		public int Id
 		{
-			get
-			{
-				
-			}
-			set
-			{
-				
-			}
+			get; set;
 		}
 
 		public string Oznaka
 		{
-			get
-			{
-				
-			}
-			set
-			{
-				
-			}
+			get; set;
 		}
 
 		public int IdLinije
 		{
-			get
-			{
-				
-			}
-			set
-			{
-				
-			}
+			get; set;
 		}
 
 		public List<LinijaDTO> Linije
 		{
-			get
-			{
-				
-			}
-			set
-			{
-				
-			}
+			get; set;
 		}
 	}
 }
