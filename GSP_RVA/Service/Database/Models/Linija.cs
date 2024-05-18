@@ -8,6 +8,7 @@ namespace Service.Database.Models
     /// Represents a Linija (Line) entity in the database.
     /// </summary>
     [Table("Linije")]
+    [DataContract]
     public class Linija
     {
         /// <summary>

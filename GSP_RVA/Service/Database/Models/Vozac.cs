@@ -9,6 +9,7 @@ namespace Service.Database.Models
     /// Represents a Vozac (Driver) entity in the database.
     /// </summary>
     [Table("Vozaci")]
+    [DataContract]
     public class Vozac
     {
         /// <summary>

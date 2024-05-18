@@ -6,6 +6,7 @@ using System.Data.Entity;
 namespace Service.Database.Models
 {
     [Table("Autobusi")]
+    [DataContract]
     public class Autobus
     {
         [Key]
