@@ -1,4 +1,5 @@
-﻿using NetworkService.Helpers;
+﻿using Client.Views;
+using NetworkService.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -49,6 +50,8 @@ namespace Client.ViewModel
 
                 // check is response true
                 bool success = true; // replace with api response
+
+                //new GSP().Show();
 
                 if (success)
                 {
