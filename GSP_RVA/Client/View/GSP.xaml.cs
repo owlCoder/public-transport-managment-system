@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Client.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,11 +18,13 @@ namespace Client.Views
     /// <summary>
     /// Interaction logic for GSP.xaml
     /// </summary>
-    public partial class GSP : Window
+    public partial class GSP : UserControl
     {
         public GSP()
         {
-            InitializeComponent();
+            InitializeComponent();     
         }
+
+       
     }
 }
