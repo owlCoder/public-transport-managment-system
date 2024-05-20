@@ -172,9 +172,9 @@ namespace Client.ViewModel
             Window currentWindow = Application.Current.MainWindow;
             currentWindow.Close();
 
-           
-            Window mainWindow = new MainWindow();           
-            Application.Current.MainWindow = mainWindow;         
+
+            Window mainWindow = new MainWindow();
+            Application.Current.MainWindow = mainWindow;
             mainWindow.Show();
         }
 

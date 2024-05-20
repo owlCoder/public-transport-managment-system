@@ -43,6 +43,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -54,7 +55,7 @@
     <Compile Include="DTO\AutobusDTO.cs" />
     <Compile Include="DTO\LinijaDTO.cs" />
     <Compile Include="DTO\VozacDTO.cs" />
-    <Compile Include="Enums\LogLevel.cs" />
+    <Compile Include="Enums\LogTraceLevel.cs" />
     <Compile Include="Enums\UserRole.cs" />
     <Compile Include="Contracts\IAutobusService.cs" />
     <Compile Include="Contracts\ILinijaService.cs" />

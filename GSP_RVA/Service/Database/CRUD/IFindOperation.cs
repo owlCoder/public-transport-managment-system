@@ -1,10 +1,5 @@
-﻿using Common.Enums;
-using Service.Database.Models;
-using System;
+﻿using Service.Database.Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Service.Database.CRUD
 {

@@ -18,7 +18,7 @@ namespace Service.Database.CRUDOperations.LinijaCrud
 
         public Linija Read(int id)
         {
-            lock(_lock)
+            lock (_lock)
             {
                 return _context.Linije.AsNoTracking().FirstOrDefault(u => u.Id == id);
             }
@@ -26,7 +26,7 @@ namespace Service.Database.CRUDOperations.LinijaCrud
 
         public List<Linija> ReadAll()
         {
-            lock(_lock)
+            lock (_lock)
             {
                 return _context.Linije.AsNoTracking().ToList();
             }

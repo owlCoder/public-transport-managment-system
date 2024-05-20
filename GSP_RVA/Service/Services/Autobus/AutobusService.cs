@@ -1,34 +1,35 @@
+using Common.DTO;
+using Common.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Service.Services.Autobus
 {
-	public class AutobusService : IAutobusService
-	{
-		public bool DodajAutobus(string oznaka)
-		{
-			
-		}
+    public class AutobusService : IAutobusService
+    {
+        public bool DodajAutobus(string oznaka)
+        {
+            throw new NotImplementedException();
+        }
 
-		public bool IzmeniAutobus(int id, AutobusDTO data)
-		{
-			
-		}
+        public bool IzmeniAutobus(int id, AutobusDTO data)
+        {
+            throw new NotImplementedException();
+        }
 
-		public bool ObrisiAutobus(int id)
-		{
-			
-		}
+        public bool ObrisiAutobus(int id)
+        {
+            throw new NotImplementedException();
+        }
 
-		public AutobusDTO Procitaj(int id)
-		{
-			
-		}
+        public AutobusDTO Procitaj(int id)
+        {
+            throw new NotImplementedException();
+        }
 
-		public List<AutobusDTO> ProcitajSve()
-		{
-			
-		}
-	}
+        public List<AutobusDTO> ProcitajSve()
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

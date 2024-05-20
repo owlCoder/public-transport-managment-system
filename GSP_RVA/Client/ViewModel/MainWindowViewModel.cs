@@ -1,11 +1,5 @@
-﻿using Client.Views;
-using NetworkService.Helpers;
-using System;
-using System.Collections.Generic;
+﻿using NetworkService.Helpers;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace Client.ViewModel
@@ -95,7 +89,7 @@ namespace Client.ViewModel
 
             set
             {
-                if (password != value) 
+                if (password != value)
                 {
                     password = value;
                     OnPropertyChanged("Password");
@@ -113,7 +107,7 @@ namespace Client.ViewModel
 
             set
             {
-                if(errorMessage != value)
+                if (errorMessage != value)
                 {
                     errorMessage = value;
                     OnPropertyChanged("ErrorMessage");

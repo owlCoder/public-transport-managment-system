@@ -1,7 +1,6 @@
-﻿using Common.Enums;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Data.Entity;
+using System.Runtime.Serialization;
 
 namespace Service.Database.Models
 {
@@ -16,7 +15,7 @@ namespace Service.Database.Models
         [Required]
         [StringLength(8)]
         public string Oznaka { get; set; }
-    
+
         public int IdLinije { get; set; } = 0;
 
     }

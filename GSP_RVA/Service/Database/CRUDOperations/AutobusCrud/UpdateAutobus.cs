@@ -1,11 +1,6 @@
 ﻿using Service.Database.Context;
 using Service.Database.CRUD;
 using Service.Database.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Service.Database.CRUDOperations.AutobusCrud
 {
@@ -30,7 +25,7 @@ namespace Service.Database.CRUDOperations.AutobusCrud
                 // Update fields
                 find.Oznaka = autobus.Oznaka;
                 find.IdLinije = autobus.IdLinije;
-                
+
 
                 return _context.SaveChanges() > 0;
             }

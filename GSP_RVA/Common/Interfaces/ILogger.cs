@@ -1,11 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Common.Enums;
 
 namespace Common.Interfaces
 {
-	public interface ILogger
-	{
-		void Log(LogLevel level, string message);
-	}
+    public interface ILogger
+    {
+        void Log(LogTraceLevel level, string message);
+    }
 }

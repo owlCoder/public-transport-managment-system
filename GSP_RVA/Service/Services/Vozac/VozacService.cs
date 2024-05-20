@@ -1,34 +1,35 @@
+using Common.DTO;
+using Common.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Service.Services.Vozac
 {
-	public class VozacService : IVozacService
-	{
-		public bool DodajVozaca(VozacDTO data)
-		{
-			
-		}
+    public class VozacService : IVozacService
+    {
+        public bool DodajVozaca(VozacDTO data)
+        {
+            throw new NotImplementedException();
+        }
 
-		public bool IzmeniVozaca(int id, VozacDTO data)
-		{
-			
-		}
+        public bool IzmeniVozaca(int id, VozacDTO data)
+        {
+            throw new NotImplementedException();
+        }
 
-		public bool ObrisiVozaca(int id)
-		{
-			
-		}
+        public bool ObrisiVozaca(int id)
+        {
+            throw new NotImplementedException();
+        }
 
-		public VozacDTO Procitaj(int id)
-		{
-			
-		}
+        public VozacDTO Procitaj(int id)
+        {
+            throw new NotImplementedException();
+        }
 
-		public List<VozacDTO> ProcitajSve()
-		{
-			
-		}
-	}
+        public List<VozacDTO> ProcitajSve()
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

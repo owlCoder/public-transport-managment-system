@@ -1,39 +1,40 @@
+using Common.DTO;
+using Common.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Service.Services.Linija
 {
-	public class LinijaService : ILinijaService
-	{
-		public bool DodajLiniju(LinijaDTO data)
-		{
-			
-		}
+    public class LinijaService : ILinijaService
+    {
+        public bool DodajLiniju(LinijaDTO data)
+        {
+            throw new NotImplementedException();
+        }
 
-		public bool IzmeniLiniju(int id, LinijaDTO data)
-		{
-			
-		}
+        public bool IzmeniLiniju(int id, LinijaDTO data)
+        {
+            throw new NotImplementedException();
+        }
 
-		public bool ObrisiLiniju(int id)
-		{
-			
-		}
+        public bool ObrisiLiniju(int id)
+        {
+            throw new NotImplementedException();
+        }
 
-		public LinijaDTO Procitaj(int id)
-		{
-			
-		}
+        public LinijaDTO Procitaj(int id)
+        {
+            throw new NotImplementedException();
+        }
 
-		public List<LinijaDTO> ProcitajSve()
-		{
-			
-		}
+        public List<LinijaDTO> ProcitajSve()
+        {
+            throw new NotImplementedException();
+        }
 
-		public LinijaDTO Pretraga(bool poOdredistu, string unos)
-		{
-			
-		}
-	}
+        public LinijaDTO Pretraga(bool poOdredistu, string unos)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

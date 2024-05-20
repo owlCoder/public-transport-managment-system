@@ -1,14 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Common.Enums;
+using Common.Interfaces;
 
 namespace Common.Loggers
 {
-	public class FileLogger : ILogger
-	{
-		public void Log(LogLevel level, string message)
-		{
-			
-		}
-	}
+    public class FileLogger : ILogger
+    {
+        public void Log(LogTraceLevel level, string message)
+        {
+
+        }
+    }
 }
