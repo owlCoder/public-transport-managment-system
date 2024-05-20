@@ -1,5 +1,4 @@
 ﻿using Common.Interfaces;
-using Service.Database;
 using Service.Services.Autobus;
 using Service.Services.Linija;
 using Service.Services.Vozac;
