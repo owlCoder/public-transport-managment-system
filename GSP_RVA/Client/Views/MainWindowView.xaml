@@ -7,9 +7,6 @@
              xmlns:viewModel="clr-namespace:Client.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <UserControl.DataContext>
-        <viewModel:MainWindowViewModel />
-    </UserControl.DataContext>
     <UserControl.Background>
         <ImageBrush  ImageSource="../slike/slika.jpg" />
     </UserControl.Background>

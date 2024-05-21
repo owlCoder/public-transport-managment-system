@@ -27,7 +27,6 @@ namespace Client.ViewModel
 
         public GSPViewModel()
         {
-
             EditCommand = new MyICommand(OnEdit);
             RefreshCommand = new MyICommand(OnRefresh);
             LogOutCommand = new MyICommand(OnLogOut);

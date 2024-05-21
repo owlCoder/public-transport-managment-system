@@ -20,7 +20,7 @@
             <views:MainWindowView />
         </DataTemplate>
         <DataTemplate DataType="{x:Type viewModel:GSPViewModel}">
-            <views:MainWindowView />
+            <views:GSPView />
         </DataTemplate>
         <!-- dodaj ostale viewvow ovde -->
     </Window.Resources>
