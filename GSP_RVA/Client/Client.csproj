@@ -66,6 +66,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\Command.cs" />
+    <Compile Include="Commands\LinijaCommands\AddLinijaCommand.cs" />
+    <Compile Include="Commands\LinijaCommands\DeleteLinijaCommand.cs" />
+    <Compile Include="Commands\LinijaCommands\DuplicateLinija.cs" />
+    <Compile Include="Commands\LinijaCommands\EditLinijaCommand.cs" />
     <Compile Include="Commands\Manager\CommandManager.cs" />
     <Compile Include="Helpers\BindableBase.cs" />
     <Compile Include="Helpers\MyICommand.cs" />

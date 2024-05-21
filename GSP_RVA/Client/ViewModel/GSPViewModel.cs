@@ -1,14 +1,18 @@
-﻿using Common.DTO;
+﻿using Client.Commands.Manager;
+using Common.DTO;
 using NetworkService.Helpers;
 using Service.Database.Context;
 using Service.Database.Models;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Windows;
 
 namespace Client.ViewModel
 {
     public class GSPViewModel : BindableBase
     {
+        private CommandManager CommandManager = new CommandManager();
+
         private ObservableCollection<AutobusDTO> autobusi;
         private ObservableCollection<VozacDTO> vozaci;
         private ObservableCollection<LinijaDTO> linije;
@@ -175,6 +179,7 @@ namespace Client.ViewModel
         private void OnAdd()
         {
             // Implementacija dodavanja novog elementa
+            
         }
 
         private void OnDelete()

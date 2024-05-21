@@ -8,13 +8,13 @@ namespace Common.Interfaces
     public interface ILinijaService
     {
         [OperationContract]
-        bool DodajLiniju(LinijaDTO data);
+        int DodajLiniju(LinijaDTO data);
 
         [OperationContract]
-        bool IzmeniLiniju(int id, LinijaDTO data);
+        int IzmeniLiniju(int id, LinijaDTO data);
 
         [OperationContract]
-        bool ObrisiLiniju(int id);
+        int ObrisiLiniju(int id);
 
         [OperationContract]
         LinijaDTO Procitaj(int id);

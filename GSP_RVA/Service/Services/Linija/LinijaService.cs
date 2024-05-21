@@ -7,17 +7,17 @@ namespace Service.Services.Linija
 {
     public class LinijaService : ILinijaService
     {
-        public bool DodajLiniju(LinijaDTO data)
+        public int DodajLiniju(LinijaDTO data)
         {
             throw new NotImplementedException();
         }
 
-        public bool IzmeniLiniju(int id, LinijaDTO data)
+        public int IzmeniLiniju(int id, LinijaDTO data)
         {
             throw new NotImplementedException();
         }
 
-        public bool ObrisiLiniju(int id)
+        public int ObrisiLiniju(int id)
         {
             throw new NotImplementedException();
         }
