@@ -4,6 +4,7 @@ using MVVMLight.Messaging;
 using NetworkService.Helpers;
 using System.Diagnostics;
 using System.ServiceModel;
+using System.ServiceModel.Channels;
 using System.Windows;
 
 namespace Client.ViewModel
@@ -17,6 +18,7 @@ namespace Client.ViewModel
         private readonly ServiceProvider provider;
 
         private GSPViewModel gspViewModel;
+        private AddEditLinijaViewModel addEditLinijaViewModel;
 
         private string username;
         private string password;
@@ -30,7 +32,7 @@ namespace Client.ViewModel
             gspViewModel = new GSPViewModel();
 
             // Register messenger actions
-            Messenger.Default.Register<string>(this, Change);
+            Messenger.Default.Register<(string viewModelName, string mode)>(this, Change);
 
             #region CREATE FACTORIES FOR SERVICE PROVIDER
 
@@ -173,9 +175,9 @@ namespace Client.ViewModel
         #endregion
 
         #region EXTERNAL ENDPOINTS
-        public void Change(string view_model_name)
+        public void Change((string viewModelName, string mode) message)
         {
-            switch (view_model_name)
+            switch (message.viewModelName)
             {
                 case "main":
                     CurrentViewModel = this;
@@ -185,6 +187,9 @@ namespace Client.ViewModel
                     CurrentViewModel = gspViewModel;
                     break;
 
+                case "addEditLinija":
+                    CurrentViewModel = new AddEditLinijaViewModel(null, message.mode);
+                    break;
                 // dodaj ostale view modele
 
                 default:

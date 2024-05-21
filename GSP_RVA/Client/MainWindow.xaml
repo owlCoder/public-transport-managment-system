@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Client"
         xmlns:views="clr-namespace:Client.View"
-        xmlns:viewModel="clr-namespace:Client.ViewModel"
+        xmlns:viewModel="clr-namespace:Client.ViewModel" 
+        xmlns:views1="clr-namespace:Client.Views"
         WindowStartupLocation="CenterScreen"
         mc:Ignorable="d"
         Title="GSP" 
@@ -21,6 +22,9 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type viewModel:GSPViewModel}">
             <views:GSPView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:AddEditLinijaViewModel}">
+            <views1:AddEditLinijaView/>
         </DataTemplate>
         <!-- dodaj ostale viewvow ovde -->
     </Window.Resources>

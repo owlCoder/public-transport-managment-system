@@ -4,42 +4,68 @@ using Client.Commands.Manager;
 using Client.Provider;
 using Common.DTO;
 using Common.Interfaces;
+using MVVMLight.Messaging;
+using NetworkService.Helpers;
+using System.ServiceModel.Channels;
 
 namespace Client.ViewModel
 {
-    public class AddEditLinijaViewModel
+    public class AddEditLinijaViewModel : BindableBase
     {
-        private string actionButtonText;
+        private LinijaDTO linija;
+        public string Mode { get; private set; }
+        public bool IsSaved { get; private set; }
+
+        public MyICommand SaveCommand { get; private set; }
+        public MyICommand CancelCommand { get; private set; }
 
         private readonly CommandManager commandManager = new CommandManager();
         private readonly ILinijaService linijaService = ServiceProvider.LinijaService;
 
-        public AddEditLinijaViewModel()
+        public AddEditLinijaViewModel(LinijaDTO linija, string mode)
         {
-            // onda znas da je add
-            //ActionButtonText = "Add";
+            this.linija = linija ?? new LinijaDTO();
+            this.Mode = mode;
+            ActionButtonText = mode == "ADD" ? "ADD" : "EDIT";
+            SaveCommand = new MyICommand(OnSave);
+            CancelCommand = new MyICommand(OnCancel);
         }
 
-        public AddEditLinijaViewModel(LinijaDTO linija)
+        public string ActionButtonText { get; private set; }
+
+        public LinijaDTO Linija
         {
-            // polje klas eisto proerrty
-            //TrenutnaLinija = linija;
+            get { return linija; }
+            set
+            {
+                if (linija != value)
+                {
+                    linija = value;
+                    OnPropertyChanged("Linija");
+                }
+            }
         }
 
-        public void AddLinija()
-        {
-            Command add = new AddLinijaCommand(linijaService, new LinijaDTO());
-            commandManager.AddAndExecuteCommand(add);
-            // resetuj sva polja
-            // nalik Username = ""
+        public string LabelText => Mode == "ADD" ? "DODAJ NOVU LINIJU" : "IZMENI LINIJU";
 
+        private void OnSave()
+        {
+            if (Mode == "ADD")
+            {
+                Command add = new AddLinijaCommand(linijaService, linija);
+                commandManager.AddAndExecuteCommand(add);
+                IsSaved = true;
+            }
+            else if (Mode == "EDIT")
+            {
+                // Implementacija logike za uređivanje
+                IsSaved = true;
+            }
         }
 
-        public void Edit()
+        private void OnCancel()
         {
-            // edit komanda
-        }
 
-        // property
+        }
     }
 }

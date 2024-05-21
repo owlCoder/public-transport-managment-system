@@ -1,9 +1,11 @@
 ﻿using Client.Commands.Manager;
+using Client.Views;
 using Common.DTO;
 using MVVMLight.Messaging;
 using NetworkService.Helpers;
 using Service.Database.Models;
 using System.Collections.ObjectModel;
+using System.Windows;
 
 namespace Client.ViewModel
 {
@@ -47,30 +49,6 @@ namespace Client.ViewModel
 
             //kreirati ChannelFactory, pozvati proxy za svaki od servisa 
             //Autobus.Servis.DobaviSve();
-        }
-
-        private void OnEdit()
-        {
-            // Implementacija za uređivanje odabranog elementa
-            if (SelectedEntity is Autobus autobus)
-            {
-                // Priprema za uređivanje autobusa
-                // Na primer: SelectedEntity = odabrani autobus iz kolekcije
-            }
-            else if (SelectedEntity is Vozac vozac)
-            {
-                // Priprema za uređivanje vozača
-                // Na primer: SelectedEntity = odabrani vozač iz kolekcije
-            }
-            else if (SelectedEntity is Linija linija)
-            {
-                // Priprema za uređivanje linije
-                // Na primer: SelectedEntity = odabrana linija iz kolekcije
-            }
-            else
-            {
-                return;
-            }
         }
         #region
         /*
@@ -169,9 +147,18 @@ namespace Client.ViewModel
 
         private void OnAdd()
         {
-            // Implementacija dodavanja novog elementa
-
+            string mode = "ADD";
+            Messenger.Default.Send(("addEditLinija", mode));
         }
+
+
+        private void OnEdit()
+        {
+            string mode = "EDIT";
+            Messenger.Default.Send(("addEditLinija", mode));
+        }
+
+
 
         private void OnDelete()
         {
