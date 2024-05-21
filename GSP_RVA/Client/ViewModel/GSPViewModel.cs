@@ -2,11 +2,8 @@
 using Common.DTO;
 using MVVMLight.Messaging;
 using NetworkService.Helpers;
-using Service.Database.Context;
 using Service.Database.Models;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Windows;
 
 namespace Client.ViewModel
 {
@@ -173,7 +170,7 @@ namespace Client.ViewModel
         private void OnAdd()
         {
             // Implementacija dodavanja novog elementa
-            
+
         }
 
         private void OnDelete()

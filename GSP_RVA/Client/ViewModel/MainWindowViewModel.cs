@@ -1,6 +1,9 @@
-﻿using MVVMLight.Messaging;
+﻿using Client.Provider;
+using Common.Interfaces;
+using MVVMLight.Messaging;
 using NetworkService.Helpers;
 using System.Diagnostics;
+using System.ServiceModel;
 using System.Windows;
 
 namespace Client.ViewModel
@@ -11,11 +14,12 @@ namespace Client.ViewModel
         public MyICommand LoginCommand { get; private set; }
         public MyICommand<Window> CloseWindow { get; private set; }
 
+        private readonly ServiceProvider provider;
+
         private GSPViewModel gspViewModel;
 
         private string username;
         private string password;
-
         private string errorMessage;
 
         public MainWindowViewModel()
@@ -27,6 +31,34 @@ namespace Client.ViewModel
 
             // Register messenger actions
             Messenger.Default.Register<string>(this, Change);
+
+            #region CREATE FACTORIES FOR SERVICE PROVIDER
+
+            // Create channel factory for AutobusService
+            ChannelFactory<IAutobusService> autobusFactory = new ChannelFactory<IAutobusService>
+            (
+                new NetTcpBinding(),
+                "net.tcp://localhost:8080/AutobusService"
+            );
+
+            // Create channel factory for LinijaService
+            ChannelFactory<ILinijaService> linijaFactory = new ChannelFactory<ILinijaService>
+            (
+                new NetTcpBinding(),
+                "net.tcp://localhost:8081/LinijaService"
+            );
+
+            // Create channel factory for VozacService
+            ChannelFactory<IVozacService> vozacFactory = new ChannelFactory<IVozacService>
+            (
+                new NetTcpBinding(),
+                "net.tcp://localhost:8082/VozacService"
+            );
+
+            // Add WCF channels to provider
+            provider = new ServiceProvider(autobusFactory, linijaFactory, vozacFactory);
+
+            #endregion
         }
 
         private void OnClose(Window window)
@@ -48,8 +80,6 @@ namespace Client.ViewModel
 
                 // check is response true
                 bool success = true; // replace with api response
-
-                //new GSP().Show();
 
                 if (success)
                 {
@@ -158,7 +188,7 @@ namespace Client.ViewModel
                 // dodaj ostale view modele
 
                 default:
-                    CurrentViewModel = this; 
+                    CurrentViewModel = this;
                     break;
             }
         }

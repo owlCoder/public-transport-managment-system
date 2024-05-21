@@ -50,6 +50,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -78,8 +79,13 @@
     <Compile Include="Helpers\MyICommand.cs" />
     <Compile Include="Helpers\PassThroughConverter.cs" />
     <Compile Include="Helpers\ValidationBase.cs" />
+    <Compile Include="Provider\ServiceProvider.cs" />
+    <Compile Include="ViewModel\AddEditLinijaViewModel.cs" />
     <Compile Include="ViewModel\GSPViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="Views\AddEditLinijaView.xaml.cs">
+      <DependentUpon>AddEditLinijaView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\GSPView.xaml.cs">
       <DependentUpon>GSPView.xaml</DependentUpon>
     </Compile>
@@ -98,6 +104,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\AddEditLinijaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\GSPView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
