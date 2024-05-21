@@ -1,4 +1,5 @@
-﻿using NetworkService.Helpers;
+﻿using MVVMLight.Messaging;
+using NetworkService.Helpers;
 using System.Diagnostics;
 using System.Windows;
 
@@ -23,6 +24,9 @@ namespace Client.ViewModel
             LoginCommand = new MyICommand(OnLogin);
             CloseWindow = new MyICommand<Window>(OnClose);
             gspViewModel = new GSPViewModel();
+
+            // Register messenger actions
+            Messenger.Default.Register<string>(this, Change);
         }
 
         private void OnClose(Window window)
@@ -49,6 +53,10 @@ namespace Client.ViewModel
 
                 if (success)
                 {
+                    // Clear login fields
+                    Username = "";
+                    Password = "";
+
                     CurrentViewModel = gspViewModel;
                     OnPropertyChanged("CurrentViewModel");
                 }
@@ -131,6 +139,33 @@ namespace Client.ViewModel
                     OnPropertyChanged("CurrentViewModel");
                 }
             }
+        }
+        #endregion
+
+        #region EXTERNAL ENDPOINTS
+        public void Change(string view_model_name)
+        {
+            switch (view_model_name)
+            {
+                case "main":
+                    CurrentViewModel = this;
+                    break;
+
+                case "gsp":
+                    CurrentViewModel = gspViewModel;
+                    break;
+
+                // dodaj ostale view modele
+
+                default:
+                    CurrentViewModel = this; 
+                    break;
+            }
+        }
+
+        protected void ChangeViewModel(BindableBase view_model)
+        {
+            CurrentViewModel = view_model;
         }
         #endregion
     }

@@ -5,9 +5,9 @@ namespace Client.Commands.Manager
 {
     public class CommandManager
     {
-        private readonly List<Command> commands = new List<Command>();
-        private readonly Stack<Command> undoStack = new Stack<Command>();
-        private readonly Stack<Command> redoStack = new Stack<Command>();
+        private static readonly List<Command> commands = new List<Command>();
+        private static readonly Stack<Command> undoStack = new Stack<Command>();
+        private static readonly Stack<Command> redoStack = new Stack<Command>();
 
         public void AddAndExecuteCommand(Command command)
         {

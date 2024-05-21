@@ -1,5 +1,6 @@
 ﻿using Client.Commands.Manager;
 using Common.DTO;
+using MVVMLight.Messaging;
 using NetworkService.Helpers;
 using Service.Database.Context;
 using Service.Database.Models;
@@ -166,14 +167,7 @@ namespace Client.ViewModel
 
         private void OnLogOut()
         {
-            // Implementacija odjave
-            Window currentWindow = Application.Current.MainWindow;
-            currentWindow.Close();
-
-
-            Window mainWindow = new MainWindow();
-            Application.Current.MainWindow = mainWindow;
-            mainWindow.Show();
+            Messenger.Default.Send("main");
         }
 
         private void OnAdd()
