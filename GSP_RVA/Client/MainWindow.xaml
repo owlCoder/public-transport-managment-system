@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:Client"
         xmlns:views="clr-namespace:Client.View"
         xmlns:viewModel="clr-namespace:Client.ViewModel"
+        WindowStartupLocation="CenterScreen"
         mc:Ignorable="d"
         Title="GSP" 
         Name="MainWindowRef"
@@ -18,7 +19,10 @@
         <DataTemplate DataType="{x:Type viewModel:MainWindowViewModel}">
             <views:MainWindowView />
         </DataTemplate>
-       <!-- dodaj ostale viewvow ovde -->
+        <DataTemplate DataType="{x:Type viewModel:GSPViewModel}">
+            <views:MainWindowView />
+        </DataTemplate>
+        <!-- dodaj ostale viewvow ovde -->
     </Window.Resources>
 
     <ContentControl Margin="10" Content="{Binding CurrentViewModel}" />

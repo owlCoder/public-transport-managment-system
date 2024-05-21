@@ -49,7 +49,7 @@ namespace Client.ViewModel
 
                 if (success)
                 {
-                    CurrentViewModel = this.gspViewModel;
+                    CurrentViewModel = gspViewModel;
                 }
                 else
                 {

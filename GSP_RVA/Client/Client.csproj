@@ -71,10 +71,10 @@
     <Compile Include="Helpers\ValidationBase.cs" />
     <Compile Include="ViewModel\GSPViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
-    <Compile Include="View\GSPView.xaml.cs">
+    <Compile Include="Views\GSPView.xaml.cs">
       <DependentUpon>GSPView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\MainWindowView.xaml.cs">
+    <Compile Include="Views\MainWindowView.xaml.cs">
       <DependentUpon>MainWindowView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
@@ -89,11 +89,11 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="View\GSPView.xaml">
+    <Page Include="Views\GSPView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\MainWindowView.xaml">
+    <Page Include="Views\MainWindowView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

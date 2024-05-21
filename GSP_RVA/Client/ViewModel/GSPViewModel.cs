@@ -46,10 +46,6 @@ namespace Client.ViewModel
 
             //kreirati ChannelFactory, pozvati proxy za svaki od servisa 
             //Autobus.Servis.DobaviSve();
-
-            OnPropertyChanged(nameof(Autobusi));
-            OnPropertyChanged(nameof(Vozaci));
-            OnPropertyChanged(nameof(Linije));
         }
 
         private void OnEdit()
