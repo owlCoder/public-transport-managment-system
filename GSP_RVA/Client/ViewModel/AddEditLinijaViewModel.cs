@@ -2,7 +2,6 @@
 using Client.Commands.LinijaCommands;
 using Client.Commands.Manager;
 using Client.Provider;
-using Client.Views;
 using Common.DTO;
 using Common.Interfaces;
 
