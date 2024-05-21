@@ -10,7 +10,7 @@ namespace Client.ViewModel
         public MyICommand LoginCommand { get; private set; }
         public MyICommand<Window> CloseWindow { get; private set; }
 
-        public HomeViewModel HomeViewModel;
+        public GSPViewModel gspViewModel;
 
         private string username;
         private string password;
@@ -22,7 +22,7 @@ namespace Client.ViewModel
             CurrentViewModel = this;
             LoginCommand = new MyICommand(OnLogin);
             CloseWindow = new MyICommand<Window>(OnClose);
-            HomeViewModel = new HomeViewModel();
+            gspViewModel = new GSPViewModel();
         }
 
         private void OnClose(Window window)
@@ -49,7 +49,7 @@ namespace Client.ViewModel
 
                 if (success)
                 {
-                    CurrentViewModel = HomeViewModel;
+                    CurrentViewModel = this.gspViewModel;
                 }
                 else
                 {

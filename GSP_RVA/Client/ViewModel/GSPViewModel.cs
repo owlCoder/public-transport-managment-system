@@ -1,4 +1,5 @@
-﻿using NetworkService.Helpers;
+﻿using Common.DTO;
+using NetworkService.Helpers;
 using Service.Database.Context;
 using Service.Database.Models;
 using System.Collections.ObjectModel;
@@ -8,11 +9,10 @@ namespace Client.ViewModel
 {
     public class GSPViewModel : BindableBase
     {
-        private ObservableCollection<Autobus> autobusi;
-        private ObservableCollection<Vozac> vozaci;
-        private ObservableCollection<Linija> linije;
+        private ObservableCollection<AutobusDTO> autobusi;
+        private ObservableCollection<VozacDTO> vozaci;
+        private ObservableCollection<LinijaDTO> linije;
 
-        private DatabaseContext dbContext;
         private object selectedEntity;
 
         public MyICommand EditCommand { get; private set; }
@@ -27,7 +27,6 @@ namespace Client.ViewModel
 
         public GSPViewModel()
         {
-            dbContext = new DatabaseContext();
 
             EditCommand = new MyICommand(OnEdit);
             RefreshCommand = new MyICommand(OnRefresh);
@@ -44,9 +43,9 @@ namespace Client.ViewModel
 
         private void LoadData()
         {
-            autobusi = new ObservableCollection<Autobus>(dbContext.Autobusi);
-            vozaci = new ObservableCollection<Vozac>(dbContext.Vozaci);
-            linije = new ObservableCollection<Linija>(dbContext.Linije);
+
+            //kreirati ChannelFactory, pozvati proxy za svaki od servisa 
+            //Autobus.Servis.DobaviSve();
 
             OnPropertyChanged(nameof(Autobusi));
             OnPropertyChanged(nameof(Vozaci));
@@ -208,28 +207,56 @@ namespace Client.ViewModel
             // Implementacija pretraživanja
         }
 
-        public ObservableCollection<Autobus> Autobusi
+        public ObservableCollection<AutobusDTO> Autobusi
         {
             get { return autobusi; }
-            set { SetProperty(ref autobusi, value); }
+            set
+            {
+                if (autobusi != value)
+                {
+                    autobusi = value;
+                    OnPropertyChanged("Autobusi");
+                }
+            }
         }
 
-        public ObservableCollection<Vozac> Vozaci
+        public ObservableCollection<VozacDTO> Vozaci
         {
             get { return vozaci; }
-            set { SetProperty(ref vozaci, value); }
+            set
+            {
+                if (vozaci != value)
+                {
+                    vozaci = value;
+                    OnPropertyChanged("Vozaci");
+                }
+            }
         }
 
-        public ObservableCollection<Linija> Linije
+        public ObservableCollection<LinijaDTO> Linije
         {
             get { return linije; }
-            set { SetProperty(ref linije, value); }
+            set
+            {
+                if (linije != value)
+                {
+                    linije = value;
+                    OnPropertyChanged("Linije");
+                }
+            }
         }
 
         public object SelectedEntity
         {
             get { return selectedEntity; }
-            set { SetProperty(ref selectedEntity, value); }
+            set
+            {
+                if (selectedEntity != value)
+                {
+                    selectedEntity = value;
+                    OnPropertyChanged("SelectedEntity");
+                }
+            }
         }
     }
 }

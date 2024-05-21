@@ -70,13 +70,9 @@
     <Compile Include="Helpers\PassThroughConverter.cs" />
     <Compile Include="Helpers\ValidationBase.cs" />
     <Compile Include="ViewModel\GSPViewModel.cs" />
-    <Compile Include="ViewModel\HomeViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
-    <Compile Include="View\GSP.xaml.cs">
-      <DependentUpon>GSP.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\HomeVIew.xaml.cs">
-      <DependentUpon>HomeVIew.xaml</DependentUpon>
+    <Compile Include="View\GSPView.xaml.cs">
+      <DependentUpon>GSPView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MainWindowView.xaml.cs">
       <DependentUpon>MainWindowView.xaml</DependentUpon>
@@ -93,11 +89,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="View\GSP.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\HomeVIew.xaml">
+    <Page Include="View\GSPView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
