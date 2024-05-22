@@ -142,7 +142,7 @@ namespace Client.ViewModel
 
         private void OnLogOut()
         {
-            Messenger.Default.Send("main");
+            Messenger.Default.Send(("main", ""));
         }
 
         private void OnAdd()

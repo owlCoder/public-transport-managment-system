@@ -65,7 +65,7 @@ namespace Client.ViewModel
 
         private void OnCancel()
         {
-
+            Messenger.Default.Send(("gsp", ""));
         }
     }
 }
