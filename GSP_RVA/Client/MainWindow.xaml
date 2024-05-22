@@ -26,6 +26,9 @@
         <DataTemplate DataType="{x:Type viewModel:AddEditLinijaViewModel}">
             <views1:AddEditLinijaView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:AddEditAutobusViewModel}">
+            <views1:AddEditAutobusView/>
+        </DataTemplate>
         <!-- dodaj ostale viewvow ovde -->
     </Window.Resources>
 

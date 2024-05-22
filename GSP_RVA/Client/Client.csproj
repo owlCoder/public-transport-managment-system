@@ -80,11 +80,19 @@
     <Compile Include="Helpers\PassThroughConverter.cs" />
     <Compile Include="Helpers\ValidationBase.cs" />
     <Compile Include="Provider\ServiceProvider.cs" />
+    <Compile Include="ViewModel\AddEditAutobusViewModel.cs" />
     <Compile Include="ViewModel\AddEditLinijaViewModel.cs" />
+    <Compile Include="ViewModel\AddEditVozacViewModel.cs" />
     <Compile Include="ViewModel\GSPViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="Views\AddEditAutobusView.xaml.cs">
+      <DependentUpon>AddEditAutobusView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\AddEditLinijaView.xaml.cs">
       <DependentUpon>AddEditLinijaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddEditVozacView.xaml.cs">
+      <DependentUpon>AddEditVozacView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\GSPView.xaml.cs">
       <DependentUpon>GSPView.xaml</DependentUpon>
@@ -104,7 +112,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\AddEditAutobusView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\AddEditLinijaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AddEditVozacView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -220,6 +236,9 @@
       <Project>{94BEFC27-023D-4FAD-8D2B-05048000F261}</Project>
       <Name>Service</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Commands\AutobusCommands\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
