@@ -117,6 +117,8 @@
               FontWeight="SemiBold"
               Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}"
               Background="#A0A9A9A9"/>
+
+            <TextBlock  Grid.Row="0" Text="{Binding ErrorMessage}" Foreground="Red" Height="20" />
             <Button Grid.Column="0"
              Grid.Row="5"
              Command="{Binding LoginCommand}"

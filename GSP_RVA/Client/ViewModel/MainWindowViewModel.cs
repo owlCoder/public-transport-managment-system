@@ -21,6 +21,8 @@ namespace Client.ViewModel
         private GSPViewModel gspViewModel;
         private AddEditLinijaViewModel addEditLinijaViewModel;
 
+        public static int CurrentUserId { get; set; } = 0;
+
         private string username;
         private string password;
         private string errorMessage;
@@ -78,13 +80,10 @@ namespace Client.ViewModel
             else
             {
                 // UserAPI
-                VozacDTO vozac = ServiceProvider.VozacService.Prijava(username, password);
+                int id = ServiceProvider.VozacService.Prijava(username, password);
                 // pass data
 
-                // check is response true
-                bool success = (vozac != null && vozac.Id != 0); // replace with api response
-
-                if (success)
+                if (id != 0)
                 {
                     // Clear login fields
                     Username = "";

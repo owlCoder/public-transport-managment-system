@@ -1,6 +1,8 @@
 using Common.DTO;
+using Common.Enums;
 using Common.Interfaces;
 using Service.Database;
+using Service.Database.CRUDOperations.LinijaCrud;
 using Service.Database.CRUDOperations.VozacCrud;
 using System;
 using System.Collections.Generic;
@@ -25,23 +27,47 @@ namespace Service.Services.Vozac
             throw new NotImplementedException();
         }
 
-        public VozacDTO Prijava(string username, string password)
+        public int Prijava(string username, string password)
         {
             try
             {
-                var db = DatabaseService.Instance.Context;
-                var vozac = db.Vozaci.AsNoTracking().FirstOrDefault(v => v.Username == username && v.Password == password);
+                ReadVozac read = new ReadVozac(DatabaseService.Instance.Context);
+                ReadLinija readLinija = new ReadLinija(DatabaseService.Instance.Context);
+
+                var vozac = read.ReadByCriteria(v => v.Username == username && v.Password == password);
 
                 if (vozac == null)
-                    return new VozacDTO() { Id = 0 };
+                    return 0;
+                else
+                    return vozac.Id;
 
-                return new VozacDTO() { Id = vozac.Id, Ime = vozac.Ime, Linije = new List<LinijaDTO>(), Oznaka = vozac.Oznaka, Prezime = vozac.Prezime, Role = vozac.Role == "Admin" ? Common.Enums.UserRole.Admin : Common.Enums.UserRole.Vozac, Username = vozac.Username };
+                //var povezaneLinije = readLinija.ReadAllByCriteria(l => l.Vozaci.Any(v => v.Id == vozac.Id)).ToList();
+
+                //var linijeDTO = povezaneLinije.Select(l => new LinijaDTO
+                //{
+                //    Id = l.Id,
+                //    Oznaka = l.Oznaka,
+                //    Polaziste = l.Polaziste,
+                //    Odrediste = l.Odrediste
+                //}).ToList();
+
+                //return new VozacDTO
+                //{
+                //    Id = vozac.Id,
+                //    Ime = vozac.Ime,
+                //    Prezime = vozac.Prezime,
+                //    Username = vozac.Username,
+                //    Oznaka = vozac.Oznaka,
+                //    Role = vozac.Role == "Admin" ? UserRole.Admin : UserRole.Vozac,
+                //    Linije = new List<LinijaDTO>()
+                //};
             }
-            catch
+            catch (Exception)
             {
-                return new VozacDTO { Id = 0 };
+                return 0;
             }
         }
+
 
         public VozacDTO Procitaj(int id)
         {
