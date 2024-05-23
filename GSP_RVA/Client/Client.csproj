@@ -69,6 +69,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\AutobusCommands\AddAutobusCommand.cs" />
     <Compile Include="Commands\Command.cs" />
     <Compile Include="Commands\LinijaCommands\AddLinijaCommand.cs" />
     <Compile Include="Commands\LinijaCommands\DeleteLinijaCommand.cs" />
@@ -237,9 +238,7 @@
       <Name>Service</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Commands\AutobusCommands\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
