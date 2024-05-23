@@ -5,9 +5,9 @@ using System.Collections.Generic;
 
 namespace Service.Database.CRUDOperations.LinijaCrud.FindLinija
 {
-                    public class FindByPolaziste : IFindOperation<Linija>
+    public class FindByPolaziste : IFindOperation<Linija>
     {
-                                                        public List<Linija> FindByCriteria(List<Linija> linije, string criteria)
+        public List<Linija> FindByCriteria(List<Linija> linije, string criteria)
         {
             // Find lines in the provided list where the Polaziste property contains the criteria
             // throw new NotImplementedException();

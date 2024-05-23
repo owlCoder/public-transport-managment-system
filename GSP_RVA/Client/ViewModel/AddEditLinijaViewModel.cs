@@ -6,7 +6,6 @@ using Common.DTO;
 using Common.Interfaces;
 using MVVMLight.Messaging;
 using NetworkService.Helpers;
-using System.ServiceModel.Channels;
 
 namespace Client.ViewModel
 {

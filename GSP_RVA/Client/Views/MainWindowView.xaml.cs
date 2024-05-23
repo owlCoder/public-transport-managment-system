@@ -2,7 +2,7 @@
 
 namespace Client.View
 {
-                public partial class MainWindowView : UserControl
+    public partial class MainWindowView : UserControl
     {
         public MainWindowView()
         {

@@ -2,7 +2,7 @@
 
 namespace Client.Views
 {
-                public partial class AddEditLinijaView : UserControl
+    public partial class AddEditLinijaView : UserControl
     {
         public AddEditLinijaView()
         {

@@ -2,7 +2,7 @@
 
 namespace Client.View
 {
-                public partial class GSPView : UserControl
+    public partial class GSPView : UserControl
     {
         public GSPView()
         {

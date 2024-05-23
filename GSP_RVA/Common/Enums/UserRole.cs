@@ -1,9 +1,9 @@
 ﻿namespace Common.Enums
 {
-                public enum UserRole
+    public enum UserRole
     {
-                                Admin,
+        Admin,
 
-                                Vozac
+        Vozac
     }
 }

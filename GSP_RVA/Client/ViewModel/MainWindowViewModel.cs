@@ -1,11 +1,9 @@
 ﻿using Client.Provider;
-using Common.DTO;
 using Common.Interfaces;
 using MVVMLight.Messaging;
 using NetworkService.Helpers;
 using System.Diagnostics;
 using System.ServiceModel;
-using System.ServiceModel.Channels;
 using System.Windows;
 
 namespace Client.ViewModel

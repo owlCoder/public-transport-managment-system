@@ -1,11 +1,8 @@
 ﻿using Client.Commands.Manager;
-using Client.Views;
 using Common.DTO;
 using MVVMLight.Messaging;
 using NetworkService.Helpers;
-using Service.Database.Models;
 using System.Collections.ObjectModel;
-using System.Windows;
 
 namespace Client.ViewModel
 {

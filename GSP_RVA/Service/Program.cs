@@ -1,7 +1,7 @@
 ﻿using Common.Interfaces;
-using Service.Services.Autobus;
-using Service.Services.Linija;
-using Service.Services.Vozac;
+using Service.Services.AutobusService;
+using Service.Services.LinijaService;
+using Service.Services.VozacService;
 using System;
 using System.ServiceModel;
 

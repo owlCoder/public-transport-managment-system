@@ -3,7 +3,7 @@ using Common.Interfaces;
 using System;
 using System.Collections.Generic;
 
-namespace Service.Services.Linija
+namespace Service.Services.LinijaService
 {
     public class LinijaService : ILinijaService
     {

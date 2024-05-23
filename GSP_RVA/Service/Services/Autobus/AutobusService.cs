@@ -3,7 +3,7 @@ using Common.Interfaces;
 using System;
 using System.Collections.Generic;
 
-namespace Service.Services.Autobus
+namespace Service.Services.AutobusService
 {
     public class AutobusService : IAutobusService
     {

@@ -2,12 +2,10 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
-using System.Runtime.Serialization;
 
 namespace Service.Database.Models
 {
     [Table("Vozaci")]
-    [DataContract]
     public class Vozac
     {
         [Key]
