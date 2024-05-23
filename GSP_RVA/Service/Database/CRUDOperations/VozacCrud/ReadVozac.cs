@@ -1,6 +1,7 @@
 ﻿using Service.Database.Context;
 using Service.Database.Models;
 using Service.Database.Operations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -40,6 +41,22 @@ namespace Service.Database.CRUDOperations.VozacCrud
             lock (_lock)
             {
                 return _context.Vozaci.AsNoTracking().ToList();
+            }
+        }
+
+        public Vozac ReadByCriteria(Func<Vozac, bool> filter)
+        {
+            lock (_lock)
+            {
+                return _context.Vozaci.AsNoTracking().FirstOrDefault(filter);
+            }
+        }
+
+        public List<Vozac> ReadAllByCriteria(Func<Vozac, bool> filter)
+        {
+            lock (_lock)
+            {
+                return _context.Vozaci.AsNoTracking().Where(filter).ToList();
             }
         }
     }

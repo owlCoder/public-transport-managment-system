@@ -1,6 +1,7 @@
 ﻿using Service.Database.Context;
 using Service.Database.Models;
 using Service.Database.Operations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -29,6 +30,22 @@ namespace Service.Database.CRUDOperations.LinijaCrud
             lock (_lock)
             {
                 return _context.Linije.AsNoTracking().ToList();
+            }
+        }
+
+        public Linija ReadByCriteria(Func<Linija, bool> filter)
+        {
+            lock (_lock)
+            {
+                return _context.Linije.AsNoTracking().FirstOrDefault(filter);
+            }
+        }
+
+        public List<Linija> ReadAllByCriteria(Func<Linija, bool> filter)
+        {
+            lock (_lock)
+            {
+                return _context.Linije.AsNoTracking().Where(filter).ToList();
             }
         }
     }

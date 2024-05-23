@@ -1,6 +1,7 @@
 ﻿using Service.Database.Context;
 using Service.Database.Models;
 using Service.Database.Operations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -29,6 +30,22 @@ namespace Service.Database.CRUDOperations.AutobusCrud
             lock (_lock)
             {
                 return _context.Autobusi.AsNoTracking().ToList();
+            }
+        }
+
+        public Autobus ReadByCriteria(Func<Autobus, bool> filter)
+        {
+            lock (_lock)
+            {
+                return _context.Autobusi.AsNoTracking().FirstOrDefault(filter);
+            }
+        }
+
+        public List<Autobus> ReadAllByCriteria(Func<Autobus, bool> filter)
+        {
+            lock (_lock)
+            {
+                return _context.Autobusi.AsNoTracking().Where(filter).ToList();
             }
         }
     }
