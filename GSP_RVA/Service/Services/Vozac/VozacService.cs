@@ -11,7 +11,7 @@ namespace Service.Services.VozacService
 {
     public class VozacService : IVozacService
     {
-        public VozacDTO DodajVozaca(VozacDTO data)
+        public bool DodajVozaca(VozacDTO data)
         {
             try
             {
@@ -32,14 +32,14 @@ namespace Service.Services.VozacService
                 {
                     // vrati vozaca nazad
                     var vozac = read.ReadByCriteria(v => v.Username == novi.Username);
-                    return new VozacDTO() { Id = vozac.Id, Ime = vozac.Ime, Linije = new List<LinijaDTO>(), Oznaka = vozac.Oznaka, Prezime = vozac.Prezime, Role = vozac.Role == "Admin" ? Common.Enums.UserRole.Admin : Common.Enums.UserRole.Vozac, Username = vozac.Username };
+                    return vozac != null;
                 }
                 else
-                    return new VozacDTO() { Id = 0 };
+                    return false;
             }
             catch (Exception)
             {
-                return new VozacDTO() { Id = 0 };
+                return false;
             }
         }
 

@@ -4,5 +4,6 @@ namespace Client.ViewModel
 {
     public class AddEditVozacViewModel : BindableBase
     {
+
     }
 }

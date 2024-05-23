@@ -18,6 +18,10 @@ namespace Client.ViewModel
         public MyICommand SaveCommand { get; private set; }
         public MyICommand CancelCommand { get; private set; }
 
+        private string oznaka;
+        private string polaziste;
+        private string odrediste;
+
         private readonly CommandManager commandManager = new CommandManager();
         private readonly ILinijaService linijaService = ServiceProvider.LinijaService;
 
@@ -51,6 +55,10 @@ namespace Client.ViewModel
         {
             if (Mode == "ADD")
             {
+                linija.Oznaka = oznaka;
+                linija.Polaziste = polaziste;
+                linija.Odrediste = odrediste;
+
                 Command add = new AddLinijaCommand(linijaService, linija);
                 commandManager.AddAndExecuteCommand(add);
                 IsSaved = true;
@@ -65,6 +73,57 @@ namespace Client.ViewModel
         private void OnCancel()
         {
             Messenger.Default.Send(("gsp", ""));
+        }
+
+        public string Oznaka
+        {
+            get
+            {
+                return oznaka;
+            }
+
+            set
+            {
+                if(oznaka != value)
+                {
+                    oznaka = value;
+                    OnPropertyChanged("Oznaka");
+                }
+            }
+        }
+
+        public string Polaziste
+        {
+            get
+            {
+                return polaziste;
+            }
+
+            set
+            {
+                if (polaziste != value)
+                {
+                    polaziste = value;
+                    OnPropertyChanged("Polaziste");
+                }
+            }
+        }
+
+        public string Odrediste
+        {
+            get
+            {
+                return odrediste;
+            }
+
+            set
+            {
+                if (odrediste != value)
+                {
+                    odrediste = value;
+                    OnPropertyChanged("Odrediste");
+                }
+            }
         }
     }
 }

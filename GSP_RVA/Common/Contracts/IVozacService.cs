@@ -8,7 +8,7 @@ namespace Common.Interfaces
     public interface IVozacService
     {
         [OperationContract]
-        VozacDTO DodajVozaca(VozacDTO data);
+        bool DodajVozaca(VozacDTO data);
 
         [OperationContract]
         VozacDTO IzmeniVozaca(int id, VozacDTO data);
