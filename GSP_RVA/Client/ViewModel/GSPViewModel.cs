@@ -1,4 +1,5 @@
 ﻿using Client.Commands.Manager;
+using Client.Provider;
 using Common.DTO;
 using MVVMLight.Messaging;
 using NetworkService.Helpers;
@@ -10,9 +11,9 @@ namespace Client.ViewModel
     {
         private CommandManager CommandManager = new CommandManager();
 
-        private ObservableCollection<AutobusDTO> autobusi;
-        private ObservableCollection<VozacDTO> vozaci;
-        private ObservableCollection<LinijaDTO> linije;
+        private ObservableCollection<AutobusDTO> autobusi = new ObservableCollection<AutobusDTO>();
+        private ObservableCollection<VozacDTO> vozaci = new ObservableCollection<VozacDTO>();
+        private ObservableCollection<LinijaDTO> linije = new ObservableCollection<LinijaDTO>();
 
         private object selectedEntity;
 
@@ -38,12 +39,14 @@ namespace Client.ViewModel
             CloneCommand = new MyICommand(OnClone);
             SearchCommand = new MyICommand(OnSearch);
 
+            // Inicijalizacija providera
+
             LoadData(); //  učitavanje podataka prilikom inicijalizacije pogleda
         }
 
         private void LoadData()
         {
-
+            Linije = new ObservableCollection<LinijaDTO>(ServiceProvider.LinijaService.ProcitajSve());
             //kreirati ChannelFactory, pozvati proxy za svaki od servisa 
             //Autobus.Servis.DobaviSve();
         }
@@ -159,17 +162,24 @@ namespace Client.ViewModel
 
         private void OnDelete()
         {
+            if(SelectedEntity is LinijaDTO)
+            {
+                // onda znas
+            }
+            var s = SelectedEntity as LinijaDTO;
             // Implementacija brisanja odabranog elementa
         }
 
         private void OnUndo()
         {
             // Implementacija undo akcije
+            CommandManager.Undo();
         }
 
         private void OnRedo()
         {
             // Implementacija redo akcije
+            CommandManager.Redo();
         }
 
         private void OnClone()

@@ -18,11 +18,35 @@ namespace Client.Provider
 
         private static ChannelFactory<IVozacService> vozacFactory { get; set; }
 
-        public ServiceProvider(ChannelFactory<IAutobusService> _as, ChannelFactory<ILinijaService> _ls, ChannelFactory<IVozacService> _vs)
+        static ServiceProvider()
         {
-            autobusFactory = _as;
-            linijaFactory = _ls;
-            vozacFactory = _vs;
+            #region CREATE FACTORIES FOR SERVICE PROVIDER
+
+            // Create channel factory for AutobusService
+            ChannelFactory<IAutobusService> af = new ChannelFactory<IAutobusService>
+            (
+                new NetTcpBinding(),
+                "net.tcp://localhost:8080/AutobusService"
+            );
+
+            // Create channel factory for LinijaService
+            ChannelFactory<ILinijaService> lf = new ChannelFactory<ILinijaService>
+            (
+                new NetTcpBinding(),
+                "net.tcp://localhost:8081/LinijaService"
+            );
+
+            // Create channel factory for VozacService
+            ChannelFactory<IVozacService> vf = new ChannelFactory<IVozacService>
+            (
+                new NetTcpBinding(),
+                "net.tcp://localhost:8082/VozacService"
+            );
+            #endregion
+
+            autobusFactory = af;
+            linijaFactory = lf;
+            vozacFactory = vf;
 
             // Create a WCF communication channel
             AutobusService = autobusFactory.CreateChannel();

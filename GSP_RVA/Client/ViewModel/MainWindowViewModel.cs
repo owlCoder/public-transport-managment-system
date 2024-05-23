@@ -34,34 +34,6 @@ namespace Client.ViewModel
 
             // Register messenger actions
             Messenger.Default.Register<(string viewModelName, string mode)>(this, Change);
-
-            #region CREATE FACTORIES FOR SERVICE PROVIDER
-
-            // Create channel factory for AutobusService
-            ChannelFactory<IAutobusService> autobusFactory = new ChannelFactory<IAutobusService>
-            (
-                new NetTcpBinding(),
-                "net.tcp://localhost:8080/AutobusService"
-            );
-
-            // Create channel factory for LinijaService
-            ChannelFactory<ILinijaService> linijaFactory = new ChannelFactory<ILinijaService>
-            (
-                new NetTcpBinding(),
-                "net.tcp://localhost:8081/LinijaService"
-            );
-
-            // Create channel factory for VozacService
-            ChannelFactory<IVozacService> vozacFactory = new ChannelFactory<IVozacService>
-            (
-                new NetTcpBinding(),
-                "net.tcp://localhost:8082/VozacService"
-            );
-
-            // Add WCF channels to provider
-            provider = new ServiceProvider(autobusFactory, linijaFactory, vozacFactory);
-
-            #endregion
         }
 
         private void OnClose(Window window)
@@ -88,6 +60,7 @@ namespace Client.ViewModel
                     Password = "";
 
                     CurrentViewModel = gspViewModel;
+                    CurrentUserId = id;
                     OnPropertyChanged("CurrentViewModel");
                 }
                 else

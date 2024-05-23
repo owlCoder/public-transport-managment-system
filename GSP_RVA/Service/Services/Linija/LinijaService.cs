@@ -47,7 +47,20 @@ namespace Service.Services.LinijaService
 
         public int ObrisiLiniju(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                DeleteLinija delete = new DeleteLinija(DatabaseService.Instance.Context);
+                if(delete.Delete(id))
+                {
+                    return id;
+                }
+                else
+                { return 0; }
+            }
+            catch
+            {
+                return 0;
+            }
         }
 
         public LinijaDTO Procitaj(int id)
@@ -57,7 +70,23 @@ namespace Service.Services.LinijaService
 
         public List<LinijaDTO> ProcitajSve()
         {
-            throw new NotImplementedException();
+            try
+            {
+                ReadLinija read = new ReadLinija(DatabaseService.Instance.Context);
+                List<Linija> linije = read.ReadAll();
+
+                List<LinijaDTO> sve = new List<LinijaDTO>();
+                foreach(Linija l in linije)
+                {
+                    sve.Add(new LinijaDTO() { Id = l.Id, Oznaka = l.Oznaka, Polaziste = l.Polaziste, Odrediste = l.Odrediste });
+                }
+
+                return sve;
+            }
+            catch
+            {
+                return new List<LinijaDTO>();
+            }
         }
 
         public LinijaDTO Pretraga(bool poOdredistu, string unos)

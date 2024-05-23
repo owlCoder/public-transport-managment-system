@@ -78,8 +78,7 @@ namespace Service.Services.VozacService
         {
             try
             {
-                var db = DatabaseService.Instance.Context;
-                ReadVozac readVozac = new ReadVozac(db);
+                ReadVozac readVozac = new ReadVozac(DatabaseService.Instance.Context);
                 var vozac = readVozac.Read(id);
 
                 if (vozac == null)

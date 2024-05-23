@@ -124,9 +124,16 @@
                 <StackPanel Orientation="Vertical" >
                     <!-- Content specific to Linije tab -->
 
-                    <DataGrid Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
-                           Margin="10 1 10 10" Height="180"  ItemsSource="{Binding Items}"
-                           SelectedItem="{Binding SelectedItem, Mode=TwoWay}"/>
+                    <DataGrid Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                  Margin="10,1,10,10" Height="180" ItemsSource="{Binding Linije}"
+                  SelectedItem="{Binding SelectedEntity}" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Id" Binding="{Binding Id}" />
+                            <DataGridTextColumn Header="Oznaka" Binding="{Binding Oznaka}" />
+                            <DataGridTextColumn Header="Polaziste" Binding="{Binding Polaziste}" />
+                            <DataGridTextColumn Header="Odrediste" Binding="{Binding Odrediste}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
                 </StackPanel>
             </TabItem>
             <TabItem Height="25" Width="60">
