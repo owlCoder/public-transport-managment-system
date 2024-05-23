@@ -15,10 +15,7 @@ using System.Windows.Shapes;
 
 namespace Client.Views
 {
-    /// <summary>
-    /// Interaction logic for AddEditVozacView.xaml
-    /// </summary>
-    public partial class AddEditVozacView : UserControl
+                public partial class AddEditVozacView : UserControl
     {
         public AddEditVozacView()
         {

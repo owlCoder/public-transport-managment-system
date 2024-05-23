@@ -21,5 +21,8 @@ namespace Common.Interfaces
 
         [OperationContract]
         List<VozacDTO> ProcitajSve();
+
+        [OperationContract]
+        VozacDTO Prijava(string username, string password);
     }
 }

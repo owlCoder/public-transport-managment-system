@@ -135,9 +135,9 @@
     <Compile Include="Database\Models\Vozac.cs" />
     <Compile Include="Database\CRUD\ICreateOperation.cs" />
     <Compile Include="Database\CRUD\IReadOperation.cs" />
-    <Compile Include="Migrations\202405071703026_v1.cs" />
-    <Compile Include="Migrations\202405071703026_v1.designer.cs">
-      <DependentUpon>202405071703026_v1.cs</DependentUpon>
+    <Compile Include="Migrations\202405232044471_V1.cs" />
+    <Compile Include="Migrations\202405232044471_V1.Designer.cs">
+      <DependentUpon>202405232044471_V1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
@@ -150,17 +150,16 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202405232044471_V1.resx">
+      <DependentUpon>202405232044471_V1.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{b99b969a-f18e-42f4-984c-f660f492281e}</Project>
       <Name>Common</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202405071703026_v1.resx">
-      <DependentUpon>202405071703026_v1.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

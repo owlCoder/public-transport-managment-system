@@ -1,4 +1,5 @@
 ﻿using Client.Provider;
+using Common.DTO;
 using Common.Interfaces;
 using MVVMLight.Messaging;
 using NetworkService.Helpers;
@@ -77,11 +78,11 @@ namespace Client.ViewModel
             else
             {
                 // UserAPI
-
+                VozacDTO vozac = ServiceProvider.VozacService.Prijava(username, password);
                 // pass data
 
                 // check is response true
-                bool success = true; // replace with api response
+                bool success = (vozac != null && vozac.Id != 0); // replace with api response
 
                 if (success)
                 {

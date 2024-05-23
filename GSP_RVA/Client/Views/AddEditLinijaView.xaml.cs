@@ -2,10 +2,7 @@
 
 namespace Client.Views
 {
-    /// <summary>
-    /// Interaction logic for AddEditLinijaView.xaml
-    /// </summary>
-    public partial class AddEditLinijaView : UserControl
+                public partial class AddEditLinijaView : UserControl
     {
         public AddEditLinijaView()
         {

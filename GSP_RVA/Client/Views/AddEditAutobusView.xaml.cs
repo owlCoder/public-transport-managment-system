@@ -15,10 +15,7 @@ using System.Windows.Shapes;
 
 namespace Client.Views
 {
-    /// <summary>
-    /// Interaction logic for AddEditAutobusView.xaml
-    /// </summary>
-    public partial class AddEditAutobusView : UserControl
+                public partial class AddEditAutobusView : UserControl
     {
         public AddEditAutobusView()
         {

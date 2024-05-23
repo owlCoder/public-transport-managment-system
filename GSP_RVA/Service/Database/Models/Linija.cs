@@ -5,16 +5,10 @@ using System.Runtime.Serialization;
 
 namespace Service.Database.Models
 {
-    /// <summary>
-    /// Represents a Linija (Line) entity in the database.
-    /// </summary>
     [Table("Linije")]
     [DataContract]
     public class Linija
     {
-        /// <summary>
-        /// Gets or sets the unique identifier for the Linija.
-        /// </summary>
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
