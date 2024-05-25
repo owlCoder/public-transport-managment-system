@@ -33,6 +33,9 @@ namespace Client.ViewModel
             ActionButtonText = mode == "ADD" ? "ADD" : "EDIT";
             SaveCommand = new MyICommand(OnSave);
             CancelCommand = new MyICommand(OnCancel);
+
+            // Ako je edit kliknuto onda povuci novi objekat i podesi ga kao trenutni
+            Linija = linijaService.Procitaj(GSPViewModel.SelectedEntityId);
         }
 
         public string ActionButtonText { get; private set; }
