@@ -72,10 +72,6 @@ namespace Client.ViewModel
                     ErrorMessage = "Invalid credentials has been provided!";
                 }
             }
-
-            Trace.TraceInformation(ErrorMessage);
-            Trace.TraceInformation(Username);
-            Trace.TraceInformation(Password);
         }
 
         #region PROPERTY

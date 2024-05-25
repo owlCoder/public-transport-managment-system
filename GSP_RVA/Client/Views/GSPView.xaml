@@ -173,7 +173,7 @@
 
         <!-- Edit Profile, Log Out, and Refresh Buttons -->
         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">
-            <Button Content="Edit Profile" Width="80" Height="23" Margin="5" Command="{Binding EditProfileCommand}"/>
+            <Button Content="Edit Profile" Width="80" Height="23" Margin="5" />
             <Button Content="Refresh" Width="80" Height="23" Margin="5" Command="{Binding RefreshCommand}"/>
             <Button Content="Log Out" Width="80" Height="23" Margin="5"  Command="{Binding LogOutCommand}"
      CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"/>

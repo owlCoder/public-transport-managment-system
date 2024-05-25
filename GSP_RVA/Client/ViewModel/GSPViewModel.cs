@@ -3,6 +3,7 @@ using Client.Provider;
 using Common.DTO;
 using MVVMLight.Messaging;
 using NetworkService.Helpers;
+using System;
 using System.Collections.ObjectModel;
 
 namespace Client.ViewModel
@@ -21,7 +22,7 @@ namespace Client.ViewModel
 
         public static int SelectedEntityId { get; set; } = 0;
 
-        private bool poPolazistuRadio, poOdredistu;
+        private bool poPolazistuRadio, poOdredistuRadio;
 
         public MyICommand EditCommand { get; private set; }
         public MyICommand EditProfileCommand { get; private set; }
@@ -33,6 +34,8 @@ namespace Client.ViewModel
         public MyICommand RedoCommand { get; private set; }
         public MyICommand CloneCommand { get; private set; }
         public MyICommand SearchCommand { get; private set; }
+        public MyICommand PoPolazistuCommand { get; private set; }
+        public MyICommand PoOdredistuCommand { get; private set; }
 
         public GSPViewModel()
         {
@@ -47,15 +50,31 @@ namespace Client.ViewModel
             CloneCommand = new MyICommand(OnClone);
             SearchCommand = new MyICommand(OnSearch);
 
+            // pretraga
+            PoPolazistuCommand = new MyICommand(PoPolazistuPromena);
+            PoOdredistuCommand = new MyICommand(PoOdredistuPromena);
+
             // Inicijalizacija metode za osvezavanje podataka
             Messenger.Default.Register<char>(this, RefreshData);
 
             LoadData(); //  učitavanje podataka prilikom inicijalizacije pogleda
         }
 
+        private void PoOdredistuPromena()
+        {
+            PoOdredistuRadio = true;
+            PoPolazistuRadio = false;
+        }
+
+        private void PoPolazistuPromena()
+        {
+            PoOdredistuRadio = false;
+            PoPolazistuRadio = true;
+        }
+
         public void OnEditProfile()
         {
-            Messenger.Default.Send("profile", null);
+            Messenger.Default.Send(("profile", "null"));
         }
 
         private void RefreshData(char mode = 'c')
@@ -218,6 +237,10 @@ namespace Client.ViewModel
             {
                 // lupii poruku unesi kriteriju
             }
+            else
+            {
+                Linije = new ObservableCollection<LinijaDTO>(ServiceProvider.LinijaService.Pretraga(poOdredistuRadio, searchText));
+            }
         }
 
         public ObservableCollection<AutobusDTO> Autobusi
@@ -295,6 +318,40 @@ namespace Client.ViewModel
                 {
                     searchText = value;
                     OnPropertyChanged("SearchText");
+                }
+            }
+        }
+
+        public bool PoPolazistuRadio
+        {
+            get
+            {
+                return poPolazistuRadio;
+            }
+
+            set
+            {
+                if(poPolazistuRadio != value)
+                {
+                    poPolazistuRadio = value;
+                    OnPropertyChanged("PoPolazistuRadio");
+                }
+            }
+        }
+
+        public bool PoOdredistuRadio
+        {
+            get
+            {
+                return poOdredistuRadio;
+            }
+
+            set
+            {
+                if (poOdredistuRadio != value)
+                {
+                    poOdredistuRadio = value;
+                    OnPropertyChanged("PoOdredistuRadio");
                 }
             }
         }
