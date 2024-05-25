@@ -1,5 +1,7 @@
 using Common.Enums;
 using Common.Interfaces;
+using System;
+using System.IO;
 
 namespace Service.Loggers
 {
@@ -7,7 +9,13 @@ namespace Service.Loggers
     {
         public void Log(LogTraceLevel level, string message)
         {
-            // belezi u txt
+            string timestamp = DateTime.Now.ToString("[dd.MM.yyyy. HH:mm]");
+            string logMessage = $"{timestamp} {level}: {message}";
+
+            using (StreamWriter sw = new StreamWriter("log.txt", append: true))
+            {
+                sw.WriteLine(logMessage);
+            }
         }
     }
 }
