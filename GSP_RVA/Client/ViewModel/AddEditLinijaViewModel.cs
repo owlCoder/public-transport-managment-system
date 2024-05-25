@@ -21,6 +21,7 @@ namespace Client.ViewModel
         private string oznaka;
         private string polaziste;
         private string odrediste;
+        private string errorMessage;
 
         private readonly CommandManager commandManager = new CommandManager();
         private readonly ILinijaService linijaService = ServiceProvider.LinijaService;
@@ -62,11 +63,18 @@ namespace Client.ViewModel
                 Command add = new AddLinijaCommand(linijaService, linija);
                 commandManager.AddAndExecuteCommand(add);
                 IsSaved = true;
+
+                // Clear inputs and set message
+                Oznaka = "";
+                Polaziste = "";
+                Odrediste = "";
+                ErrorMessage = "Linija je uspešno dodata u bazu podataka!";
             }
             else if (Mode == "EDIT")
             {
                 // Implementacija logike za uređivanje
                 IsSaved = true;
+                ErrorMessage = "Linija je uspešno izmenjena u bazi podataka!";
             }
 
             Messenger.Default.Send('c');
@@ -75,6 +83,25 @@ namespace Client.ViewModel
         private void OnCancel()
         {
             Messenger.Default.Send(("gsp", ""));
+        }
+
+        #region PROPERTY
+
+        public string ErrorMessage
+        {
+            get
+            {
+                return errorMessage;
+            }
+
+            set
+            {
+                if (errorMessage != value)
+                {
+                    errorMessage = value;
+                    OnPropertyChanged("ErrorMessage");
+                }
+            }
         }
 
         public string Oznaka
@@ -127,5 +154,6 @@ namespace Client.ViewModel
                 }
             }
         }
+        #endregion
     }
 }

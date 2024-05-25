@@ -64,7 +64,7 @@ namespace Service.Services.VozacService
                 existingVozac.Role = data.Role.ToString();
                 existingVozac.Oznaka = data.Oznaka;
 
-                if (update.Update(existingVozac))
+                if (update.Update(id, existingVozac))
                 {
                     return new VozacDTO()
                     {

@@ -84,7 +84,7 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-
+            <TextBlock  Grid.Row="0" Text="{Binding ErrorMessage}" Foreground="DarkGreen" Height="20" />
             <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontSize="20" FontFamily="Georgia" FontWeight="SemiBold" 
                    Content="{Binding Path=DataContext.LabelText, RelativeSource={RelativeSource AncestorType=UserControl}}" 
                    HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10"/>
