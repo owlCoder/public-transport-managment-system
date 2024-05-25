@@ -1,12 +1,10 @@
-﻿using Client.Commands.LinijaCommands;
-using Client.Commands;
+﻿using Client.Commands;
+using Client.Commands.LinijaCommands;
 using Client.Commands.Manager;
 using Client.Provider;
 using Common.DTO;
 using MVVMLight.Messaging;
 using NetworkService.Helpers;
-using Service.Services.LinijaService;
-using System;
 using System.Collections.ObjectModel;
 
 namespace Client.ViewModel
@@ -206,18 +204,18 @@ namespace Client.ViewModel
 
         private void OnDelete()
         {
-            if(SelectedEntity is LinijaDTO)
+            if (SelectedEntity is LinijaDTO)
             {
                 Command add = new DeleteLinijaCommand(ServiceProvider.LinijaService, SelectedEntityId);
                 new CommandManager().AddAndExecuteCommand(add);
                 LoadData();
                 SelectedEntityId = 0; // resetovanje odabrane linije
             }
-            else if(SelectedEntity is AutobusDTO)
+            else if (SelectedEntity is AutobusDTO)
             {
                 // kasnije dodati
             }
-            else if(SelectedEntity is VozacDTO)
+            else if (SelectedEntity is VozacDTO)
             {
                 // kasnije dodati
             }
@@ -353,7 +351,7 @@ namespace Client.ViewModel
 
             set
             {
-                if(poPolazistuRadio != value)
+                if (poPolazistuRadio != value)
                 {
                     poPolazistuRadio = value;
                     OnPropertyChanged("PoPolazistuRadio");

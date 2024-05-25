@@ -69,7 +69,7 @@ namespace Client.Commands.LinijaCommands
                 Vozaci = new List<VozacDTO>(originalLinija.Vozaci ?? new List<VozacDTO>()),
                 Autobusi = new List<AutobusDTO>(originalLinija.Autobusi ?? new List<AutobusDTO>())
             };
-     
+
             MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Kloniranje linije sa ID-jem {originalLinija.Id} uspesno izvrseno!");
 
             return linija;

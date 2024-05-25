@@ -2,58 +2,29 @@
 using Common.DTO;
 using Common.Enums;
 using Common.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Client.Commands.VozacCommands
 {
-    class EditVozacCommand : Command
+    class EditVozacCommand
     {
-        private readonly VozacDTO originalVozac;
-        private readonly VozacDTO newVozac;
+        private readonly VozacDTO vozac;
         private readonly IVozacService vozacService;
-        private VozacDTO backupVozac;
         private bool success;
 
         public EditVozacCommand(IVozacService vozacService, VozacDTO originalVozac, VozacDTO newVozac)
         {
             this.vozacService = vozacService;
-            this.originalVozac = originalVozac;
-            this.newVozac = newVozac;
+            vozac = newVozac;
         }
 
-        public override void Execute()
+        public void Execute()
         {
-            backupVozac = vozacService.Procitaj(originalVozac.Id);
-            success = vozacService.IzmeniVozaca(originalVozac.Id, newVozac).Id != 0;
+            success = vozacService.IzmeniVozaca(vozac.Id, vozac).Id != 0;
 
             if (!success)
-                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Izmena vozaca sa {originalVozac.Id} nije uspelo!");
+                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Izmena vozaca sa {vozac.Id} nije uspelo!");
             else
-                MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Vozac sa ID-jem {originalVozac.Id} je uspesno izmenjen!");
-        }
-
-        public override void Undo()
-        {
-            success = vozacService.IzmeniVozaca(originalVozac.Id, backupVozac).Id != 0;
-
-            if (!success)
-                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Izmena vozaca sa ID-jem {originalVozac.Id} nije uspesno opozvano!");
-            else
-                MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Izmena vozaca sa ID-jem {originalVozac.Id} je uspesno opozvano!");
-        }
-
-        public override void Redo()
-        {
-            success = vozacService.IzmeniVozaca(originalVozac.Id, newVozac).Id != 0;
-
-            if (!success)
-                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Izmena vozaca sa ID-jem {originalVozac.Id} nije uspesno ponisteno!");
-            else
-                MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Izmena vozaca sa ID-jem {originalVozac.Id} je uspesno ponisteno!");
+                MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Vozac sa ID-jem {vozac.Id} je uspesno izmenjen!");
         }
     }
 }

@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Client.ViewModel;
 using Common.DTO;
-using System.Threading.Tasks;
-using Common.Interfaces;
-using Client.ViewModel;
 using Common.Enums;
+using Common.Interfaces;
 
 namespace Client.Commands.VozacCommands
 {
