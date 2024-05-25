@@ -1,6 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Data.Entity;
 
 namespace Service.Database.Models
 {
@@ -23,8 +23,16 @@ namespace Service.Database.Models
         [StringLength(50)]
         public string Odrediste { get; set; }
 
-        public virtual DbSet<Vozac> Vozaci { get; set; }
+        // Navigation property for Vozaci
+        public virtual ICollection<Vozac> Vozaci { get; set; }
 
-        public virtual DbSet<Autobus> Autobusi { get; set; }
+        // Navigation property for Autobusi
+        public virtual ICollection<Autobus> Autobusi { get; set; }
+
+        public Linija()
+        {
+            Vozaci = new HashSet<Vozac>();
+            Autobusi = new HashSet<Autobus>();
+        }
     }
 }

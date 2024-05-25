@@ -1,7 +1,7 @@
 ﻿using Common.Enums;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Data.Entity;
 
 namespace Service.Database.Models
 {
@@ -36,6 +36,12 @@ namespace Service.Database.Models
         [StringLength(8)]
         public string Oznaka { get; set; }
 
-        public virtual DbSet<Linija> Linije { get; set; }
+        // Navigation property for Linije
+        public virtual ICollection<Linija> Linije { get; set; }
+
+        public Vozac()
+        {
+            Linije = new HashSet<Linija>();
+        }
     }
 }
