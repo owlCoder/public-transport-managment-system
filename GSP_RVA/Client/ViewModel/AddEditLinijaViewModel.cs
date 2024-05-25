@@ -4,6 +4,7 @@ using Client.Commands.Manager;
 using Client.Provider;
 using Common.DTO;
 using Common.Interfaces;
+using Microsoft.Win32.SafeHandles;
 using MVVMLight.Messaging;
 using NetworkService.Helpers;
 
@@ -36,6 +37,9 @@ namespace Client.ViewModel
             // Ako je edit kliknuto onda povuci novi objekat i podesi ga kao trenutni
             originalnaLinija = linijaService.Procitaj(GSPViewModel.SelectedEntityId);
             novaLinija = linijaService.Procitaj(GSPViewModel.SelectedEntityId);
+            Oznaka = originalnaLinija.Oznaka;
+            Polaziste = originalnaLinija.Polaziste;
+            Odrediste = originalnaLinija.Odrediste;
         }
 
         public string ActionButtonText { get; private set; }
@@ -75,11 +79,11 @@ namespace Client.ViewModel
             }
             else if (Mode == "EDIT")
             {
-                // Implementacija logike za uređivanje
                 novaLinija.Oznaka = oznaka;
                 novaLinija.Polaziste = polaziste;
                 novaLinija.Odrediste = odrediste;
 
+                // Implementacija logike za uređivanje
                 Command add = new EditLinijaCommand(linijaService, originalnaLinija, novaLinija);
                 commandManager.AddAndExecuteCommand(add);
                 IsSaved = true;
