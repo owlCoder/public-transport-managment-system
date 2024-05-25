@@ -36,11 +36,21 @@ namespace Client.Commands.VozacCommands
         public override void Undo()
         {
             success = vozacService.ObrisiVozaca(vozac.Id);
+
+            if (!success)
+                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Dodavanje vozaca sa ID-jem {vozac.Id} nije uspesno opozvano!");
+            else
+                MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Dodavanje vozaca sa ID-jem {vozac.Id} je uspesno opozvano!");
         }
 
         public override void Redo()
         {
             success = vozacService.DodajVozaca(vozac);
+
+            if (!success)
+                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Dodavanje vozaca sa ID-jem {vozac.Id} nije uspesno ponisteno!");
+            else
+                MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Dodavanje vozaca sa ID-jem {vozac.Id} je uspesno ponisteno!");
         }
     }
 }
