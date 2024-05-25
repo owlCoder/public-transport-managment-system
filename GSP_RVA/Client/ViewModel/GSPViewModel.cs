@@ -3,6 +3,7 @@ using Client.Provider;
 using Common.DTO;
 using MVVMLight.Messaging;
 using NetworkService.Helpers;
+using System;
 using System.Collections.ObjectModel;
 
 namespace Client.ViewModel
@@ -39,9 +40,15 @@ namespace Client.ViewModel
             CloneCommand = new MyICommand(OnClone);
             SearchCommand = new MyICommand(OnSearch);
 
-            // Inicijalizacija providera
+            // Inicijalizacija metode za osvezavanje podataka
+            Messenger.Default.Register<char>(this, RefreshData);
 
             LoadData(); //  učitavanje podataka prilikom inicijalizacije pogleda
+        }
+
+        private void RefreshData(char mode = 'c')
+        {
+            LoadData();
         }
 
         private void LoadData()

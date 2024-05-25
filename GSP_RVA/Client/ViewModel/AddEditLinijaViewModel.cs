@@ -68,6 +68,8 @@ namespace Client.ViewModel
                 // Implementacija logike za uređivanje
                 IsSaved = true;
             }
+
+            Messenger.Default.Send('c');
         }
 
         private void OnCancel()
