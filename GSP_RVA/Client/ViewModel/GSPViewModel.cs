@@ -174,12 +174,14 @@ namespace Client.ViewModel
         {
             // Implementacija undo akcije
             CommandManager.Undo();
+            LoadData();
         }
 
         private void OnRedo()
         {
             // Implementacija redo akcije
             CommandManager.Redo();
+            LoadData();
         }
 
         private void OnClone()
