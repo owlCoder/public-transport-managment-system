@@ -1,12 +1,15 @@
-﻿using Common.DTO;
+﻿using Client.ViewModel;
+using Common.DTO;
+using Common.Enums;
 using Common.Interfaces;
 
 namespace Client.Commands.AutobusCommands
 {
-    public class AddAutobusCommand
+    public class AddAutobusCommand : Command
     {
         private readonly AutobusDTO autobus;
         private readonly IAutobusService autobusService;
+        private bool success;
 
         public AddAutobusCommand(IAutobusService autobusService, AutobusDTO autobus)
         {
@@ -14,9 +17,25 @@ namespace Client.Commands.AutobusCommands
             this.autobus = autobus;
         }
 
-        public void Execute()
+        public override void Execute()
         {
-            autobusService.DodajAutobus(autobus.Oznaka);
+            success = autobusService.DodajAutobus(autobus.Oznaka);
+
+            // Logovanje
+            if (autobus.Id == 0)
+                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, "Dodavanje novog autobusa nije uspelo!");
+            else
+                MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Autobus sa ID-jem {autobus.Id} je uspesno dodat!");
+        }
+
+        public override void Undo()
+        {
+            success = autobusService.ObrisiAutobus(autobus.Id);
+        }
+
+        public override void Redo()
+        {
+            success = autobusService.DodajAutobus(autobus.Oznaka);
         }
     }
 }
