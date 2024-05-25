@@ -34,6 +34,12 @@ namespace Client.ViewModel
 
             // Register messenger actions
             Messenger.Default.Register<(string viewModelName, string mode)>(this, Change);
+
+            // Ukloni POSLE!!!!!!!!!
+            // Ukloni POSLE!!!!!!!!!
+            // Ukloni POSLE!!!!!!!!!
+            Username = "danijel";
+            Password = "danijel";
         }
 
         private void OnClose(Window window)

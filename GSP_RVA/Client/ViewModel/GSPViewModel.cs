@@ -18,6 +18,9 @@ namespace Client.ViewModel
 
         private object selectedEntity;
 
+        public static int SelectedEntityId { get; set; } = 0;
+
+
         public MyICommand EditCommand { get; private set; }
         public MyICommand RefreshCommand { get; private set; }
         public MyICommand LogOutCommand { get; private set; }
@@ -161,6 +164,9 @@ namespace Client.ViewModel
 
         private void OnEdit()
         {
+            if (SelectedEntityId == 0) // TODO: DODAJ PORUKU NA UI niste odabrali entitet!!!!!!!!!!!
+                return;
+
             string mode = "EDIT";
             Messenger.Default.Send(("addEditLinija", mode));
         }
@@ -249,6 +255,16 @@ namespace Client.ViewModel
                 {
                     selectedEntity = value;
                     OnPropertyChanged("SelectedEntity");
+
+                    // Podesi Id objekta trenutno odabranog
+                    if(selectedEntity is LinijaDTO)
+                        SelectedEntityId = (selectedEntity as LinijaDTO).Id;
+                    else if (selectedEntity is AutobusDTO)
+                        SelectedEntityId = (selectedEntity as AutobusDTO).Id;
+                    else if (selectedEntity is VozacDTO)
+                        SelectedEntityId = (selectedEntity as VozacDTO).Id;
+                    else
+                        SelectedEntityId = 0;
                 }
             }
         }
