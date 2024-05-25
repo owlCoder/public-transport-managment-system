@@ -32,16 +32,20 @@ namespace Client.Commands.AutobusCommands
         {
             success = autobusService.ObrisiAutobus(autobus.Id);
 
-            // Logovanje
             if (!success)
-                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, "Dodavanje novog autobusa nije uspelo!");
+                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Dodavanje autobusa sa ID-jem {autobus.Id} nije uspesno opozvano!");
             else
-                MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Autobus sa ID-jem {autobus.Id} je uspesno dodat!");
+                MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Dodavanje autobusa sa ID-jem {autobus.Id} je uspesno opozvano!");
         }
 
         public override void Redo()
         {
             success = autobusService.DodajAutobus(autobus.Oznaka);
+
+            if (!success)
+                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Dodavanje autobusa sa ID-jem {autobus.Id} nije uspesno ponisteno!");
+            else
+                MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Dodavanje autobusa sa ID-jem {autobus.Id} je uspesno ponisteno!");
         }
     }
 }

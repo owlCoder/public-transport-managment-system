@@ -31,7 +31,7 @@ namespace Client.Commands.LinijaCommands
             if (duplicatedLinijaId == 0)
                 MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, "Dupliranje nove linije nije uspelo!");
             else
-                MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Linija sa ID-jem {duplicatedLinijaId} je uspesno duplirana!");
+                MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Linija sa ID-jem {originalLinija.Id} je uspesno duplirana!");
         }
 
         public override void Undo()
@@ -40,9 +40,9 @@ namespace Client.Commands.LinijaCommands
             linijaService.ObrisiLiniju(duplicatedLinijaId);
 
             if (duplicatedLinijaId == 0)
-                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Dupliranje linije sa ID-jem {duplicatedLinijaId} nije uspesno opozvano!");
+                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Dupliranje linije sa ID-jem {originalLinija.Id} nije uspesno opozvano!");
             else
-                MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Dupliranje linije sa ID-jem {duplicatedLinijaId} je uspesno opozvano!");
+                MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Dupliranje linije sa ID-jem {originalLinija.Id} je uspesno opozvano!");
         }
 
         public override void Redo()
@@ -51,9 +51,9 @@ namespace Client.Commands.LinijaCommands
             duplicatedLinijaId = linijaService.DodajLiniju(duplicatedLinija);
 
             if (duplicatedLinijaId == 0)
-                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Dupliranje linije sa ID-jem {duplicatedLinijaId} nije uspesno ponisteno!");
+                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Dupliranje linije sa ID-jem {originalLinija.Id} nije uspesno ponisteno!");
             else
-                MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Dupliranje linije sa ID-jem {duplicatedLinijaId} je uspesno ponisteno!");
+                MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Dupliranje linije sa ID-jem {originalLinija.Id} je uspesno ponisteno!");
         }
 
         public object Clone()
@@ -70,7 +70,7 @@ namespace Client.Commands.LinijaCommands
                 Autobusi = new List<AutobusDTO>(originalLinija.Autobusi ?? new List<AutobusDTO>())
             };
      
-            MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Kloniranje linije uspesno izvrseno!");
+            MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Kloniranje linije sa ID-jem {originalLinija.Id} uspesno izvrseno!");
 
             return linija;
         }

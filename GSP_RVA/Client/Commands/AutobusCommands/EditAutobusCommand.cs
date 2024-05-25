@@ -1,4 +1,6 @@
-﻿using Common.DTO;
+﻿using Client.ViewModel;
+using Common.DTO;
+using Common.Enums;
 using Common.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -14,6 +16,7 @@ namespace Client.Commands.AutobusCommands
         private readonly AutobusDTO newAutobus;
         private readonly IAutobusService autobusService;
         private AutobusDTO backupAutobus;
+        private bool success;
 
         public EditAutobusCommand(IAutobusService autobusService, AutobusDTO originalAutobus, AutobusDTO newAutobus)
         {
@@ -25,17 +28,32 @@ namespace Client.Commands.AutobusCommands
         public override void Execute()
         {
             backupAutobus = autobusService.Procitaj(originalAutobus.Id);
-            autobusService.IzmeniAutobus(originalAutobus.Id, newAutobus);
+            success = autobusService.IzmeniAutobus(originalAutobus.Id, newAutobus);
+
+            if (!success)
+                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, "Izmena novog autobusa nije uspelo!");
+            else
+                MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Autobus sa ID-jem {originalAutobus.Id} je uspesno izmenjen!");
         }
 
         public override void Undo()
         {
-            autobusService.IzmeniAutobus(originalAutobus.Id, backupAutobus);
+            success = autobusService.IzmeniAutobus(originalAutobus.Id, backupAutobus);
+
+            if (!success)
+                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Izmena autobusa sa ID-jem {originalAutobus.Id} nije uspesno opozvano!");
+            else
+                MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Izmena autobusa sa ID-jem {originalAutobus.Id} je uspesno opozvano!");
         }
 
         public override void Redo()
         {
-            autobusService.IzmeniAutobus(originalAutobus.Id, newAutobus);
+            success = autobusService.IzmeniAutobus(originalAutobus.Id, newAutobus);
+
+            if (!success)
+                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Izmena autobusa sa ID-jem {originalAutobus.Id} nije uspesno ponisteno!");
+            else
+                MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Izmena autobusa sa ID-jem {originalAutobus.Id} je uspesno ponisteno!");
         }
     }
 }
