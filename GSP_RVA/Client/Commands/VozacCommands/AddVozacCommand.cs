@@ -35,7 +35,7 @@ namespace Client.Commands.VozacCommands
 
         public override void Undo()
         {
-            vozacService.ObrisiVozaca(vozac.Id);
+            success = vozacService.ObrisiVozaca(vozac.Id);
         }
 
         public override void Redo()

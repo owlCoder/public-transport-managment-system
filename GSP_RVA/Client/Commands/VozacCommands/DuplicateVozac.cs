@@ -33,7 +33,7 @@ namespace Client.Commands.VozacCommands
         public override void Undo()
         {
             // Remove the duplicated VozacDTO
-            vozacService.ObrisiVozaca(duplicatedVozacId);
+            success = vozacService.ObrisiVozaca(duplicatedVozacId);
         }
 
         public override void Redo()

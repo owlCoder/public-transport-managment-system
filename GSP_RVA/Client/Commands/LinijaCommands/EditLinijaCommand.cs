@@ -1,4 +1,6 @@
-﻿using Common.DTO;
+﻿using Client.ViewModel;
+using Common.DTO;
+using Common.Enums;
 using Common.Interfaces;
 
 namespace Client.Commands.LinijaCommands
@@ -9,6 +11,7 @@ namespace Client.Commands.LinijaCommands
         private readonly LinijaDTO newLinija;
         private readonly ILinijaService linijaService;
         private LinijaDTO backupLinija;
+        private int id;
 
         public EditLinijaCommand(ILinijaService linijaService, LinijaDTO originalLinija, LinijaDTO newLinija)
         {
@@ -20,17 +23,32 @@ namespace Client.Commands.LinijaCommands
         public override void Execute()
         {
             backupLinija = linijaService.Procitaj(originalLinija.Id);
-            linijaService.IzmeniLiniju(originalLinija.Id, newLinija);
+            id = linijaService.IzmeniLiniju(originalLinija.Id, newLinija);
+
+            if (id == 0)
+                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, "Izmena nove linije nije uspelo!");
+            else
+                MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Linija sa ID-jem {id} je uspesno izmenjena!");
         }
 
         public override void Undo()
         {
-            linijaService.IzmeniLiniju(originalLinija.Id, backupLinija);
+            id = linijaService.IzmeniLiniju(originalLinija.Id, backupLinija);
+
+            if (id == 0)
+                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Izmena linije sa ID-jem {id} nije uspesno opozvano!");
+            else
+                MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Izmena linije sa ID-jem {id} je uspesno opozvano!");
         }
 
         public override void Redo()
         {
-            linijaService.IzmeniLiniju(originalLinija.Id, newLinija);
+            id = linijaService.IzmeniLiniju(originalLinija.Id, newLinija);
+
+            if (id == 0)
+                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Izmena linije sa ID-jem {id} nije uspesno ponisteno!");
+            else
+                MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Izmena linije sa ID-jem {id} je uspesno ponisteno!");
         }
     }
 }

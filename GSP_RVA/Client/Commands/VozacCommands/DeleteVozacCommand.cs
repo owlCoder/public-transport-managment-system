@@ -13,6 +13,7 @@ namespace Client.Commands.VozacCommands
         private readonly int vozacId;
         private readonly IVozacService vozacService;
         private VozacDTO backupVozac;
+        private bool success;
 
         public DeleteVozacCommand(IVozacService vozacService, int vozacId)
         {
@@ -23,17 +24,17 @@ namespace Client.Commands.VozacCommands
         public override void Execute()
         {
             backupVozac = vozacService.Procitaj(vozacId);
-            vozacService.ObrisiVozaca(vozacId);
+            success = vozacService.ObrisiVozaca(vozacId);
         }
 
         public override void Undo()
         {
-            vozacService.DodajVozaca(backupVozac);
+            success = vozacService.DodajVozaca(backupVozac);
         }
 
         public override void Redo()
         {
-            vozacService.ObrisiVozaca(vozacId);
+            success = vozacService.ObrisiVozaca(vozacId);
         }
     }
 }

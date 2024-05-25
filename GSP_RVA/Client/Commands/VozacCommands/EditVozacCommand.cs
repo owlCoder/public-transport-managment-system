@@ -14,12 +14,13 @@ namespace Client.Commands.VozacCommands
         private readonly VozacDTO newVozac;
         private readonly IVozacService vozacService;
         private VozacDTO backupVozac;
+        private bool success;
 
-        public EditVozacCommand(IVozacService vozacService, VozacDTO originalVozac, VozacDTO newLinija)
+        public EditVozacCommand(IVozacService vozacService, VozacDTO originalVozac, VozacDTO newVozac)
         {
             this.vozacService = vozacService;
             this.originalVozac = originalVozac;
-            this.newVozac = newLinija;
+            this.newVozac = newVozac;
         }
 
         public override void Execute()

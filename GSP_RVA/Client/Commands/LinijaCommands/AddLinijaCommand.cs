@@ -31,11 +31,21 @@ namespace Client.Commands.LinijaCommands
         public override void Undo()
         {
             linijaService.ObrisiLiniju(id);
+
+            if (id == 0)
+                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Dodavanje linije sa ID-jem {id} nije uspesno opozvano!");
+            else
+                MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Dodavanje linije sa ID-jem {id} je uspesno opozvano!");
         }
 
         public override void Redo()
         {
             id = linijaService.DodajLiniju(linija);
+
+            if (id == 0)
+                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Dodavanje linije sa ID-jem {id} nije uspesno ponisteno!");
+            else
+                MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Dodavanje linije sa ID-jem {id} je uspesno ponisteno!");
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using Common.DTO;
+﻿using Client.ViewModel;
+using Common.DTO;
+using Common.Enums;
 using Common.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -24,23 +26,39 @@ namespace Client.Commands.LinijaCommands
             duplicatedLinija = (LinijaDTO)Clone();
             // Add the duplicated LinijaDTO using the service
             duplicatedLinijaId = linijaService.DodajLiniju(duplicatedLinija);
+
+            // Logovanje
+            if (duplicatedLinijaId == 0)
+                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, "Dupliranje nove linije nije uspelo!");
+            else
+                MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Linija sa ID-jem {duplicatedLinijaId} je uspesno duplirana!");
         }
 
         public override void Undo()
         {
             // Remove the duplicated LinijaDTO
             linijaService.ObrisiLiniju(duplicatedLinijaId);
+
+            if (duplicatedLinijaId == 0)
+                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Dupliranje linije sa ID-jem {duplicatedLinijaId} nije uspesno opozvano!");
+            else
+                MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Dupliranje linije sa ID-jem {duplicatedLinijaId} je uspesno opozvano!");
         }
 
         public override void Redo()
         {
             // Re-add the duplicated LinijaDTO
             duplicatedLinijaId = linijaService.DodajLiniju(duplicatedLinija);
+
+            if (duplicatedLinijaId == 0)
+                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Dupliranje linije sa ID-jem {duplicatedLinijaId} nije uspesno ponisteno!");
+            else
+                MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Dupliranje linije sa ID-jem {duplicatedLinijaId} je uspesno ponisteno!");
         }
 
         public object Clone()
         {
-            return new LinijaDTO
+            LinijaDTO linija = new LinijaDTO
             {
                 // Assuming LinijaDTO has a copy constructor or similar mechanism
                 // to create a deep copy of the object
@@ -51,6 +69,10 @@ namespace Client.Commands.LinijaCommands
                 Vozaci = new List<VozacDTO>(originalLinija.Vozaci ?? new List<VozacDTO>()),
                 Autobusi = new List<AutobusDTO>(originalLinija.Autobusi ?? new List<AutobusDTO>())
             };
+     
+            MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Kloniranje linije uspesno izvrseno!");
+
+            return linija;
         }
     }
 }
