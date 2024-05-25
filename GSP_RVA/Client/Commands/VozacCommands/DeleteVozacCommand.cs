@@ -1,4 +1,6 @@
-﻿using Common.DTO;
+﻿using Client.ViewModel;
+using Common.DTO;
+using Common.Enums;
 using Common.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -25,16 +27,31 @@ namespace Client.Commands.VozacCommands
         {
             backupVozac = vozacService.Procitaj(vozacId);
             success = vozacService.ObrisiVozaca(vozacId);
+
+            if (!success)
+                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Brisanje vozaca sa ID-jem {vozacId} nije uspesno izvrseno!");
+            else
+                MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Brisanje vozaca sa ID-jem {vozacId} je uspesno izvrseno!");
         }
 
         public override void Undo()
         {
             success = vozacService.DodajVozaca(backupVozac);
+
+            if (!success)
+                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Brisanje vozaca sa ID-jem {vozacId} nije uspesno opozvano!");
+            else
+                MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Brisanje vozaca sa ID-jem {vozacId} je uspesno opozvano!");
         }
 
         public override void Redo()
         {
             success = vozacService.ObrisiVozaca(vozacId);
+
+            if (!success)
+                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Brisanje vozaca sa ID-jem {vozacId} nije uspesno ponisteno!");
+            else
+                MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Brisanje vozaca sa ID-jem {vozacId} je uspesno ponisteno!");
         }
     }
 }

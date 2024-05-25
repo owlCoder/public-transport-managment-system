@@ -24,9 +24,9 @@ namespace Client.Commands.LinijaCommands
             id = linijaService.ObrisiLiniju(linijaId);
 
             if (id == 0)
-                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Brisanje linije sa ID-jem {id} nije uspesno ponisteno!");
+                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Brisanje linije sa ID-jem {id} nije uspesno izvrseno!");
             else
-                MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Brisanje linije sa ID-jem {id} je uspesno ponisteno!");
+                MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Brisanje linije sa ID-jem {id} je uspesno izvrseno!");
         }
 
         public override void Undo()

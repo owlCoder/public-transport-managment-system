@@ -29,7 +29,7 @@ namespace Client.Commands.LinijaCommands
 
             // Logovanje
             if (duplicatedLinijaId == 0)
-                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, "Dupliranje nove linije nije uspelo!");
+                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Dupliranje linije sa ID-jem {originalLinija.Id} nije uspelo!");
             else
                 MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Linija sa ID-jem {originalLinija.Id} je uspesno duplirana!");
         }

@@ -1,4 +1,6 @@
-﻿using Common.DTO;
+﻿using Client.ViewModel;
+using Common.DTO;
+using Common.Enums;
 using Common.Interfaces;
 
 namespace Client.Commands.AutobusCommands
@@ -20,16 +22,31 @@ namespace Client.Commands.AutobusCommands
         {
             backupAutobus = autobusService.Procitaj(autobusId);
             success = autobusService.ObrisiAutobus(autobusId);
+
+            if (!success)
+                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Brisanje autobusa sa ID-jem {autobusId} nije uspesno izvrseno!");
+            else
+                MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Brisanje linije sa ID-jem {autobusId} je uspesno izvrseno!");
         }
 
         public override void Undo()
         {
             success = autobusService.DodajAutobus(backupAutobus.Oznaka);
+
+            if (!success)
+                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Brisanje autobusa sa ID-jem {autobusId} nije uspesno opozvano!");
+            else
+                MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Brisanje autobusa sa ID-jem {autobusId} je uspesno opozvano!");
         }
 
         public override void Redo()
         {
             success = autobusService.ObrisiAutobus(autobusId);
+
+            if (!success)
+                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Brisanje autobusa sa ID-jem {autobusId} nije uspesno ponisteno!");
+            else
+                MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Brisanje autobusa sa ID-jem {autobusId} je uspesno ponisteno!");
         }
     }
 }

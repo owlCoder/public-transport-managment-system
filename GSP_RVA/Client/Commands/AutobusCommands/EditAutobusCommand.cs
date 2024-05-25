@@ -31,7 +31,7 @@ namespace Client.Commands.AutobusCommands
             success = autobusService.IzmeniAutobus(originalAutobus.Id, newAutobus);
 
             if (!success)
-                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, "Izmena novog autobusa nije uspelo!");
+                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Izmena autobusa sa {originalAutobus.Id} nije uspelo!");
             else
                 MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Autobus sa ID-jem {originalAutobus.Id} je uspesno izmenjen!");
         }

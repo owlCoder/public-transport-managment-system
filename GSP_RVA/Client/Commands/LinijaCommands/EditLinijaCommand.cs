@@ -26,7 +26,7 @@ namespace Client.Commands.LinijaCommands
             id = linijaService.IzmeniLiniju(originalLinija.Id, newLinija);
 
             if (id == 0)
-                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, "Izmena nove linije nije uspelo!");
+                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Izmena linije sa ID-jem {id} nije uspelo!");
             else
                 MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Linija sa ID-jem {id} je uspesno izmenjena!");
         }

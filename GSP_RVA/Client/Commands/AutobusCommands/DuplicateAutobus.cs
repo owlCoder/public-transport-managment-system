@@ -32,7 +32,7 @@ namespace Client.Commands.AutobusCommands
             success = autobusService.DodajAutobus(duplicatedAutobus.Oznaka);
 
             if (!success)
-                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, "Dupliranje novog autobusa nije uspelo!");
+                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Dupliranje autobusa sa ID-jem {originalAutobus.Id} nije uspelo!");
             else
                 MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Autobus sa ID-jem {originalAutobus.Id} je uspesno dupliran!");
         }
