@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Client.Commands.VozacCommands
 {
-    class DuplicateCommand : Command, ICloneable
+    class DuplicateVozac : Command, ICloneable
     {
         private readonly IVozacService vozacService;
         private readonly VozacDTO originalVozac;
@@ -16,7 +16,7 @@ namespace Client.Commands.VozacCommands
         private int duplicatedVozacId;
         private bool success;
 
-        public DuplicateCommand(IVozacService vozacService, VozacDTO originalVozac)
+        public DuplicateVozac(IVozacService vozacService, VozacDTO originalVozac)
         {
             this.vozacService = vozacService;
             this.originalVozac = originalVozac;

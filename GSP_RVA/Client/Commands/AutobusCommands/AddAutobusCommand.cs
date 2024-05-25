@@ -22,7 +22,7 @@ namespace Client.Commands.AutobusCommands
             success = autobusService.DodajAutobus(autobus.Oznaka);
 
             // Logovanje
-            if (success)
+            if (!success)
                 MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, "Dodavanje novog autobusa nije uspelo!");
             else
                 MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Autobus sa ID-jem {autobus.Id} je uspesno dodat!");
@@ -31,6 +31,12 @@ namespace Client.Commands.AutobusCommands
         public override void Undo()
         {
             success = autobusService.ObrisiAutobus(autobus.Id);
+
+            // Logovanje
+            if (!success)
+                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, "Dodavanje novog autobusa nije uspelo!");
+            else
+                MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Autobus sa ID-jem {autobus.Id} je uspesno dodat!");
         }
 
         public override void Redo()

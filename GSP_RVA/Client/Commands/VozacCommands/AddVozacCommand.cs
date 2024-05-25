@@ -10,13 +10,13 @@ using Common.Enums;
 
 namespace Client.Commands.VozacCommands
 {
-    class AddVozacCommands : Command
+    class AddVozacCommand : Command
     {
         private readonly VozacDTO vozac;
         private readonly IVozacService vozacService;
         private bool success;
 
-        public AddVozacCommands(IVozacService vozacService, VozacDTO vozac)
+        public AddVozacCommand(IVozacService vozacService, VozacDTO vozac)
         {
             this.vozacService = vozacService;
             this.vozac = vozac;
@@ -27,7 +27,7 @@ namespace Client.Commands.VozacCommands
             success = vozacService.DodajVozaca(vozac);
 
             // Logovanje
-            if (success)
+            if (!success)
                 MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, "Dodavanje novog vozaca nije uspelo!");
             else
                 MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Vozac sa ID-jem {vozac.Id} je uspesno dodata!");
