@@ -24,6 +24,7 @@ namespace Client.ViewModel
         private bool poPolazistuRadio, poOdredistu;
 
         public MyICommand EditCommand { get; private set; }
+        public MyICommand EditProfileCommand { get; private set; }
         public MyICommand RefreshCommand { get; private set; }
         public MyICommand LogOutCommand { get; private set; }
         public MyICommand AddCommand { get; private set; }
@@ -36,6 +37,7 @@ namespace Client.ViewModel
         public GSPViewModel()
         {
             EditCommand = new MyICommand(OnEdit);
+            EditProfileCommand = new MyICommand(OnEditProfile);
             RefreshCommand = new MyICommand(OnRefresh);
             LogOutCommand = new MyICommand(OnLogOut);
             AddCommand = new MyICommand(OnAdd);
@@ -49,6 +51,11 @@ namespace Client.ViewModel
             Messenger.Default.Register<char>(this, RefreshData);
 
             LoadData(); //  učitavanje podataka prilikom inicijalizacije pogleda
+        }
+
+        public void OnEditProfile()
+        {
+            Messenger.Default.Send("profile", null);
         }
 
         private void RefreshData(char mode = 'c')

@@ -149,7 +149,7 @@ namespace Client.ViewModel
         }
         #endregion
 
-        #region EXTERNAL ENDPOINTS
+        #region NAVIGATION
         public void Change((string viewModelName, string mode) message)
         {
             switch (message.viewModelName)
@@ -164,6 +164,10 @@ namespace Client.ViewModel
 
                 case "addEditLinija":
                     CurrentViewModel = new AddEditLinijaViewModel(message.mode);
+                    break;
+
+                case "profile":
+                    CurrentViewModel = new EditProfileViewModel();
                     break;
                 // dodaj ostale view modele
 
