@@ -45,7 +45,48 @@ namespace Service.Services.VozacService
 
         public VozacDTO IzmeniVozaca(int id, VozacDTO data)
         {
-            throw new NotImplementedException();
+            try
+            {
+                ReadVozac read = new ReadVozac(DatabaseService.Instance.Context);
+                UpdateVozac update = new UpdateVozac(DatabaseService.Instance.Context);
+
+                var existingVozac = read.Read(id);
+
+                if (existingVozac == null)
+                {
+                    return new VozacDTO() { Id = 0 };
+                }
+
+                existingVozac.Ime = data.Ime;
+                existingVozac.Prezime = data.Prezime;
+                existingVozac.Username = data.Username;
+                existingVozac.Password = data.Password;
+                existingVozac.Role = data.Role.ToString();
+                existingVozac.Oznaka = data.Oznaka;
+
+                if (update.Update(existingVozac))
+                {
+                    return new VozacDTO()
+                    {
+                        Id = existingVozac.Id,
+                        Ime = existingVozac.Ime,
+                        Prezime = existingVozac.Prezime,
+                        Username = existingVozac.Username,
+                        Password = existingVozac.Password,
+                        Role = data.Role,
+                        Oznaka = existingVozac.Oznaka
+                    };
+                }
+                else
+                {
+                    return new VozacDTO() { Id = 0 };
+                }
+            }
+            catch (Exception)
+            {
+                return new VozacDTO() { Id = 0 };
+            }
+
         }
 
         public bool ObrisiVozaca(int id)
