@@ -4,7 +4,6 @@ using Client.Commands.Manager;
 using Client.Provider;
 using Common.DTO;
 using Common.Interfaces;
-using Microsoft.Win32.SafeHandles;
 using MVVMLight.Messaging;
 using NetworkService.Helpers;
 
@@ -132,7 +131,7 @@ namespace Client.ViewModel
 
             set
             {
-                if(oznaka != value)
+                if (oznaka != value)
                 {
                     oznaka = value;
                     OnPropertyChanged("Oznaka");

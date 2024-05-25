@@ -7,7 +7,7 @@ namespace Common.Loggers
     {
         public void Log(LogTraceLevel level, string message)
         {
-
+            // belezi u txt
         }
     }
 }

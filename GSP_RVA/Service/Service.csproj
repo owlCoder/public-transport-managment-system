@@ -135,6 +135,7 @@
     <Compile Include="Database\Models\Vozac.cs" />
     <Compile Include="Database\CRUD\ICreateOperation.cs" />
     <Compile Include="Database\CRUD\IReadOperation.cs" />
+    <Compile Include="Loggers\FileLogger.cs" />
     <Compile Include="Migrations\202405251205570_V1_db.cs" />
     <Compile Include="Migrations\202405251205570_V1_db.Designer.cs">
       <DependentUpon>202405251205570_V1_db.cs</DependentUpon>

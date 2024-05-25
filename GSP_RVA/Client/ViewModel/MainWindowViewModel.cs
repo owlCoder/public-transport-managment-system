@@ -1,9 +1,7 @@
 ﻿using Client.Provider;
-using Common.Interfaces;
 using MVVMLight.Messaging;
 using NetworkService.Helpers;
 using System.Diagnostics;
-using System.ServiceModel;
 using System.Windows;
 
 namespace Client.ViewModel

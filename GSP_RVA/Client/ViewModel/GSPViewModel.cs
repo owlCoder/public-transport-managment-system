@@ -3,7 +3,6 @@ using Client.Provider;
 using Common.DTO;
 using MVVMLight.Messaging;
 using NetworkService.Helpers;
-using System;
 using System.Collections.ObjectModel;
 
 namespace Client.ViewModel
@@ -18,8 +17,11 @@ namespace Client.ViewModel
 
         private object selectedEntity;
 
+        private string searchText;
+
         public static int SelectedEntityId { get; set; } = 0;
 
+        private bool poPolazistuRadio, poOdredistu;
 
         public MyICommand EditCommand { get; private set; }
         public MyICommand RefreshCommand { get; private set; }
@@ -175,7 +177,7 @@ namespace Client.ViewModel
 
         private void OnDelete()
         {
-            if(SelectedEntity is LinijaDTO)
+            if (SelectedEntity is LinijaDTO)
             {
                 // onda znas
             }
@@ -205,6 +207,10 @@ namespace Client.ViewModel
         private void OnSearch()
         {
             // Implementacija pretraživanja
+            if (string.IsNullOrEmpty(SearchText))
+            {
+                // lupii poruku unesi kriteriju
+            }
         }
 
         public ObservableCollection<AutobusDTO> Autobusi
@@ -257,7 +263,7 @@ namespace Client.ViewModel
                     OnPropertyChanged("SelectedEntity");
 
                     // Podesi Id objekta trenutno odabranog
-                    if(selectedEntity is LinijaDTO)
+                    if (selectedEntity is LinijaDTO)
                         SelectedEntityId = (selectedEntity as LinijaDTO).Id;
                     else if (selectedEntity is AutobusDTO)
                         SelectedEntityId = (selectedEntity as AutobusDTO).Id;
@@ -265,6 +271,23 @@ namespace Client.ViewModel
                         SelectedEntityId = (selectedEntity as VozacDTO).Id;
                     else
                         SelectedEntityId = 0;
+                }
+            }
+        }
+
+        public string SearchText
+        {
+            get
+            {
+                return searchText;
+            }
+
+            set
+            {
+                if (searchText != value)
+                {
+                    searchText = value;
+                    OnPropertyChanged("SearchText");
                 }
             }
         }

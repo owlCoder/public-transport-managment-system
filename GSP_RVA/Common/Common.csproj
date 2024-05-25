@@ -61,8 +61,6 @@
     <Compile Include="Contracts\ILinijaService.cs" />
     <Compile Include="Interfaces\ILogger.cs" />
     <Compile Include="Contracts\IVozacService.cs" />
-    <Compile Include="Loggers\FileLogger.cs" />
-    <Compile Include="Loggers\InMemoryLogger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
