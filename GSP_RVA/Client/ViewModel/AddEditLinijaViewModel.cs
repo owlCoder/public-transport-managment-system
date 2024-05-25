@@ -11,7 +11,7 @@ namespace Client.ViewModel
 {
     public class AddEditLinijaViewModel : BindableBase
     {
-        private LinijaDTO linija;
+        private LinijaDTO originalnaLinija, novaLinija;
         public string Mode { get; private set; }
         public bool IsSaved { get; private set; }
 
@@ -26,28 +26,28 @@ namespace Client.ViewModel
         private readonly CommandManager commandManager = new CommandManager();
         private readonly ILinijaService linijaService = ServiceProvider.LinijaService;
 
-        public AddEditLinijaViewModel(LinijaDTO linija, string mode)
+        public AddEditLinijaViewModel(string mode)
         {
-            this.linija = linija ?? new LinijaDTO();
             this.Mode = mode;
             ActionButtonText = mode == "ADD" ? "ADD" : "EDIT";
             SaveCommand = new MyICommand(OnSave);
             CancelCommand = new MyICommand(OnCancel);
 
             // Ako je edit kliknuto onda povuci novi objekat i podesi ga kao trenutni
-            Linija = linijaService.Procitaj(GSPViewModel.SelectedEntityId);
+            originalnaLinija = linijaService.Procitaj(GSPViewModel.SelectedEntityId);
+            novaLinija = linijaService.Procitaj(GSPViewModel.SelectedEntityId);
         }
 
         public string ActionButtonText { get; private set; }
 
         public LinijaDTO Linija
         {
-            get { return linija; }
+            get { return novaLinija; }
             set
             {
-                if (linija != value)
+                if (novaLinija != value)
                 {
-                    linija = value;
+                    novaLinija = value;
                     OnPropertyChanged("Linija");
                 }
             }
@@ -59,11 +59,11 @@ namespace Client.ViewModel
         {
             if (Mode == "ADD")
             {
-                linija.Oznaka = oznaka;
-                linija.Polaziste = polaziste;
-                linija.Odrediste = odrediste;
+                novaLinija.Oznaka = oznaka;
+                novaLinija.Polaziste = polaziste;
+                novaLinija.Odrediste = odrediste;
 
-                Command add = new AddLinijaCommand(linijaService, linija);
+                Command add = new AddLinijaCommand(linijaService, novaLinija);
                 commandManager.AddAndExecuteCommand(add);
                 IsSaved = true;
 
@@ -76,16 +76,28 @@ namespace Client.ViewModel
             else if (Mode == "EDIT")
             {
                 // Implementacija logike za uređivanje
+                novaLinija.Oznaka = oznaka;
+                novaLinija.Polaziste = polaziste;
+                novaLinija.Odrediste = odrediste;
+
+                Command add = new EditLinijaCommand(linijaService, originalnaLinija, novaLinija);
+                commandManager.AddAndExecuteCommand(add);
+                IsSaved = true;
+
                 IsSaved = true;
                 ErrorMessage = "Linija je uspešno izmenjena u bazi podataka!";
             }
 
+            // Osvezavanje podataka u tabeli
             Messenger.Default.Send('c');
         }
 
         private void OnCancel()
         {
             Messenger.Default.Send(("gsp", ""));
+
+            // Osvezavanje podataka u tabeli
+            Messenger.Default.Send('c');
         }
 
         #region PROPERTY

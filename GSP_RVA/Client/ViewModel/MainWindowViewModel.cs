@@ -165,7 +165,7 @@ namespace Client.ViewModel
                     break;
 
                 case "addEditLinija":
-                    CurrentViewModel = new AddEditLinijaViewModel(null, message.mode);
+                    CurrentViewModel = new AddEditLinijaViewModel(message.mode);
                     break;
                 // dodaj ostale view modele
 
