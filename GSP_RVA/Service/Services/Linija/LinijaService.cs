@@ -1,10 +1,13 @@
 using Common.DTO;
 using Common.Interfaces;
 using Service.Database;
+using Service.Database.CRUD;
 using Service.Database.CRUDOperations.LinijaCrud;
+using Service.Database.CRUDOperations.LinijaCrud.FindLinija;
 using Service.Database.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Service.Services.LinijaService
 {
@@ -42,7 +45,35 @@ namespace Service.Services.LinijaService
 
         public int IzmeniLiniju(int id, LinijaDTO data)
         {
-            throw new NotImplementedException();
+            try
+            {
+                ReadLinija read = new ReadLinija(DatabaseService.Instance.Context);
+                UpdateLinija update = new UpdateLinija(DatabaseService.Instance.Context);
+
+                var existingLinija = read.Read(id);
+
+                if (existingLinija == null)
+                {
+                    return 0;
+                }
+
+                existingLinija.Oznaka = data.Oznaka;
+                existingLinija.Polaziste = data.Polaziste;
+                existingLinija.Odrediste = data.Odrediste;
+
+                if (update.Update(id, existingLinija))
+                {
+                    return existingLinija.Id;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
         }
 
         public int ObrisiLiniju(int id)
@@ -65,7 +96,26 @@ namespace Service.Services.LinijaService
 
         public LinijaDTO Procitaj(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                ReadLinija readLinija = new ReadLinija(DatabaseService.Instance.Context);
+                var linija = readLinija.Read(id);
+
+                if (linija == null)
+                    return new LinijaDTO() { Id = 0 };
+
+                return new LinijaDTO()
+                {
+                    Id = linija.Id,
+                    Oznaka = linija.Oznaka,
+                    Polaziste = linija.Polaziste,
+                    Odrediste = linija.Odrediste
+                };
+            }
+            catch (Exception)
+            {
+                return new LinijaDTO() { Id = 0 };
+            }
         }
 
         public List<LinijaDTO> ProcitajSve()
@@ -89,9 +139,40 @@ namespace Service.Services.LinijaService
             }
         }
 
-        public LinijaDTO Pretraga(bool poOdredistu, string unos)
+        public List<LinijaDTO> Pretraga(bool poOdredistu, string unos)
         {
-            throw new NotImplementedException();
+            try
+            {
+                ReadLinija read = new ReadLinija(DatabaseService.Instance.Context);
+                List<Linija> linije = read.ReadAll();
+
+                IFindOperation<Linija> findOperation;
+
+                if (poOdredistu)
+                {
+                    findOperation = new FindByOdrediste();
+                }
+                else
+                {
+                    findOperation = new FindByPolaziste();
+                }
+
+                List<Linija> filteredLinije = findOperation.FindByCriteria(linije, unos);
+
+                List<LinijaDTO> filteredLinijaDTOs = filteredLinije.Select(l => new LinijaDTO
+                {
+                    Id = l.Id,
+                    Oznaka = l.Oznaka,
+                    Polaziste = l.Polaziste,
+                    Odrediste = l.Odrediste
+                }).ToList();
+
+                return filteredLinijaDTOs;
+            }
+            catch (Exception)
+            {
+                return new List<LinijaDTO>();
+            }
         }
     }
 }

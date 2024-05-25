@@ -23,6 +23,6 @@ namespace Common.Interfaces
         List<LinijaDTO> ProcitajSve();
 
         [OperationContract]
-        LinijaDTO Pretraga(bool poOdredistu, string unos);
+        List<LinijaDTO> Pretraga(bool poOdredistu, string unos);
     }
 }

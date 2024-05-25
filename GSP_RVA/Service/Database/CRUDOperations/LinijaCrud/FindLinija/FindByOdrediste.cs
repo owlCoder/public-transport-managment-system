@@ -2,6 +2,7 @@
 using Service.Database.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Service.Database.CRUDOperations.LinijaCrud.FindLinija
 {
@@ -9,13 +10,13 @@ namespace Service.Database.CRUDOperations.LinijaCrud.FindLinija
     {
         public List<Linija> FindByCriteria(List<Linija> linije, string criteria)
         {
-            // Find lines in the provided list where the Odrediste property contains the criteria
-            // throw new NotImplementedException();
+            if (linije == null)
+                throw new ArgumentNullException(nameof(linije));
 
-            // TODO: Implement the logic to filter the list based on the destination criteria
-            // Example:
-            // return linije.Where(l => l.Odrediste.Contains(criteria)).ToList();
-            throw new NotImplementedException();
+            if (string.IsNullOrWhiteSpace(criteria))
+                throw new ArgumentException("Criteria cannot be null or empty.", nameof(criteria));
+
+            return linije.Where(l => l.Odrediste.Contains(criteria)).ToList();
         }
     }
 }
