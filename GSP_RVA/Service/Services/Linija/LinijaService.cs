@@ -128,7 +128,7 @@ namespace Service.Services.LinijaService
                 List<LinijaDTO> sve = new List<LinijaDTO>();
                 foreach (Linija l in linije)
                 {
-                    sve.Add(Procitaj(l.Id)); // Using Procitaj method to read individual LinijaDTO
+                    sve.Add(Procitaj(l.Id)); 
                 }
 
                 return sve;
