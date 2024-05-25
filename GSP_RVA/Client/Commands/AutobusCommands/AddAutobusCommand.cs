@@ -22,7 +22,7 @@ namespace Client.Commands.AutobusCommands
             success = autobusService.DodajAutobus(autobus.Oznaka);
 
             // Logovanje
-            if (autobus.Id == 0)
+            if (success)
                 MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, "Dodavanje novog autobusa nije uspelo!");
             else
                 MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Autobus sa ID-jem {autobus.Id} je uspesno dodat!");
