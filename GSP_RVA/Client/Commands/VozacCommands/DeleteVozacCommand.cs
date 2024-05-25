@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace Client.Commands.VozacCommands
 {
-    class DeleteVozac : Command
+    class DeleteVozacCommand : Command
     {
         private readonly int vozacId;
         private readonly IVozacService vozacService;
         private VozacDTO backupVozac;
 
-        public DeleteVozac(IVozacService vozacService, int vozacId)
+        public DeleteVozacCommand(IVozacService vozacService, int vozacId)
         {
             this.vozacService = vozacService;
             this.vozacId = vozacId;
