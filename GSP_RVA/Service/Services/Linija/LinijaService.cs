@@ -24,7 +24,7 @@ namespace Service.Services.LinijaService
                 {
                     Oznaka = data.Oznaka,
                     Polaziste = data.Polaziste,
-                    Odrediste = data.Odrediste
+                    Odrediste = data.Odrediste,
                 };
 
                 if (insert.Insert(linija))

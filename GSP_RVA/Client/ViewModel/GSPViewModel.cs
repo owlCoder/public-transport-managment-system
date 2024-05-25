@@ -65,16 +65,22 @@ namespace Client.ViewModel
         {
             PoOdredistuRadio = true;
             PoPolazistuRadio = false;
+            SelectedEntityId = 0;
+            SelectedEntity = null;
         }
 
         private void PoPolazistuPromena()
         {
             PoOdredistuRadio = false;
             PoPolazistuRadio = true;
+            SelectedEntityId = 0;
+            SelectedEntity = null;
         }
 
         public void OnEditProfile()
         {
+            SelectedEntityId = 0;
+            SelectedEntity = null;
             Messenger.Default.Send(("profile", "null"));
         }
 
@@ -85,6 +91,9 @@ namespace Client.ViewModel
 
         private void LoadData()
         {
+            SelectedEntityId = 0;
+            SelectedEntity = null;
+
             Linije = new ObservableCollection<LinijaDTO>(ServiceProvider.LinijaService.ProcitajSve());
             //kreirati ChannelFactory, pozvati proxy za svaki od servisa 
             //Autobus.Servis.DobaviSve();
@@ -181,11 +190,15 @@ namespace Client.ViewModel
 
         private void OnLogOut()
         {
+            SelectedEntityId = 0;
+            SelectedEntity = null;
             Messenger.Default.Send(("main", ""));
         }
 
         private void OnAdd()
         {
+            SelectedEntityId = 0;
+            SelectedEntity = null;
             string mode = "ADD";
             Messenger.Default.Send(("addEditLinija", mode));
         }
@@ -223,6 +236,9 @@ namespace Client.ViewModel
             {
                 // ispisi gresku
             }
+
+            SelectedEntityId = 0;
+            SelectedEntity = null;
         }
 
         private void OnUndo()
@@ -252,6 +268,9 @@ namespace Client.ViewModel
 
         private void OnSearch()
         {
+            SelectedEntityId = 0;
+            SelectedEntity = null;
+
             // Implementacija pretraživanja
             if (string.IsNullOrEmpty(SearchText))
             {
