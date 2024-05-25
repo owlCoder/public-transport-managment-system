@@ -80,8 +80,7 @@
     <Compile Include="Helpers\MyICommand.cs" />
     <Compile Include="Helpers\PassThroughConverter.cs" />
     <Compile Include="Helpers\ValidationBase.cs" />
-    <Compile Include="Loggers\FileLogger.cs" />
-    <Compile Include="Loggers\InMemoryLogger.cs" />
+    <Compile Include="Loggers\ClientLogger.cs" />
     <Compile Include="Provider\ServiceProvider.cs" />
     <Compile Include="ViewModel\AddEditAutobusViewModel.cs" />
     <Compile Include="ViewModel\AddEditLinijaViewModel.cs" />

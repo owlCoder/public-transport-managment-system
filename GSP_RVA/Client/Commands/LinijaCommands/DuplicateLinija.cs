@@ -14,8 +14,8 @@ namespace Client.Commands.LinijaCommands
 
         public DuplicateLinija(ILinijaService linijaService, LinijaDTO originalLinija)
         {
-            this.linijaService = linijaService ?? throw new ArgumentNullException(nameof(linijaService));
-            this.originalLinija = originalLinija ?? throw new ArgumentNullException(nameof(originalLinija));
+            this.linijaService = linijaService;
+            this.originalLinija = originalLinija;
         }
 
         public override void Execute()
@@ -48,8 +48,8 @@ namespace Client.Commands.LinijaCommands
                 Oznaka = originalLinija.Oznaka,
                 Polaziste = originalLinija.Polaziste,
                 Odrediste = originalLinija.Odrediste,
-                Vozaci = new List<VozacDTO>(originalLinija.Vozaci),
-                Autobusi = new List<AutobusDTO>(originalLinija.Autobusi)
+                Vozaci = new List<VozacDTO>(originalLinija.Vozaci ?? new List<VozacDTO>()),
+                Autobusi = new List<AutobusDTO>(originalLinija.Autobusi ?? new List<AutobusDTO>())
             };
         }
     }

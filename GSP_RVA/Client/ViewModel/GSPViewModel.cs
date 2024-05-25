@@ -1,8 +1,11 @@
-﻿using Client.Commands.Manager;
+﻿using Client.Commands.LinijaCommands;
+using Client.Commands;
+using Client.Commands.Manager;
 using Client.Provider;
 using Common.DTO;
 using MVVMLight.Messaging;
 using NetworkService.Helpers;
+using Service.Services.LinijaService;
 using System;
 using System.Collections.ObjectModel;
 
@@ -203,12 +206,25 @@ namespace Client.ViewModel
 
         private void OnDelete()
         {
-            if (SelectedEntity is LinijaDTO)
+            if(SelectedEntity is LinijaDTO)
             {
-                // onda znas
+                Command add = new DeleteLinijaCommand(ServiceProvider.LinijaService, SelectedEntityId);
+                new CommandManager().AddAndExecuteCommand(add);
+                LoadData();
+                SelectedEntityId = 0; // resetovanje odabrane linije
             }
-            var s = SelectedEntity as LinijaDTO;
-            // Implementacija brisanja odabranog elementa
+            else if(SelectedEntity is AutobusDTO)
+            {
+                // kasnije dodati
+            }
+            else if(SelectedEntity is VozacDTO)
+            {
+                // kasnije dodati
+            }
+            else
+            {
+                // ispisi gresku
+            }
         }
 
         private void OnUndo()
@@ -228,6 +244,12 @@ namespace Client.ViewModel
         private void OnClone()
         {
             // Implementacija kloniranja podataka
+            // Odabrana linija
+            LinijaDTO oroginalnaLinija = ServiceProvider.LinijaService.Procitaj(SelectedEntityId);
+
+            Command add = new DuplicateLinija(ServiceProvider.LinijaService, oroginalnaLinija);
+            new CommandManager().AddAndExecuteCommand(add);
+            LoadData();
         }
 
         private void OnSearch()

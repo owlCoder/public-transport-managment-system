@@ -1,4 +1,6 @@
 ﻿using Client.Provider;
+using Common.Interfaces;
+using Common.Loggers;
 using MVVMLight.Messaging;
 using NetworkService.Helpers;
 using System.Diagnostics;
@@ -8,6 +10,8 @@ namespace Client.ViewModel
 {
     public class MainWindowViewModel : BindableBase
     {
+        public static ILogger Logger { get; private set; } = new ClientLogger(); 
+
         public BindableBase currentViewModel;
         public MyICommand LoginCommand { get; private set; }
         public MyICommand<Window> CloseWindow { get; private set; }

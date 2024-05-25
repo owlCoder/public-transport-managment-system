@@ -4,6 +4,7 @@ namespace Common.Enums
     {
         INFO,
         DEBUG,
-        WARNING
+        WARNING,
+        ERROR
     }
 }

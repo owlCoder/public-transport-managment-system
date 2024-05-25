@@ -1,4 +1,6 @@
-﻿using Common.DTO;
+﻿using Client.ViewModel;
+using Common.DTO;
+using Common.Enums;
 using Common.Interfaces;
 
 namespace Client.Commands.LinijaCommands
@@ -18,6 +20,12 @@ namespace Client.Commands.LinijaCommands
         public override void Execute()
         {
             id = linijaService.DodajLiniju(linija);
+
+            // Logovanje
+            if (id == 0)
+                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, "Dodavanje nove linije nije uspelo!");
+            else
+                MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Linija sa ID-jem {id} je uspesno dodata!");
         }
 
         public override void Undo()
