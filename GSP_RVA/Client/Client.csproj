@@ -70,12 +70,19 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\AutobusCommands\AddAutobusCommand.cs" />
+    <Compile Include="Commands\AutobusCommands\DeleteAutobusCommand.cs" />
+    <Compile Include="Commands\AutobusCommands\DuplicateAutobus.cs" />
+    <Compile Include="Commands\AutobusCommands\EditAutobusCommand.cs" />
     <Compile Include="Commands\Command.cs" />
     <Compile Include="Commands\LinijaCommands\AddLinijaCommand.cs" />
     <Compile Include="Commands\LinijaCommands\DeleteLinijaCommand.cs" />
     <Compile Include="Commands\LinijaCommands\DuplicateLinija.cs" />
     <Compile Include="Commands\LinijaCommands\EditLinijaCommand.cs" />
     <Compile Include="Commands\Manager\CommandManager.cs" />
+    <Compile Include="Commands\VozacCommands\AddVozacCommand.cs" />
+    <Compile Include="Commands\VozacCommands\DeleteVozacCommand.cs" />
+    <Compile Include="Commands\VozacCommands\DuplicateVozac.cs" />
+    <Compile Include="Commands\VozacCommands\EditVozacCommand.cs" />
     <Compile Include="Helpers\BindableBase.cs" />
     <Compile Include="Helpers\MyICommand.cs" />
     <Compile Include="Helpers\PassThroughConverter.cs" />
