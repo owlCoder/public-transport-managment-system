@@ -91,7 +91,15 @@ namespace Service.Services.VozacService
 
         public bool ObrisiVozaca(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                DeleteVozac delete = new DeleteVozac(DatabaseService.Instance.Context);
+                return delete.Delete(id);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         public int Prijava(string username, string password)
@@ -136,7 +144,24 @@ namespace Service.Services.VozacService
 
         public List<VozacDTO> ProcitajSve()
         {
-            throw new NotImplementedException();
+            try
+            {
+                ReadVozac readVozac = new ReadVozac(DatabaseService.Instance.Context);
+                var vozaci = readVozac.ReadAll();
+
+                List<VozacDTO> vozacDTOList = new List<VozacDTO>();
+
+                foreach (var vozac in vozaci)
+                {
+                    vozacDTOList.Add(Procitaj(vozac.Id));
+                }
+
+                return vozacDTOList;
+            }
+            catch (Exception)
+            {
+                return new List<VozacDTO>();
+            }
         }
     }
 }
