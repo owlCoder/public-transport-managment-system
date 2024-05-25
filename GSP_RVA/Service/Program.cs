@@ -1,4 +1,5 @@
 ﻿using Common.Interfaces;
+using Service.Loggers;
 using Service.Services.AutobusService;
 using Service.Services.LinijaService;
 using Service.Services.VozacService;
@@ -9,6 +10,8 @@ namespace Service
 {
     public class Program
     {
+        public static ILogger logger { get; } = new FileLogger();
+
         static void Main(string[] args)
         {
             Uri baseAddressAutobus = new Uri("net.tcp://localhost:8080/AutobusService");

@@ -25,6 +25,10 @@ namespace Service.Services.AutobusService
                 if (insert.Insert(noviAutobus))
                 {
                     var autobus = read.ReadByCriteria(a => a.Oznaka == oznaka);
+
+                    // da li je uspesno!!!!!!!!!!!! PROMENI
+                    Program.logger.Log(Common.Enums.LogTraceLevel.INFO, "Sve je do jaja");
+
                     return autobus != null;
                 }
                 else
