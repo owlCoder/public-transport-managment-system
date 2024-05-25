@@ -122,13 +122,13 @@ namespace Service.Services.LinijaService
         {
             try
             {
-                ReadLinija read = new ReadLinija(DatabaseService.Instance.Context);
-                List<Linija> linije = read.ReadAll();
+                ReadLinija readLinija = new ReadLinija(DatabaseService.Instance.Context);
+                List<Linija> linije = readLinija.ReadAll();
 
                 List<LinijaDTO> sve = new List<LinijaDTO>();
-                foreach(Linija l in linije)
+                foreach (Linija l in linije)
                 {
-                    sve.Add(new LinijaDTO() { Id = l.Id, Oznaka = l.Oznaka, Polaziste = l.Polaziste, Odrediste = l.Odrediste });
+                    sve.Add(Procitaj(l.Id)); // Using Procitaj method to read individual LinijaDTO
                 }
 
                 return sve;
