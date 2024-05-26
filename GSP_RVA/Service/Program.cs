@@ -14,9 +14,9 @@ namespace Service
 
         static void Main(string[] args)
         {
-            Uri baseAddressAutobus = new Uri("net.tcp://localhost:8080/AutobusService");
-            Uri baseAddressLinija = new Uri("net.tcp://localhost:8081/LinijaService");
-            Uri baseAddressVozac = new Uri("net.tcp://localhost:8082/VozacService");
+            Uri baseAddressAutobus = new Uri("net.tcp://localhost:9080/AutobusService");
+            Uri baseAddressLinija = new Uri("net.tcp://localhost:9081/LinijaService");
+            Uri baseAddressVozac = new Uri("net.tcp://localhost:9082/VozacService");
 
             ServiceHost hostAutobus = new ServiceHost(typeof(AutobusService), baseAddressAutobus);
             ServiceHost hostLinija = new ServiceHost(typeof(LinijaService), baseAddressLinija);

@@ -1,6 +1,8 @@
 ﻿using Client.Commands;
+using Client.Commands.AutobusCommands;
 using Client.Commands.LinijaCommands;
 using Client.Commands.Manager;
+using Client.Commands.VozacCommands;
 using Client.Provider;
 using Common.DTO;
 using MVVMLight.Messaging;
@@ -197,10 +199,37 @@ namespace Client.ViewModel
 
         private void OnAdd()
         {
-            SelectedEntityId = 0;
-            SelectedEntity = null;
-            string mode = "ADD";
-            Messenger.Default.Send(("addEditLinija", mode));
+
+            if (SelectedEntity is LinijaDTO)
+            {
+                SelectedEntityId = 0;
+                SelectedEntity = null;
+                string mode = "ADD";
+                Messenger.Default.Send(("addEditLinija", mode));
+            }
+            else if (SelectedEntity is AutobusDTO)
+            {
+                // kasnije dodati
+                SelectedEntityId = 0;
+                SelectedEntity = null;
+                string mode = "ADD";
+                Messenger.Default.Send(("addEditAutobus", mode)); //izmeni
+            }
+            else if (SelectedEntity is VozacDTO)
+            {
+                // kasnije dodati
+                SelectedEntityId = 0;
+                SelectedEntity = null;
+                string mode = "ADD";
+                Messenger.Default.Send(("addEditVozac", mode)); //izmeni
+            }
+            else
+            {
+                // ispisi gresku 
+                SelectedEntityId = 0;
+                SelectedEntity = null;
+            }
+
         }
 
 
@@ -227,14 +256,22 @@ namespace Client.ViewModel
             else if (SelectedEntity is AutobusDTO)
             {
                 // kasnije dodati
+                DeleteAutobusCommand add = new DeleteAutobusCommand(ServiceProvider.AutobusService, SelectedEntityId);
+                add.Execute();
+                LoadData();
+                SelectedEntityId = 0; // resetovanje odabrane linije
             }
             else if (SelectedEntity is VozacDTO)
             {
                 // kasnije dodati
+                DeleteVozacCommand add = new DeleteVozacCommand(ServiceProvider.VozacService, SelectedEntityId);
+                add.Execute();
+                LoadData();
+                SelectedEntityId = 0; // resetovanje odabrane linije
             }
             else
             {
-                // ispisi gresku
+                // ispisi gresku dodaj
             }
 
             SelectedEntityId = 0;
@@ -255,6 +292,7 @@ namespace Client.ViewModel
             LoadData();
         }
 
+        //srediti za vozac i autobus
         private void OnClone()
         {
             // Implementacija kloniranja podataka

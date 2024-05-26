@@ -26,21 +26,21 @@ namespace Client.Provider
             ChannelFactory<IAutobusService> af = new ChannelFactory<IAutobusService>
             (
                 new NetTcpBinding(),
-                "net.tcp://localhost:8080/AutobusService"
+                "net.tcp://localhost:9080/AutobusService"
             );
 
             // Create channel factory for LinijaService
             ChannelFactory<ILinijaService> lf = new ChannelFactory<ILinijaService>
             (
                 new NetTcpBinding(),
-                "net.tcp://localhost:8081/LinijaService"
+                "net.tcp://localhost:9081/LinijaService"
             );
 
             // Create channel factory for VozacService
             ChannelFactory<IVozacService> vf = new ChannelFactory<IVozacService>
             (
                 new NetTcpBinding(),
-                "net.tcp://localhost:8082/VozacService"
+                "net.tcp://localhost:9082/VozacService"
             );
             #endregion
 
