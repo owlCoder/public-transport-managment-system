@@ -7,12 +7,12 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Background>
-        <ImageBrush  ImageSource="/slike/slika17.jpg" />
+        <ImageBrush  ImageSource="/slike/pozadina2.png" />
     </UserControl.Background>
     <UserControl.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="FontFamily" Value="Georgia" />
-            <Setter Property="FontSize" Value="18" />
+            <Setter Property="FontSize" Value="20" />
             <Setter Property="FontWeight" Value="SemiBold" />
         </Style>
         <Style TargetType="TextBox">
@@ -29,9 +29,10 @@
             <Setter Property="FontFamily" Value="Georgia" />
             <Setter Property="FontSize" Value="20" />
             <Setter Property="BorderThickness" Value="3" />
-            <Setter Property="Width" Value="120" />
+            <Setter Property="Width" Value="100" />
             <Setter Property="Height" Value="40" />
-            <Setter Property="Background" Value="LightSkyBlue"/>
+            <Setter Property="Background" Value="#AD291C"/>
+            <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontWeight" Value="SemiBold" />
             <Setter Property="Template">
                 <Setter.Value>
@@ -48,10 +49,10 @@
             <Setter Property="FontFamily" Value="Georgia" />
             <Setter Property="FontSize" Value="20" />
             <Setter Property="BorderThickness" Value="3" />
-            <Setter Property="BorderThickness" Value="3" />
-            <Setter Property="Width" Value="120" />
+            <Setter Property="Width" Value="100" />
             <Setter Property="Height" Value="40" />
-            <Setter Property="Background" Value="LightSkyBlue"/>
+            <Setter Property="Background" Value="#2E515B"/>
+            <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontWeight" Value="SemiBold" />
             <Setter Property="Template">
                 <Setter.Value>
@@ -88,10 +89,10 @@
                Content="{Binding Path=DataContext.LabelText, RelativeSource={RelativeSource AncestorType=UserControl}}" 
                HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10"/>
 
-            <TextBlock Grid.Row="2" Grid.Column="0" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Right" Text="Ime" />
+            <TextBlock Grid.Row="2" Grid.Column="0" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Right" Text="IME" />
             <TextBox Grid.Row="2" Grid.Column="1" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Text="{Binding Ime}" />
 
-            <TextBlock Grid.Row="3" Grid.Column="0" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Right" Text="Prezime" />
+            <TextBlock Grid.Row="3" Grid.Column="0" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Right" Text="PREZIME" />
             <TextBox Grid.Row="3" Grid.Column="1" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Text="{Binding Prezime}" />
 
             <StackPanel Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">

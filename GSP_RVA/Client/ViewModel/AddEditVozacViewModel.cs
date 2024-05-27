@@ -3,6 +3,7 @@ using Client.Commands.Manager;
 using Client.Commands.VozacCommands;
 using Client.Provider;
 using Common.DTO;
+using Common.Enums;
 using Common.Interfaces;
 using MVVMLight.Messaging;
 using NetworkService.Helpers;
@@ -26,6 +27,7 @@ namespace Client.ViewModel
         private string username;
         private string password;
         private string oznaka;
+        private UserRole uloga;
         private string errorMessage;
 
         private readonly IVozacService vozacService = ServiceProvider.VozacService;
@@ -216,6 +218,23 @@ namespace Client.ViewModel
                 {
                     password = value;
                     OnPropertyChanged("Password");
+                }
+            }
+        }
+
+        public UserRole Uloga
+        {
+            get
+            {
+                return uloga;
+            }
+
+            set
+            {
+                if (uloga != value)
+                {
+                    uloga = value;
+                    OnPropertyChanged("Uloga");
                 }
             }
         }

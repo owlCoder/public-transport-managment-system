@@ -222,7 +222,7 @@
         <!-- Search Fields with Labels and TextBoxes -->
         <StackPanel Grid.Row="4" Grid.ColumnSpan="3" Background="#80FFFFFF" Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
-                <TextBlock Text="Pretraga linija:" HorizontalAlignment="Left" FontSize="20" Margin="5" />
+                <TextBlock Text="Pretraga linija" HorizontalAlignment="Left" FontSize="20" Margin="5" />
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                     <RadioButton Width="100" IsChecked="{Binding PoPolazistuRadio}" Command="{Binding PoPolazistuCommand}" Margin="5 15" Content="Polazište" GroupName="Location" />
                     <RadioButton Width="100" IsChecked="{Binding PoOdredistuRadio}" Command="{Binding PoOdredistuCommand}" Margin="5 15" Content="Odredište" GroupName="Location" />

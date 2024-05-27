@@ -32,7 +32,8 @@ namespace Client.ViewModel
 
         private bool poPolazistuRadio, poOdredistuRadio;
 
-        public Visibility IsAdmin { get; set; } = MainWindowViewModel.IsAdmin ? Visibility.Visible:Visibility.Hidden;
+        private Visibility isAdmin { get; set; } 
+        
 
         public MyICommand EditCommand { get; private set; }
         public MyICommand EditProfileCommand { get; private set; }
@@ -68,6 +69,8 @@ namespace Client.ViewModel
             PoOdredistuCommand = new MyICommand(PoOdredistuPromena);
 
             LogEntries = new ObservableCollection<string>();
+
+            IsAdmin = MainWindowViewModel.IsAdmin ? Visibility.Visible : Visibility.Hidden;
 
             // Inicijalizacija metode za osvezavanje podataka
             Messenger.Default.Register<char>(this, RefreshData);
@@ -450,6 +453,24 @@ namespace Client.ViewModel
             }
         }
 
+        public Visibility IsAdmin
+        {
+            get
+            {
+                return isAdmin;
+            }
+
+            set
+            {
+                if(isAdmin!= value)
+
+                {
+                    isAdmin = value;
+                    OnPropertyChanged("IsAdmin");
+
+                }            
+            }
+        }
         public bool PoPolazistuRadio
         {
             get

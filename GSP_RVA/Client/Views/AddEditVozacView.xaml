@@ -25,6 +25,16 @@
             <Setter Property="Background" Value="AliceBlue" />
             <Setter Property="Foreground" Value="Black" />
         </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="FontFamily" Value="Georgia" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="BorderThickness" Value="3"/>
+            <Setter Property="BorderBrush" Value="Gray"/>
+            <Setter Property="Width" Value="200" />
+            <Setter Property="Height" Value="25" />
+            <Setter Property="Background" Value="AliceBlue" />
+            <Setter Property="Foreground" Value="Black" />
+        </Style>
         <Style TargetType="Button">
             <Setter Property="FontFamily" Value="Georgia" />
             <Setter Property="FontSize" Value="20" />
@@ -79,6 +89,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -104,8 +115,10 @@
 
             <TextBlock Grid.Row="5" Grid.Column="0" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Right" Text="OZNAKA" />
             <TextBox Grid.Row="5" Grid.Column="1" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Text="{Binding Oznaka}" />
-
-            <StackPanel Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+            <TextBlock Grid.Row="6" Grid.Column="0" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Right" Text="ULOGA" />
+            <ComboBox Grid.Row="6" Grid.Column="1" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" ItemsSource="{Binding Uloga}" />
+            
+            <StackPanel Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
                 <Button Style="{StaticResource SaveButtonStyle}"  Margin="5" Command="{Binding SaveCommand}" />
                 <Button Content="CANCEL"  Margin="5" Command="{Binding CancelCommand}" />
             </StackPanel>
