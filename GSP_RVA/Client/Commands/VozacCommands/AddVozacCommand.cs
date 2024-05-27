@@ -25,7 +25,7 @@ namespace Client.Commands.VozacCommands
             if (!success)
                 MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, "Dodavanje novog vozaca nije uspelo!");
             else
-                MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Vozac sa ID-jem {vozac.Id} je uspesno dodata!");
+                MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Vozac oznake {vozac.Oznaka} je uspesno dodat!");
         }
 
         public override void Undo()
