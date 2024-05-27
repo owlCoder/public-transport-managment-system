@@ -1,13 +1,9 @@
 ﻿using Client.Commands.AutobusCommands;
-using Client.Commands.VozacCommands;
 using Client.Provider;
 using Common.DTO;
 using Common.Interfaces;
 using MVVMLight.Messaging;
 using NetworkService.Helpers;
-using Service.Services.VozacService;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 
 namespace Client.ViewModel
 {

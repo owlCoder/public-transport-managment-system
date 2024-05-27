@@ -4,9 +4,7 @@ using Client.Commands.LinijaCommands;
 using Client.Commands.Manager;
 using Client.Commands.VozacCommands;
 using Client.Provider;
-using Client.Views;
 using Common.DTO;
-using Common.Loggers;
 using MVVMLight.Messaging;
 using NetworkService.Helpers;
 using System.Collections.ObjectModel;
@@ -26,14 +24,18 @@ namespace Client.ViewModel
 
         private object selectedEntity;
 
+        public static VozacDTO odabraoVozaca = null;
+        public static AutobusDTO odabraoAutobus = null;
+        public static LinijaDTO odabraoLinija = new LinijaDTO();
+
         private string searchText;
 
         public static int SelectedEntityId { get; set; } = 0;
 
         private bool poPolazistuRadio, poOdredistuRadio;
 
-        private Visibility isAdmin { get; set; } 
-        
+        private Visibility isAdmin { get; set; }
+
 
         public MyICommand EditCommand { get; private set; }
         public MyICommand EditProfileCommand { get; private set; }
@@ -77,9 +79,25 @@ namespace Client.ViewModel
             LoadData(); //  učitavanje podataka prilikom inicijalizacije pogleda
         }
 
+        //private void PodesiOdabranDodavanje(VozacDTO obj)
+        //{
+        //    //if (obj is LinijaDTO)
+        //    //    SelectedEntity = obj as LinijaDTO;
+        //    //else if (obj is AutobusDTO)
+        //    //    SelectedEntity = obj as AutobusDTO;
+        //    //else
+        //    if (obj is VozacDTO)
+        //        SelectedEntity = obj as VozacDTO;
+        //    else
+        //    {
+        //        SelectedEntityId = 0;
+        //        SelectedEntity = null;
+        //    }
+        //}
+
         public void PodesiUlogovanog(VozacDTO vozacDTO)
         {
-            if(vozacDTO.Id != 0)
+            if (vozacDTO.Id != 0)
                 IsAdmin = vozacDTO.Role == Common.Enums.UserRole.Admin ? Visibility.Visible : Visibility.Hidden;
         }
 
@@ -227,34 +245,28 @@ namespace Client.ViewModel
 
         private void OnAdd()
         {
+            SelectedEntityId = 0;
+            SelectedEntity = null;
 
-            if (SelectedEntity is LinijaDTO)
+            if (odabraoLinija != null)
             {
-                SelectedEntityId = 0;
-                SelectedEntity = null;
                 string mode = "ADD";
                 Messenger.Default.Send(("addEditLinija", mode));
             }
-            else if (SelectedEntity is AutobusDTO)
+            else if (odabraoAutobus != null)
             {
-                // kasnije dodati
-                SelectedEntityId = 0;
-                SelectedEntity = null;
                 string mode = "ADD";
                 Messenger.Default.Send(("addEditAutobus", mode));
             }
-            else if (SelectedEntity is VozacDTO)
+            else if (odabraoVozaca != null)
             {
-                // kasnije dodati
-                SelectedEntityId = 0;
-                SelectedEntity = null;
                 string mode = "ADD";
                 Messenger.Default.Send(("addEditVozac", mode));
             }
             else
             {
                 // ispisi gresku!!!!
-              
+
                 SelectedEntityId = 0;
                 SelectedEntity = null;
             }
@@ -397,7 +409,7 @@ namespace Client.ViewModel
 
             set
             {
-                if(logEntries != value)
+                if (logEntries != value)
                 {
                     logEntries = value;
                     OnPropertyChanged("LogEntries");
@@ -467,13 +479,13 @@ namespace Client.ViewModel
 
             set
             {
-                if(isAdmin!= value)
+                if (isAdmin != value)
 
                 {
                     isAdmin = value;
                     OnPropertyChanged("IsAdmin");
 
-                }            
+                }
             }
         }
         public bool PoPolazistuRadio

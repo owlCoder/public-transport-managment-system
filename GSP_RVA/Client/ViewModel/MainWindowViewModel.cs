@@ -1,5 +1,4 @@
 ﻿using Client.Provider;
-using Common.DTO;
 using Common.Interfaces;
 using Common.Loggers;
 using MVVMLight.Messaging;

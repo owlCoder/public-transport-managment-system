@@ -1,15 +1,11 @@
-﻿using Client.Commands.AutobusCommands;
-using Client.Commands.Manager;
-using Client.Commands.VozacCommands;
+﻿using Client.Commands.VozacCommands;
 using Client.Provider;
 using Common.DTO;
 using Common.Enums;
 using Common.Interfaces;
 using MVVMLight.Messaging;
 using NetworkService.Helpers;
-using Service.Services.LinijaService;
 using System.Collections.ObjectModel;
-using System.Security.AccessControl;
 
 namespace Client.ViewModel
 {
@@ -66,7 +62,7 @@ namespace Client.ViewModel
 
             set
             {
-                if(value != uloge)
+                if (value != uloge)
                 {
                     uloge = value;
                     OnPropertyChanged("Uloge");
@@ -82,7 +78,7 @@ namespace Client.ViewModel
             }
             set
             {
-                if(odabranaRola != value)
+                if (odabranaRola != value)
                 {
                     odabranaRola = value;
                     OnPropertyChanged("OdabranaRola");
@@ -92,11 +88,11 @@ namespace Client.ViewModel
 
         public VozacDTO Vozac
         {
-            get { return noviVozac;  }
+            get { return noviVozac; }
 
             set
             {
-                if(noviVozac != value)
+                if (noviVozac != value)
                 {
                     noviVozac = value;
                     OnPropertyChanged("Vozac");
@@ -106,7 +102,7 @@ namespace Client.ViewModel
 
         public void OnSave()
         {
-            if(Mode == "ADD")
+            if (Mode == "ADD")
             {
                 noviVozac.Ime = ime;
                 noviVozac.Prezime = prezime;
@@ -127,7 +123,7 @@ namespace Client.ViewModel
                 Oznaka = "";
                 ErrorMessage = "Vozač je uspešno dodat u bazu podataka!";
             }
-            else if(Mode == "EDIT")
+            else if (Mode == "EDIT")
             {
                 noviVozac.Ime = ime;
                 noviVozac.Prezime = prezime;

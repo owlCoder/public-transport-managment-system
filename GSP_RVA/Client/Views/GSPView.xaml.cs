@@ -1,4 +1,6 @@
-﻿using System.Windows.Controls;
+﻿using Client.ViewModel;
+using Common.DTO;
+using System.Windows.Controls;
 
 namespace Client.View
 {
@@ -7,6 +9,39 @@ namespace Client.View
         public GSPView()
         {
             InitializeComponent();
+        }
+
+        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var tabItem = ((sender as TabControl).SelectedItem as TabItem);
+            var name = tabItem.Name;
+
+            switch (name)
+            {
+                case "linija":
+                    GSPViewModel.odabraoVozaca = null;
+                    GSPViewModel.odabraoLinija = new LinijaDTO();
+                    GSPViewModel.odabraoAutobus = null;
+                    break;
+
+                case "vozac":
+                    GSPViewModel.odabraoVozaca = new VozacDTO();
+                    GSPViewModel.odabraoLinija = null;
+                    GSPViewModel.odabraoAutobus = null;
+                    break;
+
+                case "autobus":
+                    GSPViewModel.odabraoVozaca = null;
+                    GSPViewModel.odabraoLinija = null;
+                    GSPViewModel.odabraoAutobus = new AutobusDTO();
+                    break;
+
+                default:
+                    GSPViewModel.odabraoVozaca = null;
+                    GSPViewModel.odabraoLinija = null;
+                    GSPViewModel.odabraoAutobus = null;
+                    break;
+            }
         }
     }
 }

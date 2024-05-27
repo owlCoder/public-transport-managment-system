@@ -2,13 +2,10 @@
 using Client.Commands.LinijaCommands;
 using Client.Commands.Manager;
 using Client.Provider;
-using Client.Views;
 using Common.DTO;
 using Common.Interfaces;
 using MVVMLight.Messaging;
 using NetworkService.Helpers;
-using System.Windows;
-using System.Windows.Forms;
 
 namespace Client.ViewModel
 {
@@ -79,7 +76,7 @@ namespace Client.ViewModel
                 Odrediste = "";
                 Messenger.Default.Send(("gsp", ""));
                 //ispisi da je uspesno
-               
+
 
             }
             else if (Mode == "EDIT")

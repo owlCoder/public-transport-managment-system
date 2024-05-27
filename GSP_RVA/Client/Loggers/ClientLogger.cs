@@ -1,4 +1,3 @@
-using Client.ViewModel;
 using Common.Enums;
 using Common.Interfaces;
 using MVVMLight.Messaging;
