@@ -38,5 +38,5 @@
         <!-- dodaj ostale viewvow ovde -->
     </Window.Resources>
 
-    <ContentControl Margin="10" Content="{Binding CurrentViewModel}" />
+    <ContentControl Content="{Binding CurrentViewModel}" />
 </Window>
