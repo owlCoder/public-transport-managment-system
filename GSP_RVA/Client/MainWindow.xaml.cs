@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using Client.Provider;
+using Client.ViewModel;
+using System.Windows;
 
 namespace Client
 {

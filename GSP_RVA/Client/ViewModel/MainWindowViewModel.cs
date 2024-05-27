@@ -1,4 +1,5 @@
 ﻿using Client.Provider;
+using Common.DTO;
 using Common.Interfaces;
 using Common.Loggers;
 using MVVMLight.Messaging;
@@ -22,9 +23,6 @@ namespace Client.ViewModel
         private string username;
         private string password;
         private string errorMessage;
-
-        public static bool IsAdmin { get; private set; } = false;
-
 
         public MainWindowViewModel()
         {
@@ -68,7 +66,8 @@ namespace Client.ViewModel
 
                     CurrentViewModel = gspViewModel;
                     CurrentUserId = id;
-                    IsAdmin = ServiceProvider.VozacService.Procitaj(id).Role == Common.Enums.UserRole.Admin;
+                    // Dobavi rolu
+                    Messenger.Default.Send(ServiceProvider.VozacService.Procitaj(CurrentUserId));
                     OnPropertyChanged("CurrentViewModel");
                 }
                 else

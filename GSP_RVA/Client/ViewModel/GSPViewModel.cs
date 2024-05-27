@@ -70,12 +70,17 @@ namespace Client.ViewModel
 
             LogEntries = new ObservableCollection<string>();
 
-            IsAdmin = MainWindowViewModel.IsAdmin ? Visibility.Visible : Visibility.Hidden;
-
             // Inicijalizacija metode za osvezavanje podataka
             Messenger.Default.Register<char>(this, RefreshData);
+            Messenger.Default.Register<VozacDTO>(this, PodesiUlogovanog);
 
             LoadData(); //  učitavanje podataka prilikom inicijalizacije pogleda
+        }
+
+        public void PodesiUlogovanog(VozacDTO vozacDTO)
+        {
+            if(vozacDTO.Id != 0)
+                IsAdmin = vozacDTO.Role == Common.Enums.UserRole.Admin ? Visibility.Visible : Visibility.Hidden;
         }
 
         public void DodajULog(string log)
