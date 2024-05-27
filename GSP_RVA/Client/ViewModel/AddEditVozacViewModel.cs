@@ -8,6 +8,7 @@ using Common.Interfaces;
 using MVVMLight.Messaging;
 using NetworkService.Helpers;
 using Service.Services.LinijaService;
+using System.Collections.ObjectModel;
 using System.Security.AccessControl;
 
 namespace Client.ViewModel
@@ -27,7 +28,8 @@ namespace Client.ViewModel
         private string username;
         private string password;
         private string oznaka;
-        private UserRole uloga;
+        private ObservableCollection<UserRole> uloge;
+        private UserRole odabranaRola;
         private string errorMessage;
 
         private readonly IVozacService vozacService = ServiceProvider.VozacService;
@@ -48,9 +50,45 @@ namespace Client.ViewModel
             Username = originalniVozac.Username;
             Password = originalniVozac.Password;
             Oznaka = originalniVozac.Oznaka;
+
+            Uloge = new ObservableCollection<UserRole>() { UserRole.Admin, UserRole.Vozac };
         }
 
         public string LabelText => Mode == "ADD" ? "DODAJ NOVOG VOZACA" : "IZMENI VOZACA";
+
+
+        public ObservableCollection<UserRole> Uloge
+        {
+            get
+            {
+                return uloge;
+            }
+
+            set
+            {
+                if(value != uloge)
+                {
+                    uloge = value;
+                    OnPropertyChanged("Uloge");
+                }
+            }
+        }
+
+        public UserRole OdabranaRola
+        {
+            get
+            {
+                return odabranaRola;
+            }
+            set
+            {
+                if(odabranaRola != value)
+                {
+                    odabranaRola = value;
+                    OnPropertyChanged("OdabranaRola");
+                }
+            }
+        }
 
         public VozacDTO Vozac
         {
@@ -75,6 +113,7 @@ namespace Client.ViewModel
                 noviVozac.Username = username;
                 noviVozac.Password = password;
                 noviVozac.Oznaka = oznaka;
+                noviVozac.Role = OdabranaRola;
 
                 AddVozacCommand add = new AddVozacCommand(vozacService, noviVozac);
                 add.Execute();
@@ -221,24 +260,6 @@ namespace Client.ViewModel
                 }
             }
         }
-
-        public UserRole Uloga
-        {
-            get
-            {
-                return uloga;
-            }
-
-            set
-            {
-                if (uloga != value)
-                {
-                    uloga = value;
-                    OnPropertyChanged("Uloga");
-                }
-            }
-        }
-
         #endregion
 
     }

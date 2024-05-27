@@ -116,7 +116,7 @@
             <TextBlock Grid.Row="5" Grid.Column="0" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Right" Text="OZNAKA" />
             <TextBox Grid.Row="5" Grid.Column="1" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Text="{Binding Oznaka}" />
             <TextBlock Grid.Row="6" Grid.Column="0" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Right" Text="ULOGA" />
-            <ComboBox Grid.Row="6" Grid.Column="1" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" ItemsSource="{Binding Uloga}" />
+            <ComboBox Grid.Row="6" Grid.Column="1" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" ItemsSource="{Binding Uloge}" SelectedItem="{Binding OdabranaRola}" />
             
             <StackPanel Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
                 <Button Style="{StaticResource SaveButtonStyle}"  Margin="5" Command="{Binding SaveCommand}" />
