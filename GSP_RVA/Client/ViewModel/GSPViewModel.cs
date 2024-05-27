@@ -4,10 +4,12 @@ using Client.Commands.LinijaCommands;
 using Client.Commands.Manager;
 using Client.Commands.VozacCommands;
 using Client.Provider;
+using Client.Views;
 using Common.DTO;
 using MVVMLight.Messaging;
 using NetworkService.Helpers;
 using System.Collections.ObjectModel;
+using System.Windows;
 
 namespace Client.ViewModel
 {
@@ -97,6 +99,8 @@ namespace Client.ViewModel
             SelectedEntity = null;
 
             Linije = new ObservableCollection<LinijaDTO>(ServiceProvider.LinijaService.ProcitajSve());
+            Vozaci = new ObservableCollection<VozacDTO>(ServiceProvider.VozacService.ProcitajSve());
+            Autobusi = new ObservableCollection<AutobusDTO>(ServiceProvider.AutobusService.ProcitajSve());
             //kreirati ChannelFactory, pozvati proxy za svaki od servisa 
             //Autobus.Servis.DobaviSve();
         }
@@ -213,7 +217,7 @@ namespace Client.ViewModel
                 SelectedEntityId = 0;
                 SelectedEntity = null;
                 string mode = "ADD";
-                Messenger.Default.Send(("addEditAutobus", mode)); //izmeni
+                Messenger.Default.Send(("addEditAutobus", mode));
             }
             else if (SelectedEntity is VozacDTO)
             {
@@ -221,11 +225,14 @@ namespace Client.ViewModel
                 SelectedEntityId = 0;
                 SelectedEntity = null;
                 string mode = "ADD";
-                Messenger.Default.Send(("addEditVozac", mode)); //izmeni
+                Messenger.Default.Send(("addEditVozac", mode));
             }
             else
             {
-                // ispisi gresku 
+                // ispisi gresku!!!!
+                CustomErrorBox errorBox = new CustomErrorBox("Izaberite entitet!");
+                errorBox.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+                errorBox.ShowDialog();
                 SelectedEntityId = 0;
                 SelectedEntity = null;
             }

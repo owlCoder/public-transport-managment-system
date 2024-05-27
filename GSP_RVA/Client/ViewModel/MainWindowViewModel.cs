@@ -162,6 +162,13 @@ namespace Client.ViewModel
                     CurrentViewModel = new AddEditLinijaViewModel(message.mode);
                     break;
 
+                case "addEditVozac":
+                    CurrentViewModel = new AddEditVozacViewModel(message.mode);
+                    break;
+
+                /*case "addEditAutobus":
+                    CurrentViewModel = new AddEditAutobusViewModel(message.mode);
+                    break;*/
                 case "profile":
                     CurrentViewModel = new EditProfileViewModel();
                     break;

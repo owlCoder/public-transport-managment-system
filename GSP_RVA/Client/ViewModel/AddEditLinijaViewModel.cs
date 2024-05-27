@@ -2,10 +2,13 @@
 using Client.Commands.LinijaCommands;
 using Client.Commands.Manager;
 using Client.Provider;
+using Client.Views;
 using Common.DTO;
 using Common.Interfaces;
 using MVVMLight.Messaging;
 using NetworkService.Helpers;
+using System.Windows;
+using System.Windows.Forms;
 
 namespace Client.ViewModel
 {
@@ -74,7 +77,12 @@ namespace Client.ViewModel
                 Oznaka = "";
                 Polaziste = "";
                 Odrediste = "";
-                ErrorMessage = "Linija je uspešno dodata u bazu podataka!";
+                //?!?! redosled
+                Messenger.Default.Send(("gsp", ""));
+                CustomMessageBox customMessageBox = new CustomMessageBox("Linija je uspešno dodata u bazu podataka!");
+                customMessageBox.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+                customMessageBox.ShowDialog();
+
             }
             else if (Mode == "EDIT")
             {
@@ -88,7 +96,11 @@ namespace Client.ViewModel
                 IsSaved = true;
 
                 IsSaved = true;
-                ErrorMessage = "Linija je uspešno izmenjena u bazi podataka!";
+                //ErrorMessage = "Linija je uspešno izmenjena u bazi podataka!";
+                Messenger.Default.Send(("gsp", ""));
+                CustomMessageBox customMessageBox = new CustomMessageBox("Linija je uspešno izmenjena u bazu podataka!");
+                customMessageBox.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+                customMessageBox.ShowDialog();
             }
 
             // Osvezavanje podataka u tabeli
