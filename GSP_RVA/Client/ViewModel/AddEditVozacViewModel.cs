@@ -121,6 +121,7 @@ namespace Client.ViewModel
                 Username = "";
                 Password = "";
                 Oznaka = "";
+                Messenger.Default.Send(("gsp", ""));
                 ErrorMessage = "Vozač je uspešno dodat u bazu podataka!";
             }
             else if (Mode == "EDIT")
@@ -134,6 +135,8 @@ namespace Client.ViewModel
                 EditVozacCommand edit = new EditVozacCommand(vozacService, originalniVozac, noviVozac);
                 edit.Execute();
                 IsSaved = true;
+
+                Messenger.Default.Send(("gsp", ""));
 
                 //dodati poruku
                 ErrorMessage = "Vozač je uspešno izmenjen u bazi podataka!";

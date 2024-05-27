@@ -75,6 +75,7 @@ namespace Client.ViewModel
                 Polaziste = "";
                 Odrediste = "";
                 Messenger.Default.Send(("gsp", ""));
+
                 //ispisi da je uspesno
 
 

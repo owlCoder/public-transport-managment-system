@@ -18,6 +18,7 @@ namespace Client.ViewModel
         public MyICommand CancelCommand { get; private set; }
 
         private string oznaka;
+        private string errorMessage;
 
         private readonly IAutobusService autobusService = ServiceProvider.AutobusService;
 
@@ -63,6 +64,7 @@ namespace Client.ViewModel
                 IsSaved = true;
 
                 Oznaka = "";
+                Messenger.Default.Send(("gsp", ""));
             }
             else if (Mode == "EDIT")
             {
@@ -71,6 +73,8 @@ namespace Client.ViewModel
                 EditAutobusCommand edit = new EditAutobusCommand(autobusService, originalniAutobus, noviAutobus);
                 edit.Execute();
                 IsSaved = true;
+
+                Messenger.Default.Send(("gsp", ""));
 
                 //dodati poruku
 
@@ -89,7 +93,7 @@ namespace Client.ViewModel
 
         }
 
-        public string LabelText => Mode == "ADD" ? "DODAJ NOVi AUTOBUS" : "IZMENI AUTOBUS";
+        public string LabelText => Mode == "ADD" ? "DODAJ NOVI AUTOBUS" : "IZMENI AUTOBUS";
 
 
         public string Oznaka
@@ -105,6 +109,23 @@ namespace Client.ViewModel
                 {
                     oznaka = value;
                     OnPropertyChanged("Oznaka");
+                }
+            }
+        }
+
+        public string ErrorMessage
+        {
+            get
+            {
+                return errorMessage;
+            }
+
+            set
+            {
+                if (errorMessage != value)
+                {
+                    errorMessage = value;
+                    OnPropertyChanged("ErrorMessage");
                 }
             }
         }

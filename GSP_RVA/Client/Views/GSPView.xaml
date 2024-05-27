@@ -182,6 +182,7 @@
                               ItemsSource="{Binding Autobusi}"
                               SelectedItem="{Binding SelectedEntity}" AutoGenerateColumns="False">
                         <DataGrid.Columns>
+                            <DataGridTextColumn Header="OZNAKA" Binding="{Binding Oznaka}" Width="*" />
                         </DataGrid.Columns>
                     </DataGrid>
                 </StackPanel>
@@ -194,7 +195,7 @@
                     <DataGrid Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                             ItemsSource="{Binding LogEntries}" AutoGenerateColumns="False">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Hronolloška Evidencija Događaja" Binding="{Binding}" Width="*"/>
+                            <DataGridTextColumn Header="Hronološka Evidencija Događaja" Binding="{Binding}" Width="*"/>
                         </DataGrid.Columns>
                     </DataGrid>
 

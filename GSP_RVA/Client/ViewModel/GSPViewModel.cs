@@ -346,7 +346,6 @@ namespace Client.ViewModel
             LoadData();
         }
 
-        //srediti za vozac i autobus
         private void OnClone()
         {
             // Implementacija kloniranja podataka
