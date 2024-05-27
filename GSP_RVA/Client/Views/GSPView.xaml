@@ -191,12 +191,13 @@
                     <Image Source="/slike/slika23.png" Width="16" Height="16" Margin="0 0 5 0"/>
                 </TabItem.Header>
                 <StackPanel Orientation="Vertical">
-                    <DataGrid Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
-                              ItemsSource="{Binding LogEntries}"
-                              SelectedItem="{Binding SelectedEntity}" AutoGenerateColumns="False">
+                    <DataGrid Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                            ItemsSource="{Binding LogEntries}" AutoGenerateColumns="False">
                         <DataGrid.Columns>
+                            <DataGridTextColumn Header="Hronolloška Evidencija Događaja" Binding="{Binding}" Width="*"/>
                         </DataGrid.Columns>
                     </DataGrid>
+
                 </StackPanel>
             </TabItem>
         </TabControl>

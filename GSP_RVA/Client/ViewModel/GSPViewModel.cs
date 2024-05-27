@@ -6,6 +6,7 @@ using Client.Commands.VozacCommands;
 using Client.Provider;
 using Client.Views;
 using Common.DTO;
+using Common.Loggers;
 using MVVMLight.Messaging;
 using NetworkService.Helpers;
 using System.Collections.ObjectModel;
@@ -15,6 +16,8 @@ namespace Client.ViewModel
 {
     public class GSPViewModel : BindableBase
     {
+        private ObservableCollection<string> logEntries { get; set; }
+
         private CommandManager CommandManager = new CommandManager();
 
         private ObservableCollection<AutobusDTO> autobusi = new ObservableCollection<AutobusDTO>();
@@ -44,6 +47,9 @@ namespace Client.ViewModel
 
         public GSPViewModel()
         {
+            // Metoda za prijem logova
+            Messenger.Default.Register<string>(this, DodajULog);
+
             EditCommand = new MyICommand(OnEdit);
             EditProfileCommand = new MyICommand(OnEditProfile);
             RefreshCommand = new MyICommand(OnRefresh);
@@ -59,10 +65,18 @@ namespace Client.ViewModel
             PoPolazistuCommand = new MyICommand(PoPolazistuPromena);
             PoOdredistuCommand = new MyICommand(PoOdredistuPromena);
 
+            LogEntries = new ObservableCollection<string>();
+
             // Inicijalizacija metode za osvezavanje podataka
             Messenger.Default.Register<char>(this, RefreshData);
 
             LoadData(); //  učitavanje podataka prilikom inicijalizacije pogleda
+        }
+
+        public void DodajULog(string log)
+        {
+            LogEntries.Add(log);
+            OnPropertyChanged("LogEntries");
         }
 
         private void PoOdredistuPromena()
@@ -360,6 +374,23 @@ namespace Client.ViewModel
                 {
                     vozaci = value;
                     OnPropertyChanged("Vozaci");
+                }
+            }
+        }
+
+        public ObservableCollection<string> LogEntries
+        {
+            get
+            {
+                return logEntries;
+            }
+
+            set
+            {
+                if(logEntries != value)
+                {
+                    logEntries = value;
+                    OnPropertyChanged("LogEntries");
                 }
             }
         }
