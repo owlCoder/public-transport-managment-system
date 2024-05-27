@@ -133,7 +133,7 @@ namespace Service.Services.VozacService
                 if (vozac == null)
                     return new VozacDTO() { Id = 0 };
 
-                return new VozacDTO() { Id = vozac.Id, Ime = vozac.Ime, Linije = new List<LinijaDTO>(), Oznaka = vozac.Oznaka, Prezime = vozac.Prezime, Role = vozac.Role == "Admin" ? Common.Enums.UserRole.Admin : Common.Enums.UserRole.Vozac, Username = vozac.Username };
+                return new VozacDTO() { Id = vozac.Id, Ime = vozac.Ime, Linije = new List<LinijaDTO>(), Oznaka = vozac.Oznaka, Prezime = vozac.Prezime, Password = vozac.Password, Role = vozac.Role == "Admin" ? Common.Enums.UserRole.Admin : Common.Enums.UserRole.Vozac, Username = vozac.Username };
             }
             catch
             {

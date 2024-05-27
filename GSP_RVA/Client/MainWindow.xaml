@@ -27,7 +27,7 @@
             <views1:AddEditLinijaView/>
         </DataTemplate>
         <DataTemplate DataType="{x:Type viewModel:AddEditVozacViewModel}">
-            <views1:AddEditLinijaView/>
+            <views1:AddEditVozacView/>
         </DataTemplate>
         <DataTemplate DataType="{x:Type viewModel:AddEditAutobusViewModel}">
             <views1:AddEditAutobusView/>

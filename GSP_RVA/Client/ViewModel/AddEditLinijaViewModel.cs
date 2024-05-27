@@ -77,11 +77,9 @@ namespace Client.ViewModel
                 Oznaka = "";
                 Polaziste = "";
                 Odrediste = "";
-                //?!?! redosled
                 Messenger.Default.Send(("gsp", ""));
-                CustomMessageBox customMessageBox = new CustomMessageBox("Linija je uspešno dodata u bazu podataka!");
-                customMessageBox.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-                customMessageBox.ShowDialog();
+                //ispisi da je uspesno
+               
 
             }
             else if (Mode == "EDIT")
@@ -98,9 +96,7 @@ namespace Client.ViewModel
                 IsSaved = true;
                 //ErrorMessage = "Linija je uspešno izmenjena u bazi podataka!";
                 Messenger.Default.Send(("gsp", ""));
-                CustomMessageBox customMessageBox = new CustomMessageBox("Linija je uspešno izmenjena u bazu podataka!");
-                customMessageBox.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-                customMessageBox.ShowDialog();
+                //ispis da je uspesno
             }
 
             // Osvezavanje podataka u tabeli

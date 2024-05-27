@@ -105,12 +105,6 @@
     <Compile Include="Views\AddEditVozacView.xaml.cs">
       <DependentUpon>AddEditVozacView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\CustomErrorBox.xaml.cs">
-      <DependentUpon>CustomErrorBox.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\CustomMessageBox.xaml.cs">
-      <DependentUpon>CustomMessageBox.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\EditProfileView.xaml.cs">
       <DependentUpon>EditProfileView.xaml</DependentUpon>
     </Compile>
@@ -141,14 +135,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AddEditVozacView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\CustomErrorBox.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\CustomMessageBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

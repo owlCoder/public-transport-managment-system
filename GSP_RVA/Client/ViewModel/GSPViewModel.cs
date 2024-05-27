@@ -230,9 +230,7 @@ namespace Client.ViewModel
             else
             {
                 // ispisi gresku!!!!
-                CustomErrorBox errorBox = new CustomErrorBox("Izaberite entitet!");
-                errorBox.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-                errorBox.ShowDialog();
+              
                 SelectedEntityId = 0;
                 SelectedEntity = null;
             }
@@ -245,8 +243,21 @@ namespace Client.ViewModel
             if (SelectedEntityId == 0) // TODO: DODAJ PORUKU NA UI niste odabrali entitet!!!!!!!!!!!
                 return;
 
-            string mode = "EDIT";
-            Messenger.Default.Send(("addEditLinija", mode));
+            if (SelectedEntity is LinijaDTO)
+            {
+                string mode = "EDIT";
+                Messenger.Default.Send(("addEditLinija", mode));
+            }
+            else if (SelectedEntity is AutobusDTO)
+            {
+                string mode = "EDIT";
+                Messenger.Default.Send(("addEditAutobus", mode));
+            }
+            else if (SelectedEntity is VozacDTO)
+            {
+                string mode = "EDIT";
+                Messenger.Default.Send(("addEditVozac", mode));
+            }
         }
 
 
