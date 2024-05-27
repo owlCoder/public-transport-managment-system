@@ -25,7 +25,7 @@ namespace Client.Commands.AutobusCommands
             if (!success)
                 MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, "Dodavanje novog autobusa nije uspelo!");
             else
-                MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Autobus sa ID-jem {autobus.Id} je uspesno dodat!");
+                MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Autobus sa oznakom {autobus.Oznaka} je uspesno dodat!");
         }
 
         public override void Undo()
