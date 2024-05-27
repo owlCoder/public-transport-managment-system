@@ -32,6 +32,8 @@ namespace Client.ViewModel
 
         private bool poPolazistuRadio, poOdredistuRadio;
 
+        public Visibility IsAdmin { get; set; } = MainWindowViewModel.IsAdmin ? Visibility.Visible:Visibility.Hidden;
+
         public MyICommand EditCommand { get; private set; }
         public MyICommand EditProfileCommand { get; private set; }
         public MyICommand RefreshCommand { get; private set; }

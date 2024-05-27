@@ -23,6 +23,9 @@ namespace Client.ViewModel
         private string password;
         private string errorMessage;
 
+        public static bool IsAdmin { get; private set; } = false;
+
+
         public MainWindowViewModel()
         {
             CurrentViewModel = this;
@@ -65,6 +68,7 @@ namespace Client.ViewModel
 
                     CurrentViewModel = gspViewModel;
                     CurrentUserId = id;
+                    IsAdmin = ServiceProvider.VozacService.Procitaj(id).Role == Common.Enums.UserRole.Admin;
                     OnPropertyChanged("CurrentViewModel");
                 }
                 else

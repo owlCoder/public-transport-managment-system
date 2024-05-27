@@ -211,12 +211,12 @@
 
         <!-- Action Buttons Below DataGrid -->
         <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-            <Button Content="Add" Margin="5" Command="{Binding AddCommand}"/>
-            <Button Content="Delete" Margin="5" Command="{Binding DeleteCommand}"/>
-            <Button Content="Edit" Margin="5" Command="{Binding EditCommand}"/>
-            <Button Content="Undo" Margin="5" Command="{Binding UndoCommand}"/>
-            <Button Content="Redo" Margin="5" Command="{Binding RedoCommand}"/>
-            <Button Content="Clone" Margin="5" Command="{Binding CloneCommand}"/>
+            <Button Content="Add" Visibility="{Binding IsAdmin}" Margin="5" Command="{Binding AddCommand}"/>
+            <Button Content="Delete" Visibility="{Binding IsAdmin}" Margin="5" Command="{Binding DeleteCommand}"/>
+            <Button Content="Edit" Visibility="{Binding IsAdmin}" Margin="5" Command="{Binding EditCommand}"/>
+            <Button Content="Undo" Visibility="{Binding IsAdmin}" Margin="5" Command="{Binding UndoCommand}"/>
+            <Button Content="Redo" Visibility="{Binding IsAdmin}" Margin="5" Command="{Binding RedoCommand}"/>
+            <Button Content="Clone" Visibility="{Binding IsAdmin}" Margin="5" Command="{Binding CloneCommand}"/>
         </StackPanel>
 
         <!-- Search Fields with Labels and TextBoxes -->
