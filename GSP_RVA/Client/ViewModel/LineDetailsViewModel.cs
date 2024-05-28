@@ -30,6 +30,9 @@ namespace Client.ViewModel
       
             Linije.Add(linija);
             DohvatiSveVozace();
+            DohvatiAutobuse();
+        
+
         }
 
         private void DohvatiSveVozace()
@@ -42,6 +45,21 @@ namespace Client.ViewModel
                 vozaci.Add(vozac);
             }
         }
+
+        private void DohvatiAutobuse()
+        {
+            // Dohvaćanje autobusa vezanih za odabranu liniju preko odgovarajuće usluge
+            var autobusiDTO = ServiceProvider.AutobusService.ProcitajSve();
+
+            Autobusi.Clear();
+            foreach (var autobus in autobusiDTO)
+            {
+                if(autobus.IdLinije == linija.Id || autobus.IdLinije == null)
+                Autobusi.Add(autobus);
+            }
+        }
+
+      
 
         public ObservableCollection<LinijaDTO> Linije
         {
