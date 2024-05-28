@@ -8,7 +8,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Background>
-        <ImageBrush  ImageSource="../slike/intro.mp4" />
+        <ImageBrush  ImageSource="../slike/pozadina.png" />
     </UserControl.Background>
 
     <UserControl.Resources>
