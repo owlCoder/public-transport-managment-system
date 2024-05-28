@@ -21,7 +21,10 @@ namespace Service.Database.CRUDOperations.LinijaCrud
         {
             lock (_lock)
             {
-                return _context.Linije.AsNoTracking().FirstOrDefault(u => u.Id == id);
+                Linija linija = _context.Linije.AsNoTracking().FirstOrDefault(u => u.Id == id);
+                linija.Vozaci = _context.GetVozaciWithRelatedData().ToList().FindAll(l => l.Linije.Any(ll => ll.Vozaci.Contains(l)));
+                linija.Autobusi = _context.GetAutobusiWithRelatedData().ToList();
+                return linija;
             }
         }
 

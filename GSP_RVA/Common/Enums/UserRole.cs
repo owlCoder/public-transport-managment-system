@@ -1,9 +1,12 @@
-﻿namespace Common.Enums
+﻿using System.Runtime.Serialization;
+
+namespace Common.Enums
 {
+    [DataContract]
     public enum UserRole
     {
-        Admin,
+        [EnumMember] Admin,
 
-        Vozac
+        [EnumMember] Vozac
     }
 }

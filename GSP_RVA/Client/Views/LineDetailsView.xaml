@@ -99,11 +99,11 @@
 
         <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
            FontSize="20" FontFamily="Georgia" FontWeight="SemiBold"
-           Content="Linija" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10"/>
+           Content="Linija" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10, 50, 10, 10"/>
 
         <!-- Tabela "Linije" -->
         <DataGrid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
-              Margin="0 0 0 70" ItemsSource="{Binding Linije}"
+              Margin="10 10 10 40" ItemsSource="{Binding Linije}"
               RowHeaderWidth="0" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="Auto"/>
@@ -119,13 +119,13 @@
                 Content="Vozaci" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10"/>
         <DataGrid Grid.Row="3" Grid.Column="0"
               Margin="10" ItemsSource="{Binding Vozaci}"
-              RowHeaderWidth="0" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False">
+              RowHeaderWidth="0" IsReadOnly="False" CanUserAddRows="False" CanUserDeleteRows="False">
             <DataGrid.Columns>
                 <!-- Definišite kolone prema potrebama vašeg modela "Vozac" -->
-                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="Auto" />
-                <DataGridTextColumn Header="Ime" Binding="{Binding Ime}" Width="*"/>
-                <DataGridTextColumn Header="Prezime" Binding="{Binding Prezime}" Width="*"/>
-                <!-- Dodajte dodatne kolone po potrebi -->
+                <DataGridTextColumn IsReadOnly="True" Header="ID" Binding="{Binding Id}" Width="Auto" />
+                <DataGridTextColumn IsReadOnly="True" Header="Ime" Binding="{Binding Ime}" Width="*"/>
+                <DataGridTextColumn IsReadOnly="True" Header="Prezime" Binding="{Binding Prezime}" Width="*"/>
+                <DataGridCheckBoxColumn IsReadOnly="False" Header="Pripada" Binding="{Binding IsChecked}"  Width="Auto" />
             </DataGrid.Columns>
         </DataGrid>
 
@@ -144,8 +144,10 @@
         </DataGrid>
 
         <!-- Dugme "Back" -->
+        <Button Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2"
+         Content="Save Changes" Command="{Binding SaveChangesCommand}" VerticalAlignment="Bottom" Margin="100"/>
         <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"
-         Content="Back" Command="{Binding BackCommand}" VerticalAlignment="Bottom" Margin="100"/>
+ Content="Back" Command="{Binding BackCommand}" VerticalAlignment="Bottom" Margin="100"/>
     </Grid>
     
     

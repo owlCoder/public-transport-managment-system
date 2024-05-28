@@ -18,6 +18,6 @@ namespace Service.Database.Models
         public int? IdLinije { get; set; }
 
         [ForeignKey("IdLinije")]
-        public virtual Linija Linija { get; set; }
+        public Linija Linija { get; set; }
     }
 }

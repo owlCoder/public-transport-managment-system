@@ -1,6 +1,7 @@
 ﻿using MySql.Data.EntityFramework;
 using Service.Database.Models;
 using System.Data.Entity;
+using System.Linq;
 
 namespace Service.Database.Context
 {
@@ -36,6 +37,21 @@ namespace Service.Database.Context
                 .WithMany(l => l.Autobusi)
                 .HasForeignKey(a => a.IdLinije)
                 .WillCascadeOnDelete(false);
+        }
+
+        public IQueryable<Vozac> GetVozaciWithRelatedData()
+        {
+            return Vozaci.Include(v => v.Linije.Select(l => l.Autobusi));
+        }
+
+        public IQueryable<Linija> GetLinijeWithRelatedData()
+        {
+            return Linije.Include(l => l.Vozaci).Include(l => l.Autobusi);
+        }
+
+        public IQueryable<Autobus> GetAutobusiWithRelatedData()
+        {
+            return Autobusi.Include(a => a.Linija.Vozaci);
         }
     }
 }

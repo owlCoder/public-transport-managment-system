@@ -140,6 +140,18 @@
     <Compile Include="Migrations\202405251205570_V1_db.Designer.cs">
       <DependentUpon>202405251205570_V1_db.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202405282245068_V.cs" />
+    <Compile Include="Migrations\202405282245068_V.Designer.cs">
+      <DependentUpon>202405282245068_V.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202405282246132_V1.cs" />
+    <Compile Include="Migrations\202405282246132_V1.Designer.cs">
+      <DependentUpon>202405282246132_V1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202405282246366_V2.cs" />
+    <Compile Include="Migrations\202405282246366_V2.Designer.cs">
+      <DependentUpon>202405282246366_V2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -160,6 +172,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202405251205570_V1_db.resx">
       <DependentUpon>202405251205570_V1_db.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405282245068_V.resx">
+      <DependentUpon>202405282245068_V.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405282246132_V1.resx">
+      <DependentUpon>202405282246132_V1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405282246366_V2.resx">
+      <DependentUpon>202405282246366_V2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

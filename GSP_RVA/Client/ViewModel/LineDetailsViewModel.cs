@@ -1,13 +1,12 @@
 ﻿using Client.Provider;
 using Common.DTO;
+using MVVMLight.Messaging;
 using NetworkService.Helpers;
+using Service.Database.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 
 namespace Client.ViewModel
 {
@@ -16,6 +15,9 @@ namespace Client.ViewModel
         private ObservableCollection<LinijaDTO> linije = new ObservableCollection<LinijaDTO>();
         private ObservableCollection<VozacDTO> vozaci = new ObservableCollection<VozacDTO>();
         private ObservableCollection<AutobusDTO> autobusi = new ObservableCollection<AutobusDTO>();
+
+        public MyICommand SaveChangesCommand { get; set; }
+        public MyICommand BackCommand { get; set; }
 
 
         public LinijaDTO linija;
@@ -31,8 +33,44 @@ namespace Client.ViewModel
             Linije.Add(linija);
             DohvatiSveVozace();
             DohvatiAutobuse();
-        
 
+            SaveChangesCommand = new MyICommand(SaveChanges);
+            BackCommand = new MyICommand(GoBack);
+
+            // Cekiraj sve vozace odabrane za datu liniju
+            foreach(VozacDTO v in Vozaci)
+            {
+                if(Linije[0].Vozaci.FirstOrDefault(x => x.Id == v.Id && x.Linije.Any(l => l.Id == linije[0].Id)) != null)
+                {
+                    v.IsChecked = true;
+                }
+            }
+        }
+
+        private void GoBack()
+        {
+            Messenger.Default.Send(("gsp", "null"));
+        }
+
+        private void SaveChanges()
+        {
+            // Vezivanje odabranih vozaca za linije
+            foreach(VozacDTO vozac in vozaci)
+            {
+                if (vozac.IsChecked && !vozac.Linije.Any(l => l.Id == linije[0].Id))
+                {
+                    Linije[0].Vozaci.Add(vozac);
+                    vozac.Linije.Add(linija);
+                }
+                // Azuriranje vozaca novim vezama
+                ServiceProvider.VozacService.IzmeniVozaca(vozac.Id, vozac);
+            }
+
+            ServiceProvider.LinijaService.IzmeniLiniju(Linije[0].Id, Linije[0]);
+
+            var ll = Linije;
+            var lll = vozaci;
+            var llll = autobusi;
         }
 
         private void DohvatiSveVozace()

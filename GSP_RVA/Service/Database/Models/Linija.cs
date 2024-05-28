@@ -24,15 +24,15 @@ namespace Service.Database.Models
         public string Odrediste { get; set; }
 
         // Navigation property for Vozaci
-        public virtual ICollection<Vozac> Vozaci { get; set; }
+        public List<Vozac> Vozaci { get; set; }
 
         // Navigation property for Autobusi
-        public virtual ICollection<Autobus> Autobusi { get; set; }
+        public List<Autobus> Autobusi { get; set; }
 
         public Linija()
         {
-            Vozaci = new HashSet<Vozac>();
-            Autobusi = new HashSet<Autobus>();
+            Vozaci = new List<Vozac>();
+            Autobusi = new List<Autobus>();
         }
     }
 }

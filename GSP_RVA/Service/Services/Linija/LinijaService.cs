@@ -131,7 +131,9 @@ namespace Service.Services.LinijaService
                     Id = linija.Id,
                     Oznaka = linija.Oznaka,
                     Polaziste = linija.Polaziste,
-                    Odrediste = linija.Odrediste
+                    Odrediste = linija.Odrediste,
+                    Vozaci = MapDriversToDriverDTO(linija.Vozaci)
+                    // dodaj i autobuse ovde mamu im
                 };
             }
             catch (Exception e)
@@ -189,7 +191,9 @@ namespace Service.Services.LinijaService
                     Id = l.Id,
                     Oznaka = l.Oznaka,
                     Polaziste = l.Polaziste,
-                    Odrediste = l.Odrediste
+                    Odrediste = l.Odrediste,
+                    //Vozaci = l.Vozaci.ToList(),
+
                 }).ToList();
 
                 logger.Log(LogTraceLevel.INFO, "Pretraga linija je završena.");
@@ -200,6 +204,29 @@ namespace Service.Services.LinijaService
                 logger.Log(LogTraceLevel.DEBUG, $"Greška prilikom pretrage linija.StackTrace: {e.Message}");
                 return new List<LinijaDTO>();
             }
+        }
+
+
+        public List<VozacDTO> MapDriversToDriverDTO(List<Vozac> drivers)
+        {
+            return drivers.Select(driver => new VozacDTO
+            {
+                Id = driver.Id,
+                Username = driver.Username,
+                Password = driver.Password,
+                Ime = driver.Ime,
+                Prezime = driver.Prezime,
+                Role = driver.Role == "Admin" ? UserRole.Admin : UserRole.Vozac,
+                Oznaka = driver.Oznaka,
+                IsChecked = true,
+                Linije = driver.Linije.Select(linija => new LinijaDTO
+                {
+                    Id = linija.Id,
+                    Oznaka = linija.Oznaka,
+                    Polaziste = linija.Polaziste,
+                    Odrediste = linija.Odrediste
+                }).ToList()
+            }).ToList();
         }
     }
 }

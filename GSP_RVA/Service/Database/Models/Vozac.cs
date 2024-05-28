@@ -37,11 +37,11 @@ namespace Service.Database.Models
         public string Oznaka { get; set; }
 
         // Navigation property for Linije
-        public virtual ICollection<Linija> Linije { get; set; }
+        public  List<Linija> Linije { get; set; }
 
         public Vozac()
         {
-            Linije = new HashSet<Linija>();
+            Linije = new List<Linija>();
         }
     }
 }
