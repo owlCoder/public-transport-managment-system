@@ -40,6 +40,11 @@ namespace Common.DTO
             get; set;
         }
 
+        public bool IsChecked
+        {
+            get; set;
+        }
+
         public List<LinijaDTO> Linije
         {
             get; set;

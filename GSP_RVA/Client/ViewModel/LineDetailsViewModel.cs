@@ -14,9 +14,34 @@ namespace Client.ViewModel
     public class LineDetailsViewModel : BindableBase
     {
         private ObservableCollection<LinijaDTO> linije = new ObservableCollection<LinijaDTO>();
+        private ObservableCollection<VozacDTO> vozaci = new ObservableCollection<VozacDTO>();
+        private ObservableCollection<AutobusDTO> autobusi = new ObservableCollection<AutobusDTO>();
+
+
         public LinijaDTO linija;
         public int id;
         public string oznaka, polaziste, odrediste;
+
+
+        public LineDetailsViewModel()
+        {
+            linija = ServiceProvider.LinijaService.Procitaj(GSPViewModel.SelectedEntityId);
+
+      
+            Linije.Add(linija);
+            DohvatiSveVozace();
+        }
+
+        private void DohvatiSveVozace()
+        {
+            // Dohvaćanje svih vozača preko odgovarajuće usluge (pretpostavka)
+            var sviVozaciDTO = ServiceProvider.VozacService.ProcitajSve();
+
+            foreach (var vozac in sviVozaciDTO)
+            {
+                vozaci.Add(vozac);
+            }
+        }
 
         public ObservableCollection<LinijaDTO> Linije
         {
@@ -31,15 +56,30 @@ namespace Client.ViewModel
             }
         }
 
-        public LineDetailsViewModel()
+        public ObservableCollection<VozacDTO> Vozaci
         {
-            linija = ServiceProvider.LinijaService.Procitaj(GSPViewModel.SelectedEntityId);
-
-      
-            Linije.Add(linija);
+            get { return vozaci; }
+            set
+            {
+                if (vozaci != value)
+                {
+                    vozaci = value;
+                    OnPropertyChanged("Vozaci");
+                }
+            }
         }
-
-       
+        public ObservableCollection<AutobusDTO> Autobusi
+        {
+            get { return autobusi; }
+            set
+            {
+                if (autobusi != value)
+                {
+                    autobusi = value;
+                    OnPropertyChanged("Autobusi");
+                }
+            }
+        }
 
     }
 }
