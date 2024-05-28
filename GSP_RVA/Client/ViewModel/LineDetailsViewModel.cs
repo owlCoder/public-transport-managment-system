@@ -13,87 +13,33 @@ namespace Client.ViewModel
 {
     public class LineDetailsViewModel : BindableBase
     {
+        private ObservableCollection<LinijaDTO> linije = new ObservableCollection<LinijaDTO>();
         public LinijaDTO linija;
         public int id;
         public string oznaka, polaziste, odrediste;
+
+        public ObservableCollection<LinijaDTO> Linije
+        {
+            get { return linije; }
+            set
+            {
+                if (linije != value)
+                {
+                    linije = value;
+                    OnPropertyChanged("Linije");
+                }
+            }
+        }
 
         public LineDetailsViewModel()
         {
             linija = ServiceProvider.LinijaService.Procitaj(GSPViewModel.SelectedEntityId);
 
-            Id = linija.Id;
-            Oznaka = linija.Oznaka;
-            Polaziste = linija.Polaziste;
-            Odrediste = linija.Odrediste;
+      
+            Linije.Add(linija);
         }
 
-        public int Id
-        {
-            get
-            {
-                return id;
-            }
-
-            set
-            {
-                if (id != value)
-                {
-                    id = value;
-                    OnPropertyChanged("Id");
-                }
-            }
-        }
-
-        public string Oznaka
-        {
-            get
-            {
-                return oznaka;
-            }
-
-            set
-            {
-                if (oznaka != value)
-                {
-                    oznaka = value;
-                    OnPropertyChanged("Oznaka");
-                }
-            }
-        }
-
-        public string Polaziste
-        {
-            get
-            {
-                return polaziste;
-            }
-
-            set
-            {
-                if (polaziste != value)
-                {
-                    polaziste = value;
-                    OnPropertyChanged("Polaziste");
-                }
-            }
-        }
-
-        public string Odrediste
-        {
-            get
-            {
-                return odrediste;
-            }
-
-            set
-            {
-                if (odrediste != value)
-                {
-                    odrediste = value;
-                    OnPropertyChanged("Odrediste");
-                }
-            }
-        }
+       
 
     }
 }
