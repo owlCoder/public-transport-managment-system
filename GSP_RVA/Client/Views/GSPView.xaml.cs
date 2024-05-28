@@ -1,14 +1,19 @@
 ﻿using Client.ViewModel;
+using Client.Views;
 using Common.DTO;
+using MVVMLight.Messaging;
 using System.Windows.Controls;
+using System.Windows.Shapes;
 
 namespace Client.View
 {
     public partial class GSPView : UserControl
     {
+        private LineDetailsView lineDetailsView;
         public GSPView()
         {
             InitializeComponent();
+
         }
 
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -42,6 +47,13 @@ namespace Client.View
                     GSPViewModel.odabraoAutobus = null;
                     break;
             }
+        }
+
+        private void DataGrid_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            
+            Messenger.Default.Send(("details", "null"));
+
         }
     }
 }

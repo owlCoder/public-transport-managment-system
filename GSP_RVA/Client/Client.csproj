@@ -95,6 +95,7 @@
     <Compile Include="ViewModel\AddEditVozacViewModel.cs" />
     <Compile Include="ViewModel\EditProfileViewModel.cs" />
     <Compile Include="ViewModel\GSPViewModel.cs" />
+    <Compile Include="ViewModel\LineDetailsViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="Views\AddEditAutobusView.xaml.cs">
       <DependentUpon>AddEditAutobusView.xaml</DependentUpon>
@@ -110,6 +111,9 @@
     </Compile>
     <Compile Include="Views\GSPView.xaml.cs">
       <DependentUpon>GSPView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LineDetailsView.xaml.cs">
+      <DependentUpon>LineDetailsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainWindowView.xaml.cs">
       <DependentUpon>MainWindowView.xaml</DependentUpon>
@@ -143,6 +147,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\GSPView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LineDetailsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

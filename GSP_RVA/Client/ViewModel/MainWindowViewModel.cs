@@ -4,6 +4,7 @@ using Common.Loggers;
 using MVVMLight.Messaging;
 using NetworkService.Helpers;
 using System.Windows;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace Client.ViewModel
 {
@@ -173,6 +174,9 @@ namespace Client.ViewModel
                     break;
                 case "profile":
                     CurrentViewModel = new EditProfileViewModel();
+                    break; 
+                case "details":
+                    CurrentViewModel = new LineDetailsViewModel();
                     break;
                 // dodaj ostale view modele
 
