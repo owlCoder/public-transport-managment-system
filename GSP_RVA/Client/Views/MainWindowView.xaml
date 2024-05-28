@@ -8,7 +8,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Background>
-        <ImageBrush  ImageSource="../slike/pozadina.png" />
+        <ImageBrush  ImageSource="../slike/intro.mp4" />
     </UserControl.Background>
 
     <UserControl.Resources>
@@ -20,17 +20,16 @@
         </Style>
 
         <!-- Define a style for all Button elements -->
-        <!-- Styles for controls -->
         <Style TargetType="Button">
             <Setter Property="FontFamily" Value="Georgia"/>
-            <Setter Property="FontSize" Value="14"/>
-            <Setter Property="FontWeight" Value="Normal"/>
-            <Setter Property="Background" Value="LightBlue"/>
-            <!-- Promjena boje pozadine -->
-            <Setter Property="BorderBrush" Value="LightSkyBlue"/>
-            <!-- Promjena boje obruba -->
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Height" Value="40" />
+            <Setter Property="Width" Value="120" />
+            <Setter Property="Background" Value="#2E515B"/>
+            <Setter Property="BorderBrush" Value="#647D75"/>
+            <Setter Property="Foreground" Value="White"/>
             <Setter Property="BorderThickness" Value="2"/>
-            <!-- Promjena debljine obruba -->
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
@@ -40,17 +39,41 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#1E3942"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
 
-        <Style TargetType="Label">
+        <!-- Define a specific style for the logout button -->
+        <Style TargetType="Button" x:Key="LogoutButtonStyle">
             <Setter Property="FontFamily" Value="Georgia"/>
-            <Setter Property="FontSize" Value="14"/>
-            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Height" Value="40" />
+            <Setter Property="Width" Value="120" />
+            <Setter Property="Background" Value="#B22222"/>
+            <!-- Red background for logout button -->
+            <Setter Property="BorderBrush" Value="#8B0000"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="5" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#8B0000"/>
+                    <!-- Darker red on hover -->
+                </Trigger>
+            </Style.Triggers>
         </Style>
-
-
-
-        <!-- Styles for controls -->
 
 
         <!-- Define similar styles for other controls as needed -->
@@ -127,9 +150,7 @@
              Width="180"
              Height="40"
              Margin="5"
-             Background="#2E515B"
-             BorderBrush="#464A51"
-             BorderThickness="3"
+             BorderThickness="1"
              Foreground="White"
              FontSize="20"
              FontWeight="SemiBold"/>
@@ -144,9 +165,7 @@
              Width="180"
              Height="40"
              Margin="5"
-             Background="#AD291C"
-             Foreground="White"
-             BorderBrush="#464A51"
+            Style="{StaticResource LogoutButtonStyle}"
              FontSize="20"
              FontWeight="SemiBold"/>
         </Grid>
