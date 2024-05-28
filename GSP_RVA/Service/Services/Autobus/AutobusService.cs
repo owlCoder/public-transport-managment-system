@@ -1,4 +1,5 @@
-using Common.DTO;
+﻿using Common.DTO;
+using Common.Enums;
 using Common.Interfaces;
 using Service.Database;
 using Service.Database.CRUDOperations.AutobusCrud;
@@ -26,8 +27,10 @@ namespace Service.Services.AutobusService
                 {
                     var autobus = read.ReadByCriteria(a => a.Oznaka == oznaka);
 
-                    // da li je uspesno!!!!!!!!!!!! PROMENI
-                    Program.logger.Log(Common.Enums.LogTraceLevel.INFO, "Sve je do jaja");
+                    if(autobus != null)
+                        Program.logger.Log(LogTraceLevel.INFO, $"Autobus sa ID-jem {autobus.Id} je uspešno dodat.");
+                    else
+                        Program.logger.Log(LogTraceLevel.INFO, $"Autobus sa ID-jem {autobus} nije uspešno dodat.");
 
                     return autobus != null;
                 }
@@ -36,8 +39,9 @@ namespace Service.Services.AutobusService
                     return false;
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Program.logger.Log(LogTraceLevel.DEBUG, $"Autobus nije dodat. StackTrace: {e.Message}");
                 return false;
             }
         }
@@ -59,10 +63,18 @@ namespace Service.Services.AutobusService
                 existingAutobus.Oznaka = data.Oznaka;
                 existingAutobus.IdLinije = data.IdLinije;
 
-                return update.Update(id, existingAutobus);
+                bool uspesno = update.Update(id, existingAutobus);
+
+                if (uspesno)
+                    Program.logger.Log(LogTraceLevel.INFO, $"Autobus sa ID-jem {id} je uspešno ažuriran.");
+                else
+                    Program.logger.Log(LogTraceLevel.INFO, $"Autobus sa ID-jem {id} nije uspešno ažuriran.");
+
+                return uspesno;
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Program.logger.Log(LogTraceLevel.DEBUG, $"Autobus sa ID-jem {id} nije ažuriran. StackTrace: {e.Message}");
                 return false;
             }
         }
@@ -72,10 +84,18 @@ namespace Service.Services.AutobusService
             try
             {
                 DeleteAutobus delete = new DeleteAutobus(DatabaseService.Instance.Context);
-                return delete.Delete(id);
+                bool uspesno = delete.Delete(id);
+
+                if (uspesno)
+                    Program.logger.Log(LogTraceLevel.INFO, $"Autobus sa ID-jem {id} je uspešno obrisan.");
+                else
+                    Program.logger.Log(LogTraceLevel.INFO, $"Autobus sa ID-jem {id} nije uspešno obrisan.");
+
+                return uspesno;
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Program.logger.Log(LogTraceLevel.DEBUG, $"Autobus sa ID-jem {id} nije obrisan. StackTrace: {e.Message}");
                 return false;
             }
         }
@@ -90,6 +110,8 @@ namespace Service.Services.AutobusService
                 if (autobus == null)
                     return new AutobusDTO() { Id = 0 };
 
+                Program.logger.Log(LogTraceLevel.INFO, $"Autobus sa ID-jem {id} je pročitan.");
+
                 return new AutobusDTO()
                 {
                     Id = autobus.Id,
@@ -97,8 +119,9 @@ namespace Service.Services.AutobusService
                     IdLinije = autobus.IdLinije ?? 0
                 };
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Program.logger.Log(LogTraceLevel.DEBUG, $"Autobus sa ID-jem {id} nije pročitan. StackTrace: {e.Message}");
                 return new AutobusDTO() { Id = 0 };
             }
         }
@@ -107,6 +130,8 @@ namespace Service.Services.AutobusService
         {
             try
             {
+                Program.logger.Log(LogTraceLevel.INFO, $"Primljen je zahtev za čitanje svih autobusa.");
+
                 ReadAutobus readAutobus = new ReadAutobus(DatabaseService.Instance.Context);
                 List<Autobus> autobusi = readAutobus.ReadAll();
 
@@ -118,8 +143,9 @@ namespace Service.Services.AutobusService
 
                 return sve;
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Program.logger.Log(LogTraceLevel.DEBUG, $"Autobusi nisu pročitani. StackTrace: {e.Message}");
                 return new List<AutobusDTO>();
             }
         }
