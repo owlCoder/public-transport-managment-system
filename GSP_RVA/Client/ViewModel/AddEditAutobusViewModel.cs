@@ -70,6 +70,12 @@ namespace Client.ViewModel
             {
                 noviAutobus.Oznaka = oznaka;
 
+                // Oznacavanje da FK u bazi
+                if (originalniAutobus.IdLinije != 0)
+                    noviAutobus.IdLinije = originalniAutobus.Id;
+                else
+                    noviAutobus.IdLinije = null;
+
                 EditAutobusCommand edit = new EditAutobusCommand(autobusService, originalniAutobus, noviAutobus);
                 edit.Execute();
                 IsSaved = true;

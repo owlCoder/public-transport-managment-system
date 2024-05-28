@@ -14,7 +14,7 @@ namespace Common.DTO
             get; set;
         }
 
-        public int IdLinije
+        public int? IdLinije
         {
             get; set;
         }

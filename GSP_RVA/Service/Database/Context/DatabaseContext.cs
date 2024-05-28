@@ -35,7 +35,7 @@ namespace Service.Database.Context
                 .HasOptional(a => a.Linija) // HasOptional because IdLinije is nullable
                 .WithMany(l => l.Autobusi)
                 .HasForeignKey(a => a.IdLinije)
-                .WillCascadeOnDelete(false); // You may not need this line depending on your requirements
+                .WillCascadeOnDelete(false);
         }
     }
 }
