@@ -80,23 +80,31 @@
             <Setter Property="BorderThickness" Value="0 0 1 1"/>
         </Style>
 
-        <!-- Ostali stilovi za RadioButton, TabControl, TextBox... -->
-        <!-- Dodajte ih prema potrebi -->
+    
     </UserControl.Resources>
 
-    <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+    <Grid VerticalAlignment="Top" HorizontalAlignment="Center" Margin="17">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Label Grid.Row="0" FontSize="20" FontFamily="Georgia" FontWeight="SemiBold"
-               Content="Line Details" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
 
-        <DataGrid Grid.Row="1" Margin="10" ItemsSource="{Binding Linije}"
-                                  
-                  RowHeaderWidth="0" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False">
+        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+           FontSize="20" FontFamily="Georgia" FontWeight="SemiBold"
+           Content="Linija" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10"/>
+
+        <!-- Tabela "Linije" -->
+        <DataGrid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+              Margin="0 0 0 70" ItemsSource="{Binding Linije}"
+              RowHeaderWidth="0" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="Auto"/>
                 <DataGridTextColumn Header="Oznaka" Binding="{Binding Oznaka}" Width="*"/>
@@ -105,6 +113,40 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Button Grid.Row="2" Content="Back" Command="{Binding BackCommand}" Margin="5"/>
+        <!-- Tabela "Vozaci" -->
+        <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+                FontSize="20" FontFamily="Georgia" FontWeight="SemiBold"
+                Content="Vozaci" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10"/>
+        <DataGrid Grid.Row="3" Grid.Column="0"
+              Margin="10" ItemsSource="{Binding Vozaci}"
+              RowHeaderWidth="0" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False">
+            <DataGrid.Columns>
+                <!-- Definišite kolone prema potrebama vašeg modela "Vozac" -->
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="Auto" />
+                <DataGridTextColumn Header="Ime" Binding="{Binding Ime}" Width="*"/>
+                <DataGridTextColumn Header="Prezime" Binding="{Binding Prezime}" Width="*"/>
+                <!-- Dodajte dodatne kolone po potrebi -->
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Label Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"
+        FontSize="20" FontFamily="Georgia" FontWeight="SemiBold"
+        Content="Autobusi" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10"/>
+        <!-- Tabela "Autobusi" -->
+        <DataGrid Grid.Row="3" Grid.Column="1"
+              Margin="10" ItemsSource="{Binding Autobusi}"
+              RowHeaderWidth="0" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False">
+            <DataGrid.Columns>
+                <!-- Definišite kolone prema potrebama vašeg modela "Autobus" -->
+                <DataGridTextColumn Header="OZNAKA" Binding="{Binding Oznaka}" Width="*" />
+                <!-- Dodajte dodatne kolone po potrebi -->
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Dugme "Back" -->
+        <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"
+         Content="Back" Command="{Binding BackCommand}" VerticalAlignment="Bottom" Margin="100"/>
     </Grid>
+    
+    
 </UserControl>
