@@ -1,4 +1,5 @@
-using Common.DTO;
+﻿using Common.DTO;
+using Common.Enums;
 using Common.Interfaces;
 using Service.Database;
 using Service.Database.CRUD;
@@ -13,6 +14,8 @@ namespace Service.Services.LinijaService
 {
     public class LinijaService : ILinijaService
     {
+        private ILogger logger = Program.logger;
+
         public int DodajLiniju(LinijaDTO data)
         {
             try
@@ -30,15 +33,22 @@ namespace Service.Services.LinijaService
                 if (insert.Insert(linija))
                 {
                     Linija pronadjeno = read.ReadByCriteria(l => l.Oznaka == data.Oznaka && l.Polaziste == data.Polaziste && l.Odrediste == data.Odrediste);
+                    if (pronadjeno != null)
+                        logger.Log(LogTraceLevel.INFO, $"Linija sa ID-jem {pronadjeno.Id} je uspešno dodata.");
+                    else
+                        logger.Log(LogTraceLevel.INFO, $"Linija nije uspešno dodata.");
+
                     return pronadjeno != null ? pronadjeno.Id : 0;
                 }
                 else
                 {
+                    logger.Log(LogTraceLevel.INFO, "Dodavanje linije nije uspelo.");
                     return 0;
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                logger.Log(LogTraceLevel.DEBUG, $"Greška prilikom dodavanja linije. StackTrace: {e.Message}");
                 return 0;
             }
         }
@@ -54,6 +64,7 @@ namespace Service.Services.LinijaService
 
                 if (existingLinija == null)
                 {
+                    logger.Log(LogTraceLevel.INFO, $"Linija sa ID-jem {id} ne postoji za izmenu.");
                     return 0;
                 }
 
@@ -63,15 +74,18 @@ namespace Service.Services.LinijaService
 
                 if (update.Update(id, existingLinija))
                 {
+                    logger.Log(LogTraceLevel.INFO, $"Linija sa ID-jem {id} je uspešno ažurirana.");
                     return existingLinija.Id;
                 }
                 else
                 {
+                    logger.Log(LogTraceLevel.INFO, $"Ažuriranje linije sa ID-jem {id} nije uspelo.");
                     return 0;
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                logger.Log(LogTraceLevel.DEBUG, $"Greška prilikom izmene linije sa ID-jem {id}. StackTrace: {e.Message}");
                 return 0;
             }
         }
@@ -83,13 +97,18 @@ namespace Service.Services.LinijaService
                 DeleteLinija delete = new DeleteLinija(DatabaseService.Instance.Context);
                 if (delete.Delete(id))
                 {
+                    logger.Log(LogTraceLevel.INFO, $"Linija sa ID-jem {id} je uspešno obrisana.");
                     return id;
                 }
                 else
-                { return 0; }
+                {
+                    logger.Log(LogTraceLevel.INFO, $"Brisanje linije sa ID-jem {id} nije uspelo.");
+                    return 0;
+                }
             }
-            catch
+            catch (Exception e)
             {
+                logger.Log(LogTraceLevel.DEBUG, $"Greška prilikom brisanja linije sa ID-jem {id}. StackTrace: {e.Message}");
                 return 0;
             }
         }
@@ -102,7 +121,10 @@ namespace Service.Services.LinijaService
                 var linija = readLinija.Read(id);
 
                 if (linija == null)
+                {
+                    logger.Log(LogTraceLevel.INFO, $"Linija sa ID-jem {id} ne postoji.");
                     return new LinijaDTO() { Id = 0 };
+                }
 
                 return new LinijaDTO()
                 {
@@ -112,8 +134,9 @@ namespace Service.Services.LinijaService
                     Odrediste = linija.Odrediste
                 };
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                logger.Log(LogTraceLevel.DEBUG, $"Greška prilikom čitanja linije sa ID-jem {id}. StackTrace: {e.Message}");
                 return new LinijaDTO() { Id = 0 };
             }
         }
@@ -131,10 +154,12 @@ namespace Service.Services.LinijaService
                     sve.Add(Procitaj(l.Id));
                 }
 
+                logger.Log(LogTraceLevel.INFO, "Čitanje svih linija je završeno.");
                 return sve;
             }
-            catch
+            catch (Exception e)
             {
+                logger.Log(LogTraceLevel.DEBUG, $"Greška prilikom čitanja svih linija. StackTrace: {e.Message}");
                 return new List<LinijaDTO>();
             }
         }
@@ -167,10 +192,12 @@ namespace Service.Services.LinijaService
                     Odrediste = l.Odrediste
                 }).ToList();
 
+                logger.Log(LogTraceLevel.INFO, "Pretraga linija je završena.");
                 return filteredLinijaDTOs;
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                logger.Log(LogTraceLevel.DEBUG, $"Greška prilikom pretrage linija.StackTrace: {e.Message}");
                 return new List<LinijaDTO>();
             }
         }
