@@ -9,7 +9,7 @@ namespace Client.View
 {
     public partial class GSPView : UserControl
     {
-        private LineDetailsView lineDetailsView;
+       
         public GSPView()
         {
             InitializeComponent();

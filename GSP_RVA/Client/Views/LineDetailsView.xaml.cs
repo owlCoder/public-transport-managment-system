@@ -1,4 +1,5 @@
-﻿using Common.DTO;
+﻿using Client.ViewModel;
+using Common.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,7 @@ namespace Client.Views
         public LineDetailsView()
         {
             InitializeComponent();
+            
         }
 
     }

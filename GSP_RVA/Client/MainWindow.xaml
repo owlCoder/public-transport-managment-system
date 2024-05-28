@@ -35,6 +35,9 @@
         <DataTemplate DataType="{x:Type viewModel:EditProfileViewModel}">
             <views1:EditProfileView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:LineDetailsViewModel}">
+            <views1:LineDetailsView/>
+        </DataTemplate>
         <!-- dodaj ostale viewvow ovde -->
     </Window.Resources>
 

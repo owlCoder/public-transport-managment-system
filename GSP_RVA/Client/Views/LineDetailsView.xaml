@@ -3,29 +3,107 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Client.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
+    <UserControl.Background>
+        <ImageBrush ImageSource="/slike/pozadina2.png" />
+    </UserControl.Background>
+
     <UserControl.Resources>
-        <!-- Style for TextBlocks in DataGrid -->
-        <Style x:Key="DataGridTextStyle" TargetType="TextBlock">
+        <!-- Stilovi za TextBlock, Button, DataGrid, RadioButton, TabControl, TextBox -->
+        <!-- Koristite stilove definisane u GSPView -->
+
+        <!-- Primjer stilova za Button i DataGrid -->
+        <Style TargetType="Button">
             <Setter Property="FontFamily" Value="Georgia"/>
             <Setter Property="FontSize" Value="18"/>
             <Setter Property="FontWeight" Value="SemiBold"/>
-            <Setter Property="Foreground" Value="#464A51"/>
+            <Setter Property="Height" Value="40" />
+            <Setter Property="Width" Value="120" />
+            <Setter Property="Background" Value="#2E515B"/>
+            <Setter Property="BorderBrush" Value="#647D75"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="5" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#1E3942"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
+
+        <!-- Stilovi za DataGrid -->
+        <Style TargetType="DataGrid">
+            <Setter Property="FontFamily" Value="Georgia"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Foreground" Value="#464A51"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="RowBackground" Value="White"/>
+            <Setter Property="AlternatingRowBackground" Value="#EFEFEF"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CanUserAddRows" Value="False"/>
+            <Setter Property="IsReadOnly" Value="True"/>
+            <Setter Property="AutoGenerateColumns" Value="False"/>
+            <Setter Property="RowHeaderWidth" Value="0"/>
+        </Style>
+
+        <!-- Stilovi za DataGridColumnHeader -->
+        <Style TargetType="DataGridColumnHeader">
+            <Setter Property="Background" Value="#2E515B"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+
+        <!-- Stilovi za DataGridRow -->
+        <Style TargetType="DataGridRow">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+
+        <!-- Stilovi za DataGridCell -->
+        <Style TargetType="DataGridCell">
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="BorderThickness" Value="0 0 1 1"/>
+        </Style>
+
+        <!-- Ostali stilovi za RadioButton, TabControl, TextBox... -->
+        <!-- Dodajte ih prema potrebi -->
     </UserControl.Resources>
 
-    <Grid>
-        <DataGrid ItemsSource="{Binding Path=LinijaDetails}" AutoGenerateColumns="False" Margin="10"
+    <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" FontSize="20" FontFamily="Georgia" FontWeight="SemiBold"
+               Content="Line Details" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10"/>
+
+        <DataGrid Grid.Row="1" Margin="10"                                 
                   RowHeaderWidth="0" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="Auto" ElementStyle="{StaticResource DataGridTextStyle}"/>
-                <DataGridTextColumn Header="Oznaka" Binding="{Binding Oznaka}" Width="*" ElementStyle="{StaticResource DataGridTextStyle}"/>
-                <DataGridTextColumn Header="Polazište" Binding="{Binding Polaziste}" Width="*" ElementStyle="{StaticResource DataGridTextStyle}"/>
-                <DataGridTextColumn Header="Odredište" Binding="{Binding Odrediste}" Width="*" ElementStyle="{StaticResource DataGridTextStyle}"/>
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="Auto"/>
+                <DataGridTextColumn Header="Oznaka" Binding="{Binding Oznaka}" Width="*"/>
+                <DataGridTextColumn Header="Polazište" Binding="{Binding Polaziste}" Width="*"/>
+                <DataGridTextColumn Header="Odredište" Binding="{Binding Odrediste}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
+
+        <Button Grid.Row="2" Content="Back" Command="{Binding BackCommand}" Margin="5"/>
     </Grid>
 </UserControl>
