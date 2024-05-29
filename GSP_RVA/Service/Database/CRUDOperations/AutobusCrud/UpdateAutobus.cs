@@ -26,7 +26,6 @@ namespace Service.Database.CRUDOperations.AutobusCrud
                 find.Oznaka = autobus.Oznaka;
                 find.IdLinije = autobus.IdLinije;
 
-
                 return _context.SaveChanges() > 0;
             }
         }

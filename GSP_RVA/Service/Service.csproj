@@ -36,6 +36,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=10.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.10.0.0\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
       <HintPath>..\packages\BouncyCastle.Cryptography.2.2.1\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
     </Reference>
@@ -130,29 +133,14 @@
     <Compile Include="Database\CRUD\IFindOperation.cs" />
     <Compile Include="Database\CRUD\IUpdateOperation.cs" />
     <Compile Include="Database\DatabaseService.cs" />
+    <Compile Include="Database\Mapper\MappingHelper.cs" />
     <Compile Include="Database\Models\Autobus.cs" />
     <Compile Include="Database\Models\Linija.cs" />
     <Compile Include="Database\Models\Vozac.cs" />
     <Compile Include="Database\CRUD\ICreateOperation.cs" />
     <Compile Include="Database\CRUD\IReadOperation.cs" />
+    <Compile Include="Database\Models\VozacLinija.cs" />
     <Compile Include="Loggers\FileLogger.cs" />
-    <Compile Include="Migrations\202405251205570_V1_db.cs" />
-    <Compile Include="Migrations\202405251205570_V1_db.Designer.cs">
-      <DependentUpon>202405251205570_V1_db.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202405282245068_V.cs" />
-    <Compile Include="Migrations\202405282245068_V.Designer.cs">
-      <DependentUpon>202405282245068_V.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202405282246132_V1.cs" />
-    <Compile Include="Migrations\202405282246132_V1.Designer.cs">
-      <DependentUpon>202405282246132_V1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202405282246366_V2.cs" />
-    <Compile Include="Migrations\202405282246366_V2.Designer.cs">
-      <DependentUpon>202405282246366_V2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Autobus\AutobusService.cs" />
@@ -170,18 +158,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202405251205570_V1_db.resx">
-      <DependentUpon>202405251205570_V1_db.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202405282245068_V.resx">
-      <DependentUpon>202405282245068_V.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202405282246132_V1.resx">
-      <DependentUpon>202405282246132_V1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202405282246366_V2.resx">
-      <DependentUpon>202405282246366_V2.cs</DependentUpon>
-    </EmbeddedResource>
+    <Folder Include="Migrations\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

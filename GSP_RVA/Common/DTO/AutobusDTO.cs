@@ -19,7 +19,13 @@ namespace Common.DTO
         }
 
         [DataMember]
-        public int? IdLinije
+        public bool IsChecked
+        {
+            get; set;
+        }
+
+        [DataMember]
+        public int IdLinije
         {
             get; set;
         }

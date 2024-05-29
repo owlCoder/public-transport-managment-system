@@ -35,13 +35,5 @@ namespace Service.Database.Models
         [Required]
         [StringLength(8)]
         public string Oznaka { get; set; }
-
-        // Navigation property for Linije
-        public  List<Linija> Linije { get; set; }
-
-        public Vozac()
-        {
-            Linije = new List<Linija>();
-        }
     }
 }

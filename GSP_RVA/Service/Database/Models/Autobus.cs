@@ -14,10 +14,6 @@ namespace Service.Database.Models
         [StringLength(8)]
         public string Oznaka { get; set; }
 
-        // Foreign key for Linija
-        public int? IdLinije { get; set; }
-
-        [ForeignKey("IdLinije")]
-        public Linija Linija { get; set; }
+        public int IdLinije { get; set; } = 0;
     }
 }

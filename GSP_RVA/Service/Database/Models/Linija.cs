@@ -22,17 +22,5 @@ namespace Service.Database.Models
         [Required]
         [StringLength(50)]
         public string Odrediste { get; set; }
-
-        // Navigation property for Vozaci
-        public List<Vozac> Vozaci { get; set; }
-
-        // Navigation property for Autobusi
-        public List<Autobus> Autobusi { get; set; }
-
-        public Linija()
-        {
-            Vozaci = new List<Vozac>();
-            Autobusi = new List<Autobus>();
-        }
     }
 }

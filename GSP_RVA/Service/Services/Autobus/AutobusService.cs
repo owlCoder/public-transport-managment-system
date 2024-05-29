@@ -3,6 +3,8 @@ using Common.Enums;
 using Common.Interfaces;
 using Service.Database;
 using Service.Database.CRUDOperations.AutobusCrud;
+using Service.Database.CRUDOperations.LinijaCrud;
+using Service.Database.Mapper;
 using Service.Database.Models;
 using System;
 using System.Collections.Generic;
@@ -105,6 +107,7 @@ namespace Service.Services.AutobusService
             try
             {
                 ReadAutobus readAutobus = new ReadAutobus(DatabaseService.Instance.Context);
+
                 var autobus = readAutobus.Read(id);
 
                 if (autobus == null)
@@ -112,11 +115,24 @@ namespace Service.Services.AutobusService
 
                 Program.logger.Log(LogTraceLevel.INFO, $"Autobus sa ID-jem {id} je pročitan.");
 
+                // Dobavi sve linije ciji je ID = 0 znaci nisu dodeljenje autobusu tj autobus liniji
+                // I Id = autobus Id jer tu je dodeljen autobus
+                List<Linija> filtirane_linije = new ReadLinija(DatabaseService.Instance.Context).ReadAllByCriteria(l => l.Id == 0 || l.Id == autobus.IdLinije);
+
+                // Mapiranje na DTO
+                List<LinijaDTO> dtos = new List<LinijaDTO>();
+
+                foreach(Linija l in filtirane_linije)
+                {
+                    dtos.Add(MappingHelper.MapLinijaToLinijaDTO(l));
+                }
+
                 return new AutobusDTO()
                 {
                     Id = autobus.Id,
                     Oznaka = autobus.Oznaka,
-                    IdLinije = autobus.IdLinije ?? 0
+                    IdLinije = autobus.IdLinije,
+                    Linije = dtos,
                 };
             }
             catch (Exception e)
