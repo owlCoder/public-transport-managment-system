@@ -24,18 +24,22 @@ namespace Service
 
             try
             {
+                // Configure bindings
+                NetTcpBinding binding = new NetTcpBinding();
+                binding.MaxReceivedMessageSize = 2147483647; // Set max received message size to 2GB
+
                 // Hosting AutobusService
-                hostAutobus.AddServiceEndpoint(typeof(IAutobusService), new NetTcpBinding(), "");
+                hostAutobus.AddServiceEndpoint(typeof(IAutobusService), binding, "");
                 hostAutobus.Open();
                 Console.WriteLine("AutobusService is ready at {0}", baseAddressAutobus);
 
                 // Hosting LinijaService
-                hostLinija.AddServiceEndpoint(typeof(ILinijaService), new NetTcpBinding(), "");
+                hostLinija.AddServiceEndpoint(typeof(ILinijaService), binding, "");
                 hostLinija.Open();
                 Console.WriteLine("LinijaService is ready at {0}", baseAddressLinija);
 
                 // Hosting VozacService
-                hostVozac.AddServiceEndpoint(typeof(IVozacService), new NetTcpBinding(), "");
+                hostVozac.AddServiceEndpoint(typeof(IVozacService), binding, "");
                 hostVozac.Open();
                 Console.WriteLine("VozacService is ready at {0}", baseAddressVozac);
 

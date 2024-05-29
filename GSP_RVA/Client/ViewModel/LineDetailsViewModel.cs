@@ -75,30 +75,15 @@ namespace Client.ViewModel
 
         private void DohvatiSveVozace()
         {
-            // Dohvaćanje svih vozača preko odgovarajuće usluge (pretpostavka)
-            var sviVozaciDTO = ServiceProvider.VozacService.ProcitajSve();
-
-            foreach (var vozac in sviVozaciDTO)
-            {
-                vozaci.Add(vozac);
-            }
+            Vozaci = new ObservableCollection<VozacDTO>(ServiceProvider.VozacService.ProcitajSve().Where(v => v.Role == Common.Enums.UserRole.Vozac));
         }
 
         private void DohvatiAutobuse()
         {
-            // Dohvaćanje autobusa vezanih za odabranu liniju preko odgovarajuće usluge
-            var autobusiDTO = ServiceProvider.AutobusService.ProcitajSve();
-
-            Autobusi.Clear();
-            foreach (var autobus in autobusiDTO)
-            {
-                if(autobus.IdLinije == linija.Id || autobus.IdLinije == null)
-                Autobusi.Add(autobus);
-            }
+            Autobusi = new ObservableCollection<AutobusDTO>(ServiceProvider.AutobusService.ProcitajSve().Where(a => a.IdLinije == linija.Id || a.IdLinije == null));
         }
 
-      
-
+        #region PROPERTIES
         public ObservableCollection<LinijaDTO> Linije
         {
             get { return linije; }
@@ -111,7 +96,6 @@ namespace Client.ViewModel
                 }
             }
         }
-
         public ObservableCollection<VozacDTO> Vozaci
         {
             get { return vozaci; }
@@ -136,6 +120,6 @@ namespace Client.ViewModel
                 }
             }
         }
-
+        #endregion
     }
 }
