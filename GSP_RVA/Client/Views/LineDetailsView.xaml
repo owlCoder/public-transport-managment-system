@@ -135,10 +135,11 @@
         <!-- Tabela "Autobusi" -->
         <DataGrid Grid.Row="3" Grid.Column="1"
               Margin="10" ItemsSource="{Binding Autobusi}"
-              RowHeaderWidth="0" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False">
+              RowHeaderWidth="0" IsReadOnly="False" CanUserAddRows="False" CanUserDeleteRows="False">
             <DataGrid.Columns>
                 <!-- Definišite kolone prema potrebama vašeg modela "Autobus" -->
-                <DataGridTextColumn Header="OZNAKA" Binding="{Binding Oznaka}" Width="*" />
+                <DataGridTextColumn Header="OZNAKA" Binding="{Binding Oznaka}" IsReadOnly="True" Width="*" />
+                <DataGridCheckBoxColumn Header="Selected" Binding="{Binding Selected}" IsReadOnly="False" Width="Auto"/>
                 <!-- Dodajte dodatne kolone po potrebi -->
             </DataGrid.Columns>
         </DataGrid>
