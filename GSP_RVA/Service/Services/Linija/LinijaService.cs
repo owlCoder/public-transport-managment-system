@@ -71,6 +71,8 @@ namespace Service.Services.LinijaService
                 existingLinija.Oznaka = data.Oznaka;
                 existingLinija.Polaziste = data.Polaziste;
                 existingLinija.Odrediste = data.Odrediste;
+                //existingLinija.Autobusi = MapAutobusDTOsToAutobuses(data.Autobusi);
+                existingLinija.Vozaci = MapDriverDTOsToDrivers(data.Vozaci);
 
                 if (update.Update(id, existingLinija))
                 {
@@ -204,6 +206,67 @@ namespace Service.Services.LinijaService
                 logger.Log(LogTraceLevel.DEBUG, $"Greška prilikom pretrage linija.StackTrace: {e.Message}");
                 return new List<LinijaDTO>();
             }
+        }
+
+
+
+        // Ubaci u poseban fajl!!! i napravi static
+        public List<AutobusDTO> MapAutobusesToAutobusDTOs(List<Autobus> autobuses)
+        {
+            return autobuses.Select(autobus => new AutobusDTO
+            {
+                Id = autobus.Id,
+                Oznaka = autobus.Oznaka,
+                IdLinije = autobus.IdLinije,
+                Linije = autobus.Linija != null ? new List<LinijaDTO>
+        {
+            new LinijaDTO
+            {
+                Id = autobus.Linija.Id,
+                Oznaka = autobus.Linija.Oznaka,
+                Polaziste = autobus.Linija.Polaziste,
+                Odrediste = autobus.Linija.Odrediste
+            }
+        } : new List<LinijaDTO>()
+            }).ToList();
+        }
+
+        public List<Autobus> MapAutobusDTOsToAutobuses(List<AutobusDTO> autobusDTOs)
+        {
+            return autobusDTOs.Select(dto => new Autobus
+            {
+                Id = dto.Id,
+                Oznaka = dto.Oznaka,
+                IdLinije = dto.IdLinije,
+                Linija = dto.Linije != null && dto.Linije.Any() ? new Linija
+                {
+                    Id = dto.Linije.First().Id,
+                    Oznaka = dto.Linije.First().Oznaka,
+                    Polaziste = dto.Linije.First().Polaziste,
+                    Odrediste = dto.Linije.First().Odrediste
+                } : null
+            }).ToList();
+        }
+
+        public List<Vozac> MapDriverDTOsToDrivers(List<VozacDTO> driverDTOs)
+        {
+            return driverDTOs.Select(dto => new Vozac
+            {
+                Id = dto.Id,
+                Username = dto.Username,
+                Password = dto.Password,
+                Ime = dto.Ime,
+                Prezime = dto.Prezime,
+                Role = dto.Role == UserRole.Admin ? "Admin" : "Vozac",
+                Oznaka = dto.Oznaka,
+                Linije = dto.Linije.Select(linijaDto => new Linija
+                {
+                    Id = linijaDto.Id,
+                    Oznaka = linijaDto.Oznaka,
+                    Polaziste = linijaDto.Polaziste,
+                    Odrediste = linijaDto.Odrediste
+                }).ToList()
+            }).ToList();
         }
 
 

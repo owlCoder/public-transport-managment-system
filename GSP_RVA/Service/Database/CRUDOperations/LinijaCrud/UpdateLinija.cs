@@ -26,6 +26,7 @@ namespace Service.Database.CRUDOperations.LinijaCrud
                 find.Oznaka = linija.Oznaka;
                 find.Polaziste = linija.Polaziste;
                 find.Odrediste = linija.Odrediste;
+                find.Vozaci = linija.Vozaci;
 
                 return _context.SaveChanges() > 0;
             }

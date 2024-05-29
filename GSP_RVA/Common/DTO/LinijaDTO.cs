@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 
 namespace Common.DTO
 {
-    [DataContract]
+    [DataContract(IsReference = true)]
     public class LinijaDTO
     {
         [DataMember]
