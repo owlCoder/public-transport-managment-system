@@ -42,6 +42,17 @@ namespace Client.ViewModel
 
         private void SaveChanges()
         {
+            // Sacuvaj prvo promene za uparene vozace i liniju koja se trenutno uparuje
+            foreach(VozacDTO vozacDTO in Vozaci) 
+            {
+                if(vozacDTO.IsChecked == true)
+                    ServiceProvider.VozaciLinijaService.DodajVozacaNaLiniju(vozacDTO.Id, linije[0].Id);
+                else
+                    ServiceProvider.VozaciLinijaService.UkloniVozacaNaLiniji(vozacDTO.Id, linije[0].Id);
+            }
+
+            // Sada cuvanje promena za autobuse
+
             // Vezivanje odabranih vozaca za linije
             //foreach(VozacDTO vozac in vozaci)
             //{

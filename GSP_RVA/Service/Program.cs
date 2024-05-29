@@ -50,7 +50,7 @@ namespace Service
                 // Hosting VozacService
                 hostVozaciLinije.AddServiceEndpoint(typeof(IVozacLinijaService), binding, "");
                 hostVozaciLinije.Open();
-                Console.WriteLine("VozacLinijeService is ready at {0}", baseAddressVozac);
+                Console.WriteLine("VozacLinijeService is ready at {0}", baseAddressVozaciLinije);
 
                 Console.WriteLine("Press <Enter> to stop the services.");
                 Console.ReadLine();

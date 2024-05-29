@@ -1,4 +1,5 @@
-﻿using Common.Interfaces;
+﻿using Common.Contracts;
+using Common.Interfaces;
 using System;
 using System.ServiceModel;
 
@@ -12,11 +13,15 @@ namespace Client.Provider
 
         public static IVozacService VozacService { get; private set; }
 
+        public static IVozacLinijaService VozaciLinijaService { get; private set; }
+
         private static ChannelFactory<IAutobusService> autobusFactory { get; set; }
 
         private static ChannelFactory<ILinijaService> linijaFactory { get; set; }
 
         private static ChannelFactory<IVozacService> vozacFactory { get; set; }
+
+        private static ChannelFactory<IVozacLinijaService> vozaciLinijaFactory { get; set; }
 
         static ServiceProvider()
         {
@@ -46,16 +51,24 @@ namespace Client.Provider
                 binding,
                 new EndpointAddress("net.tcp://localhost:9082/VozacService")
             );
+
+            ChannelFactory<IVozacLinijaService> vvf = new ChannelFactory<IVozacLinijaService>
+            (
+               binding,
+               new EndpointAddress("net.tcp://localhost:9083/VozaciLinijeService")
+            );
             #endregion
 
             autobusFactory = af;
             linijaFactory = lf;
             vozacFactory = vf;
+            vozaciLinijaFactory = vvf;
 
             // Create a WCF communication channel
             AutobusService = autobusFactory.CreateChannel();
             LinijaService = linijaFactory.CreateChannel();
             VozacService = vozacFactory.CreateChannel();
+            VozaciLinijaService = vozaciLinijaFactory.CreateChannel();
         }
 
         // Clean up unused resources
@@ -71,6 +84,9 @@ namespace Client.Provider
 
             if (vozacFactory != null)
                 vozacFactory.Close();
+
+            if(vozaciLinijaFactory != null)
+                vozaciLinijaFactory.Close();
         }
     }
 }
