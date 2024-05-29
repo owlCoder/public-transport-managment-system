@@ -74,7 +74,7 @@ namespace Client.ViewModel
                 if (originalniAutobus.IdLinije != 0)
                     noviAutobus.IdLinije = originalniAutobus.Id;
                 else
-                    noviAutobus.IdLinije = null;
+                    noviAutobus.IdLinije = 0;
 
                 EditAutobusCommand edit = new EditAutobusCommand(autobusService, originalniAutobus, noviAutobus);
                 edit.Execute();

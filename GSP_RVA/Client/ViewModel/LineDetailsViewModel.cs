@@ -80,7 +80,7 @@ namespace Client.ViewModel
 
         private void DohvatiAutobuse()
         {
-            Autobusi = new ObservableCollection<AutobusDTO>(ServiceProvider.AutobusService.ProcitajSve().Where(a => a.IdLinije == linija.Id || a.IdLinije == null));
+            Autobusi = new ObservableCollection<AutobusDTO>(ServiceProvider.AutobusService.ProcitajSve().Where(a => a.IdLinije == linija.Id || a.IdLinije == 0));
         }
 
         #region PROPERTIES

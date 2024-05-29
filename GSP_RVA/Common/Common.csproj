@@ -53,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\IVozacLinijaService.cs" />
     <Compile Include="DTO\AutobusDTO.cs" />
     <Compile Include="DTO\LinijaDTO.cs" />
     <Compile Include="DTO\VozacDTO.cs" />

@@ -5,10 +5,13 @@ using Service.Database;
 using Service.Database.CRUD;
 using Service.Database.CRUDOperations.LinijaCrud;
 using Service.Database.CRUDOperations.LinijaCrud.FindLinija;
+using Service.Database.CRUDOperations.VozacCrud;
 using Service.Database.Models;
+using Service.Services.VozacLinijeService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.Xml;
 
 namespace Service.Services.LinijaService
 {
@@ -126,12 +129,17 @@ namespace Service.Services.LinijaService
                     return new LinijaDTO() { Id = 0 };
                 }
 
+                // Dodaj povezane entitete vozace i linije iz vezne tabele VozaciLinija
+                var vozacidto = VozacLinijaService.IscitajVozaceZaLiniju(id);
+
                 return new LinijaDTO()
                 {
                     Id = linija.Id,
                     Oznaka = linija.Oznaka,
                     Polaziste = linija.Polaziste,
                     Odrediste = linija.Odrediste,
+                    Vozaci = vozacidto,
+                    //Autobusi = busdto,
                 };
             }
             catch (Exception e)

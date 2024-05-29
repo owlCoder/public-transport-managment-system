@@ -141,10 +141,16 @@
     <Compile Include="Database\CRUD\IReadOperation.cs" />
     <Compile Include="Database\Models\VozacLinija.cs" />
     <Compile Include="Loggers\FileLogger.cs" />
+    <Compile Include="Migrations\202405291404379_Rebase_1.cs" />
+    <Compile Include="Migrations\202405291404379_Rebase_1.Designer.cs">
+      <DependentUpon>202405291404379_Rebase_1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Autobus\AutobusService.cs" />
     <Compile Include="Services\Linija\LinijaService.cs" />
+    <Compile Include="Services\VozacLinijaService\VozacLinijaService.cs" />
     <Compile Include="Services\Vozac\VozacService.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -158,7 +164,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Migrations\" />
+    <EmbeddedResource Include="Migrations\202405291404379_Rebase_1.resx">
+      <DependentUpon>202405291404379_Rebase_1.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
