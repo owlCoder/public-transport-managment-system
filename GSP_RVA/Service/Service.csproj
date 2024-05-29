@@ -140,6 +140,7 @@
     <Compile Include="Database\CRUD\ICreateOperation.cs" />
     <Compile Include="Database\CRUD\IReadOperation.cs" />
     <Compile Include="Database\Models\VozacLinija.cs" />
+    <Compile Include="DataProvider\InitialDataCreator.cs" />
     <Compile Include="Loggers\FileLogger.cs" />
     <Compile Include="Migrations\202405291404379_Rebase_1.cs" />
     <Compile Include="Migrations\202405291404379_Rebase_1.Designer.cs">

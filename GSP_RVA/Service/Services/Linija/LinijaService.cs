@@ -3,6 +3,7 @@ using Common.Enums;
 using Common.Interfaces;
 using Service.Database;
 using Service.Database.CRUD;
+using Service.Database.CRUDOperations.AutobusCrud;
 using Service.Database.CRUDOperations.LinijaCrud;
 using Service.Database.CRUDOperations.LinijaCrud.FindLinija;
 using Service.Database.Models;
@@ -130,8 +131,23 @@ namespace Service.Services.LinijaService
                 // Dodaj povezane entitete vozace i linije iz vezne tabele VozaciLinija
                 var vozacidto = VozacLinijaService.IscitajVozaceZaLiniju(id);
 
-                // prepravi kasnije da vuce kako treba
-                //var busevi = new ReadAutobus(DatabaseService.Instance.Context).ReadAllByCriteria(b => b.)
+                // Iscitati sve buseve koji nisu zauzeti ili pripadaju datoj liniji
+                var busevi = new ReadAutobus(DatabaseService.Instance.Context).ReadAllByCriteria(b => b.IdLinije == 0 || b.IdLinije == id);
+
+                List<AutobusDTO> busdto = new List<AutobusDTO>();
+
+                foreach(Autobus bus in busevi)
+                {
+                    AutobusDTO procitan = new AutobusDTO() { Id = bus.Id, IdLinije = bus.IdLinije, Oznaka = bus.Oznaka };
+
+                    if(bus.IdLinije == id)
+                        procitan.IsChecked = true;
+                    else
+                        procitan.IsChecked = false;
+
+                    // dodaj u listu
+                    busdto.Add(procitan);
+                }
 
                 return new LinijaDTO()
                 {
@@ -140,7 +156,7 @@ namespace Service.Services.LinijaService
                     Polaziste = linija.Polaziste,
                     Odrediste = linija.Odrediste,
                     Vozaci = vozacidto,
-                    //Autobusi = busdto,
+                    Autobusi = busdto,
                 };
             }
             catch (Exception e)

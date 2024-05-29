@@ -1,5 +1,6 @@
 ﻿using Common.Contracts;
 using Common.Interfaces;
+using Service.DataProvider;
 using Service.Loggers;
 using Service.Services.AutobusService;
 using Service.Services.LinijaService;
@@ -16,6 +17,9 @@ namespace Service
 
         static void Main(string[] args)
         {
+            Console.WriteLine("Checking is initial data provided in database...");
+            InitialDataCreator.CheckIfDataExist();
+
             Uri baseAddressAutobus = new Uri("net.tcp://localhost:9080/AutobusService");
             Uri baseAddressLinija = new Uri("net.tcp://localhost:9081/LinijaService");
             Uri baseAddressVozac = new Uri("net.tcp://localhost:9082/VozacService");

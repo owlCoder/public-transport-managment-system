@@ -27,9 +27,10 @@ namespace Client.ViewModel
             linija = ServiceProvider.LinijaService.Procitaj(GSPViewModel.SelectedEntityId);
 
 
+            // Dobavljanje podataka za liniju
             Linije.Add(linija);
-            DohvatiSveVozace();
-            DohvatiAutobuse();
+            Vozaci = new ObservableCollection<VozacDTO>(linije[0].Vozaci);
+            Autobusi = new ObservableCollection<AutobusDTO>(Linije[0].Autobusi);
 
             SaveChangesCommand = new MyICommand(SaveChanges);
             BackCommand = new MyICommand(GoBack);
@@ -51,35 +52,18 @@ namespace Client.ViewModel
                     ServiceProvider.VozaciLinijaService.UkloniVozacaNaLiniji(vozacDTO.Id, linije[0].Id);
             }
 
-            // Sada cuvanje promena za autobuse
+            // Cuvanje promena za autobuse
+            foreach(AutobusDTO autobusDTO in Autobusi)
+            {
+                // Vezivanje linije za autobus
+                if (autobusDTO.IsChecked == true)
+                    autobusDTO.IdLinije = Linije[0].Id;
+                else
+                    autobusDTO.IdLinije = 0; // ukloni bus sa linije
 
-            // Vezivanje odabranih vozaca za linije
-            //foreach(VozacDTO vozac in vozaci)
-            //{
-            //    if (vozac.IsChecked && !vozac.Linije.Any(l => l.Id == linije[0].Id))
-            //    {
-            //        Linije[0].Vozaci.Add(vozac);
-            //        vozac.Linije.Add(linija);
-            //    }
-            //    // Azuriranje vozaca novim vezama
-            //    ServiceProvider.VozacService.IzmeniVozaca(vozac.Id, vozac);
-            //}
-
-            //ServiceProvider.LinijaService.IzmeniLiniju(Linije[0].Id, Linije[0]);
-
-            //var ll = Linije;
-            //var lll = vozaci;
-            //var llll = autobusi;
-        }
-
-        private void DohvatiSveVozace()
-        {
-            Vozaci = new ObservableCollection<VozacDTO>(linije[0].Vozaci);
-        }
-
-        private void DohvatiAutobuse()
-        {
-            Autobusi = new ObservableCollection<AutobusDTO>(ServiceProvider.AutobusService.ProcitajSve().Where(a => a.IdLinije == linija.Id || a.IdLinije == 0));
+                ServiceProvider.AutobusService.IzmeniAutobus(autobusDTO.Id, autobusDTO);
+            }
+            
         }
 
         #region PROPERTIES

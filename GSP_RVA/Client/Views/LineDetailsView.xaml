@@ -139,8 +139,7 @@
             <DataGrid.Columns>
                 <!-- Definišite kolone prema potrebama vašeg modela "Autobus" -->
                 <DataGridTextColumn Header="OZNAKA" Binding="{Binding Oznaka}" IsReadOnly="True" Width="*" />
-                <DataGridCheckBoxColumn Header="Selected" Binding="{Binding Selected}" IsReadOnly="False" Width="Auto"/>
-                <!-- Dodajte dodatne kolone po potrebi -->
+                <DataGridCheckBoxColumn IsReadOnly="False" Header="Pripada" Binding="{Binding IsChecked}"  Width="Auto" />
             </DataGrid.Columns>
         </DataGrid>
 
