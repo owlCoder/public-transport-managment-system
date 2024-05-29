@@ -14,6 +14,8 @@ namespace Service.Database.Mapper
             {
                 cfg.CreateMap<VozacDTO, Vozac>();
                 cfg.CreateMap<LinijaDTO, Linija>();
+                cfg.CreateMap<Vozac, VozacDTO>();
+                cfg.CreateMap<Linija, LinijaDTO>();
             });
 
             _mapper = config.CreateMapper();

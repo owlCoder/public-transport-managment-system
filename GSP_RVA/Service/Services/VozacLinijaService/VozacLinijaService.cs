@@ -31,7 +31,7 @@ namespace Service.Services.VozacLinijeService
                     vozaci_za_liniju = DatabaseService.Instance.Context.VozaciLinije.AsNoTracking().ToList();
                 }
 
-                var svi_vozaci = new ReadVozac(DatabaseService.Instance.Context).ReadAll();
+                var svi_vozaci = new ReadVozac(DatabaseService.Instance.Context).ReadAllByCriteria(v => v.Role == UserRole.Vozac.ToString());
 
                 List<VozacDTO> vozac_dtos = new List<VozacDTO>();
 
@@ -46,6 +46,8 @@ namespace Service.Services.VozacLinijeService
                         trenutni.IsChecked = true;
                     else
                         trenutni.IsChecked = false;
+
+                    vozac_dtos.Add(trenutni);
                 }
 
                 return vozac_dtos;

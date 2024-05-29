@@ -36,15 +36,6 @@ namespace Client.ViewModel
 
             SaveChangesCommand = new MyICommand(SaveChanges);
             BackCommand = new MyICommand(GoBack);
-
-            // Cekiraj sve vozace odabrane za datu liniju
-            foreach(VozacDTO v in Vozaci)
-            {
-                if(Linije[0].Vozaci.FirstOrDefault(x => x.Id == v.Id && x.Linije.Any(l => l.Id == linije[0].Id)) != null)
-                {
-                    v.IsChecked = true;
-                }
-            }
         }
 
         private void GoBack()
@@ -55,27 +46,27 @@ namespace Client.ViewModel
         private void SaveChanges()
         {
             // Vezivanje odabranih vozaca za linije
-            foreach(VozacDTO vozac in vozaci)
-            {
-                if (vozac.IsChecked && !vozac.Linije.Any(l => l.Id == linije[0].Id))
-                {
-                    Linije[0].Vozaci.Add(vozac);
-                    vozac.Linije.Add(linija);
-                }
-                // Azuriranje vozaca novim vezama
-                ServiceProvider.VozacService.IzmeniVozaca(vozac.Id, vozac);
-            }
+            //foreach(VozacDTO vozac in vozaci)
+            //{
+            //    if (vozac.IsChecked && !vozac.Linije.Any(l => l.Id == linije[0].Id))
+            //    {
+            //        Linije[0].Vozaci.Add(vozac);
+            //        vozac.Linije.Add(linija);
+            //    }
+            //    // Azuriranje vozaca novim vezama
+            //    ServiceProvider.VozacService.IzmeniVozaca(vozac.Id, vozac);
+            //}
 
-            ServiceProvider.LinijaService.IzmeniLiniju(Linije[0].Id, Linije[0]);
+            //ServiceProvider.LinijaService.IzmeniLiniju(Linije[0].Id, Linije[0]);
 
-            var ll = Linije;
-            var lll = vozaci;
-            var llll = autobusi;
+            //var ll = Linije;
+            //var lll = vozaci;
+            //var llll = autobusi;
         }
 
         private void DohvatiSveVozace()
         {
-            Vozaci = new ObservableCollection<VozacDTO>(ServiceProvider.VozacService.ProcitajSve().Where(v => v.Role == Common.Enums.UserRole.Vozac));
+            Vozaci = new ObservableCollection<VozacDTO>(linije[0].Vozaci);
         }
 
         private void DohvatiAutobuse()
