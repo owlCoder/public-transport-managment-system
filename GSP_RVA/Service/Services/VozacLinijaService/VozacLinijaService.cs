@@ -61,12 +61,50 @@ namespace Service.Services.VozacLinijeService
 
         public bool DodajVozacaNaLiniju(int vozac_id, int linija_id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                lock (_lock)
+                {
+                    var ukloni = DatabaseService.Instance.Context.VozaciLinije.FirstOrDefault(vl => vl.LinijaID == linija_id && vl.VozacId == vozac_id);
+
+                    if (ukloni != null)
+                    { return false; }
+                    else
+                    {
+                        DatabaseService.Instance.Context.VozaciLinije.Add(new VozacLinija() { VozacId = vozac_id, LinijaID = linija_id });
+                        return DatabaseService.Instance.Context.SaveChanges() > 0;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                // dodaj log
+                return false;
+            }
         }
 
         public bool UkloniVozacaNaLiniji(int vozac_id, int linija_id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                lock (_lock)
+                {
+                    var ukloni = DatabaseService.Instance.Context.VozaciLinije.FirstOrDefault(vl => vl.LinijaID == linija_id && vl.VozacId == vozac_id);
+
+                    if (ukloni == null)
+                    { return false; }
+                    else
+                    {
+                        DatabaseService.Instance.Context.VozaciLinije.Remove(ukloni);
+                        return DatabaseService.Instance.Context.SaveChanges() > 0;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                // dodaj log
+                return false;
+            }
         }
     }
 }

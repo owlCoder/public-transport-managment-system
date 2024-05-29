@@ -3,6 +3,7 @@ using Common.Enums;
 using Common.Interfaces;
 using Service.Database;
 using Service.Database.CRUD;
+using Service.Database.CRUDOperations.AutobusCrud;
 using Service.Database.CRUDOperations.LinijaCrud;
 using Service.Database.CRUDOperations.LinijaCrud.FindLinija;
 using Service.Database.CRUDOperations.VozacCrud;
@@ -131,6 +132,9 @@ namespace Service.Services.LinijaService
 
                 // Dodaj povezane entitete vozace i linije iz vezne tabele VozaciLinija
                 var vozacidto = VozacLinijaService.IscitajVozaceZaLiniju(id);
+
+                // prepravi kasnije da vuce kako treba
+                //var busevi = new ReadAutobus(DatabaseService.Instance.Context).ReadAllByCriteria(b => b.)
 
                 return new LinijaDTO()
                 {
