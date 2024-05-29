@@ -1,5 +1,6 @@
 ﻿using Service.Database.Context;
 using Service.Database.Models;
+using System.Linq;
 
 namespace Service.Database.CRUDOperations.LinijaCrud
 {
@@ -31,6 +32,19 @@ namespace Service.Database.CRUDOperations.LinijaCrud
                     return false;
 
                 _context.Linije.Remove(find);
+
+                var za_brisanje = _context.VozaciLinije.Where(vl => vl.LinijaID == find.Id).ToList();
+
+                // ukloni iz vezne tabele
+                _context.VozaciLinije.RemoveRange(za_brisanje);
+
+                // oslobodi autobuse jer je linija obrisana
+                var za_oslobodjene = _context.Autobusi.Where(a => a.IdLinije == find.Id && a.IdLinije != 0);
+
+                foreach (var bus in za_oslobodjene)
+                {
+                    bus.IdLinije = 0; // ukloni liniju
+                }
                 return _context.SaveChanges() > 0;
             }
         }
