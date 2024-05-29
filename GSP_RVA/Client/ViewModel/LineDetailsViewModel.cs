@@ -2,9 +2,6 @@
 using Common.DTO;
 using MVVMLight.Messaging;
 using NetworkService.Helpers;
-using Service.Database.Models;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 
@@ -29,7 +26,7 @@ namespace Client.ViewModel
         {
             linija = ServiceProvider.LinijaService.Procitaj(GSPViewModel.SelectedEntityId);
 
-      
+
             Linije.Add(linija);
             DohvatiSveVozace();
             DohvatiAutobuse();

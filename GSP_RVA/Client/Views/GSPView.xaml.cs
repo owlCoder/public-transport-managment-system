@@ -1,15 +1,13 @@
 ﻿using Client.ViewModel;
-using Client.Views;
 using Common.DTO;
 using MVVMLight.Messaging;
 using System.Windows.Controls;
-using System.Windows.Shapes;
 
 namespace Client.View
 {
     public partial class GSPView : UserControl
     {
-       
+
         public GSPView()
         {
             InitializeComponent();
@@ -51,7 +49,7 @@ namespace Client.View
 
         private void DataGrid_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            
+
             Messenger.Default.Send(("details", "null"));
 
         }

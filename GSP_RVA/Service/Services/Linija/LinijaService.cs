@@ -3,16 +3,13 @@ using Common.Enums;
 using Common.Interfaces;
 using Service.Database;
 using Service.Database.CRUD;
-using Service.Database.CRUDOperations.AutobusCrud;
 using Service.Database.CRUDOperations.LinijaCrud;
 using Service.Database.CRUDOperations.LinijaCrud.FindLinija;
-using Service.Database.CRUDOperations.VozacCrud;
 using Service.Database.Models;
 using Service.Services.VozacLinijeService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.Xml;
 
 namespace Service.Services.LinijaService
 {

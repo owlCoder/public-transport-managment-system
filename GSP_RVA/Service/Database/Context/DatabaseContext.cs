@@ -1,7 +1,6 @@
 ﻿using MySql.Data.EntityFramework;
 using Service.Database.Models;
 using System.Data.Entity;
-using System.Linq;
 
 namespace Service.Database.Context
 {
@@ -13,6 +12,6 @@ namespace Service.Database.Context
         public DbSet<Vozac> Vozaci { get; set; }
         public DbSet<Linija> Linije { get; set; }
         public DbSet<Autobus> Autobusi { get; set; }
-        public DbSet<VozacLinija> VozaciLinije{ get; set; }
+        public DbSet<VozacLinija> VozaciLinije { get; set; }
     }
 }

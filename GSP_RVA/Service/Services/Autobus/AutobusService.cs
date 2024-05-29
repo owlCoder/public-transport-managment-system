@@ -29,7 +29,7 @@ namespace Service.Services.AutobusService
                 {
                     var autobus = read.ReadByCriteria(a => a.Oznaka == oznaka);
 
-                    if(autobus != null)
+                    if (autobus != null)
                         Program.logger.Log(LogTraceLevel.INFO, $"Autobus sa ID-jem {autobus.Id} je uspešno dodat.");
                     else
                         Program.logger.Log(LogTraceLevel.INFO, $"Autobus sa ID-jem {autobus} nije uspešno dodat.");
@@ -122,7 +122,7 @@ namespace Service.Services.AutobusService
                 // Mapiranje na DTO
                 List<LinijaDTO> dtos = new List<LinijaDTO>();
 
-                foreach(Linija l in filtirane_linije)
+                foreach (Linija l in filtirane_linije)
                 {
                     dtos.Add(MappingHelper.MapLinijaToLinijaDTO(l));
                 }

@@ -3,15 +3,12 @@ using Common.DTO;
 using Common.Enums;
 using Common.Interfaces;
 using Service.Database;
-using Service.Database.CRUDOperations.LinijaCrud;
 using Service.Database.CRUDOperations.VozacCrud;
 using Service.Database.Mapper;
 using Service.Database.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Service.Services.VozacLinijeService
 {
@@ -52,7 +49,7 @@ namespace Service.Services.VozacLinijeService
 
                 return vozac_dtos;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 logger.Log(LogTraceLevel.DEBUG, $"Greška prilikom citanja vozaca za liniju. StackTrace: {e.Message}");
                 return new List<VozacDTO> { };

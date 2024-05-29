@@ -19,7 +19,7 @@ namespace Client.ViewModel
 
         private VozacDTO korisnik, original;
 
-        public EditProfileViewModel() 
+        public EditProfileViewModel()
         {
             SaveCommand = new MyICommand(OnSave);
             CancelCommand = new MyICommand(OnCancel);
