@@ -117,11 +117,10 @@
         <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
                 FontSize="20" FontFamily="Georgia" FontWeight="SemiBold"
                 Content="Vozaci" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10"/>
-        <DataGrid Grid.Row="3" Grid.Column="0" Height="130"
+        <DataGrid Grid.Row="3" Grid.Column="0" Height="250"
               Margin="10" ItemsSource="{Binding Vozaci}"
               RowHeaderWidth="0" IsReadOnly="False" CanUserAddRows="False" CanUserDeleteRows="False"
                    ScrollViewer.VerticalScrollBarVisibility="Auto">
-           
             <DataGrid.Columns>
                 <!-- Definišite kolone prema potrebama vašeg modela "Vozac" -->
                 <DataGridTextColumn IsReadOnly="True" Header="ID" Binding="{Binding Id}" Width="Auto" />
@@ -137,7 +136,8 @@
         <!-- Tabela "Autobusi" -->
         <DataGrid Grid.Row="3" Grid.Column="1"
               Margin="10" ItemsSource="{Binding Autobusi}"
-              RowHeaderWidth="0" IsReadOnly="False" CanUserAddRows="False" CanUserDeleteRows="False">
+              RowHeaderWidth="0" IsReadOnly="False" CanUserAddRows="False" CanUserDeleteRows="False"
+              ScrollViewer.VerticalScrollBarVisibility="Auto">
             <DataGrid.Columns>
                 <!-- Definišite kolone prema potrebama vašeg modela "Autobus" -->
                 <DataGridTextColumn Header="OZNAKA" Binding="{Binding Oznaka}" IsReadOnly="True" Width="*" />
@@ -146,10 +146,10 @@
         </DataGrid>
 
         <!-- Dugme "Back" -->
+        <Button Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Width="150"
+         Content="  Save Changes  " Command="{Binding SaveChangesCommand}" VerticalAlignment="Bottom" Margin="0 70 100 200"/>
         <Button Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2"
-         Content="Save Changes" Command="{Binding SaveChangesCommand}" VerticalAlignment="Bottom" Margin="100"/>
-        <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"
- Content="Back" Command="{Binding BackCommand}" VerticalAlignment="Bottom" Margin="100"/>
+         Content="Back" Command="{Binding BackCommand}" VerticalAlignment="Bottom" Margin="350 50 150 200"/>
     </Grid>
     
     
