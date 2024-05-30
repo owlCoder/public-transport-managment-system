@@ -117,9 +117,11 @@
         <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
                 FontSize="20" FontFamily="Georgia" FontWeight="SemiBold"
                 Content="Vozaci" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10"/>
-        <DataGrid Grid.Row="3" Grid.Column="0"
+        <DataGrid Grid.Row="3" Grid.Column="0" Height="130"
               Margin="10" ItemsSource="{Binding Vozaci}"
-              RowHeaderWidth="0" IsReadOnly="False" CanUserAddRows="False" CanUserDeleteRows="False">
+              RowHeaderWidth="0" IsReadOnly="False" CanUserAddRows="False" CanUserDeleteRows="False"
+                   ScrollViewer.VerticalScrollBarVisibility="Auto">
+           
             <DataGrid.Columns>
                 <!-- Definišite kolone prema potrebama vašeg modela "Vozac" -->
                 <DataGridTextColumn IsReadOnly="True" Header="ID" Binding="{Binding Id}" Width="Auto" />
