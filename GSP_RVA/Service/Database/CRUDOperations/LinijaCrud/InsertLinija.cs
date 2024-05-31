@@ -1,6 +1,7 @@
 ﻿using Service.Database.Context;
 using Service.Database.Models;
 using Service.Database.Operations;
+using System;
 
 namespace Service.Database.CRUDOperations.LinijaCrud
 {
@@ -16,10 +17,17 @@ namespace Service.Database.CRUDOperations.LinijaCrud
 
         public bool Insert(Linija linija)
         {
-            lock (_lock)
+            try
             {
-                _context.Linije.Add(linija);
-                return _context.SaveChanges() > 0;
+                lock (_lock)
+                {
+                    _context.Linije.Add(linija);
+                    return _context.SaveChanges() > 0;
+                }
+            }
+            catch(Exception e)
+            {
+                return false;
             }
         }
     }

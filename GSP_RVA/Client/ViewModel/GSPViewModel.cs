@@ -143,8 +143,6 @@ namespace Client.ViewModel
             Linije = new ObservableCollection<LinijaDTO>(ServiceProvider.LinijaService.ProcitajSve());
             Vozaci = new ObservableCollection<VozacDTO>(ServiceProvider.VozacService.ProcitajSve());
             Autobusi = new ObservableCollection<AutobusDTO>(ServiceProvider.AutobusService.ProcitajSve());
-            //kreirati ChannelFactory, pozvati proxy za svaki od servisa 
-            //Autobus.Servis.DobaviSve();
         }
         #region
         /*
@@ -349,11 +347,32 @@ namespace Client.ViewModel
         private void OnClone()
         {
             // Implementacija kloniranja podataka
-            // Odabrana linija
-            LinijaDTO oroginalnaLinija = ServiceProvider.LinijaService.Procitaj(SelectedEntityId);
+            if(SelectedEntity is LinijaDTO)
+            {
+                // Odabrana linija
+                LinijaDTO oroginalnaLinija = ServiceProvider.LinijaService.Procitaj(SelectedEntityId);
 
-            Command add = new DuplicateLinija(ServiceProvider.LinijaService, oroginalnaLinija);
-            new CommandManager().AddAndExecuteCommand(add);
+                Command add = new DuplicateLinija(ServiceProvider.LinijaService, oroginalnaLinija);
+                new CommandManager().AddAndExecuteCommand(add);
+            }
+            else if(SelectedEntity is VozacDTO)
+            {
+                VozacDTO origninal = ServiceProvider.VozacService.Procitaj(SelectedEntityId);
+                var service = new DuplicateVozac(ServiceProvider.VozacService, origninal);
+                var cloned = service.Clone() as VozacDTO;
+                new DuplicateVozac(ServiceProvider.VozacService, cloned).Execute();
+            }
+            else if(SelectedEntity is AutobusDTO)
+            {
+                AutobusDTO autobusDTO = ServiceProvider.AutobusService.Procitaj(SelectedEntityId);
+                var service = new DuplicateAutobus(ServiceProvider.AutobusService, autobusDTO);
+                var cloned = service.Clone() as AutobusDTO;
+                new DuplicateAutobus(ServiceProvider.AutobusService, cloned).Execute();
+            }
+            else
+            {
+                // ispisi gresku
+            }
             LoadData();
         }
 

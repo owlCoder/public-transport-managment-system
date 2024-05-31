@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="850" d:DesignWidth="800">
 
     <UserControl.Background>
         <ImageBrush ImageSource="/slike/pozadina2.png" />
@@ -80,7 +80,7 @@
             <Setter Property="BorderThickness" Value="0 0 1 1"/>
         </Style>
 
-    
+
     </UserControl.Resources>
 
     <Grid VerticalAlignment="Top" HorizontalAlignment="Center" Margin="17">
@@ -146,11 +146,9 @@
         </DataGrid>
 
         <!-- Dugme "Back" -->
-        <Button Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Width="150"
-         Content="  Save Changes  " Command="{Binding SaveChangesCommand}" VerticalAlignment="Bottom" Margin="0 70 100 200"/>
-        <Button Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2"
-         Content="Back" Command="{Binding BackCommand}" VerticalAlignment="Bottom" Margin="350 50 150 200"/>
+        <Button Grid.Row="4" Grid.Column="0" Width="150"
+         Content="  Save Changes  " Command="{Binding SaveChangesCommand}" Margin="0 70 450 200"/>
+        <Button Grid.Row="4" Grid.Column="0"
+         Content="Back" Command="{Binding BackCommand}" VerticalAlignment="Bottom" Margin="-20 50 100 200"/>
     </Grid>
-    
-    
 </UserControl>

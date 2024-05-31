@@ -174,10 +174,11 @@
                     <Image Source="/slike/slika22.png" Width="16" Height="16" Margin="0 0 5 0"/>
                 </TabItem.Header>
                 <StackPanel Orientation="Vertical">
-                    <DataGrid Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
-                              ItemsSource="{Binding Linije}"
+                    <DataGrid Grid.Row="1" Grid.ColumnSpan="2" MouseDoubleClick="DataGrid_MouseDoubleClick"
+                              Height="485" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                              ItemsSource="{Binding Linije}" 
                               SelectedItem="{Binding SelectedEntity}" AutoGenerateColumns="False"
-                              MouseDoubleClick="DataGrid_MouseDoubleClick">
+                              VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="*" FontFamily="Georgia" FontWeight="Bold" FontSize="18" />
                             <DataGridTextColumn Header="OZNAKA" Binding="{Binding Oznaka}" Width="*"  FontFamily="Georgia" FontWeight="Bold" FontSize="18" />
@@ -192,9 +193,9 @@
                     <Image Source="/slike/slika21.png" Width="16" Height="16" Margin="0 0 5 0"/>
                 </TabItem.Header>
                 <StackPanel Orientation="Vertical">
-                    <DataGrid Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                    <DataGrid Grid.Row="1" Grid.ColumnSpan="2" Height="485" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
                               ItemsSource="{Binding Vozaci}"
-                              SelectedItem="{Binding SelectedEntity}" AutoGenerateColumns="False">
+                              SelectedItem="{Binding SelectedEntity}" AutoGenerateColumns="False" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="*" />
                             <DataGridTextColumn Header="Ime" Binding="{Binding Ime}" Width="*" />
@@ -210,7 +211,7 @@
                     <Image Source="/slike/slika18.png" Width="16" Height="16" Margin="0 0 5 0"/>
                 </TabItem.Header>
                 <StackPanel Orientation="Vertical">
-                    <DataGrid Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                    <DataGrid Grid.Row="1" Grid.ColumnSpan="2" Height="485" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                               ItemsSource="{Binding Autobusi}"
                               SelectedItem="{Binding SelectedEntity}" AutoGenerateColumns="False">
                         <DataGrid.Columns>
@@ -225,7 +226,7 @@
                 </TabItem.Header>
                 <StackPanel Orientation="Vertical">
                     <DataGrid Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                            ItemsSource="{Binding LogEntries}" AutoGenerateColumns="False">
+                            ItemsSource="{Binding LogEntries}" AutoGenerateColumns="False" Height="485" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Hronološka Evidencija Događaja" Binding="{Binding}" Width="*"/>
                         </DataGrid.Columns>

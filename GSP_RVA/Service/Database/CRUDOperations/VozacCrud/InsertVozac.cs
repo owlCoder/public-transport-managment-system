@@ -1,6 +1,7 @@
 ﻿using Service.Database.Context;
 using Service.Database.Models;
 using Service.Database.Operations;
+using System;
 
 namespace Service.Database.CRUDOperations.VozacCrud
 {
@@ -16,11 +17,18 @@ namespace Service.Database.CRUDOperations.VozacCrud
 
         public bool Insert(Vozac vozac)
         {
-            // Use a lock to ensure thread safety
-            lock (_lock)
+            try
             {
-                _context.Vozaci.Add(vozac);
-                return _context.SaveChanges() > 0;
+                // Use a lock to ensure thread safety
+                lock (_lock)
+                {
+                    _context.Vozaci.Add(vozac);
+                    return _context.SaveChanges() > 0;
+                }
+            }
+            catch(Exception e)
+            {
+                return false;
             }
         }
     }
