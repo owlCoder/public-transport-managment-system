@@ -6,6 +6,7 @@ using Common.DTO;
 using Common.Interfaces;
 using MVVMLight.Messaging;
 using NetworkService.Helpers;
+using System.Windows;
 
 namespace Client.ViewModel
 {
@@ -33,7 +34,6 @@ namespace Client.ViewModel
             SaveCommand = new MyICommand(OnSave);
             CancelCommand = new MyICommand(OnCancel);
 
-            // Ako je edit kliknuto onda povuci novi objekat i podesi ga kao trenutni
             originalnaLinija = linijaService.Procitaj(GSPViewModel.SelectedEntityId);
             novaLinija = linijaService.Procitaj(GSPViewModel.SelectedEntityId);
             Oznaka = originalnaLinija.Oznaka;
@@ -70,15 +70,10 @@ namespace Client.ViewModel
                 commandManager.AddAndExecuteCommand(add);
                 IsSaved = true;
 
-                // Clear inputs and set message
                 Oznaka = "";
                 Polaziste = "";
                 Odrediste = "";
                 Messenger.Default.Send(("gsp", ""));
-
-                //ispisi da je uspesno
-
-
             }
             else if (Mode == "EDIT")
             {
@@ -86,18 +81,16 @@ namespace Client.ViewModel
                 novaLinija.Polaziste = polaziste;
                 novaLinija.Odrediste = odrediste;
 
-                // Implementacija logike za uređivanje
+                MessageBox.Show(" Propose your changes?", "Entity has been changed", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
                 Command add = new EditLinijaCommand(linijaService, originalnaLinija, novaLinija);
                 commandManager.AddAndExecuteCommand(add);
                 IsSaved = true;
 
                 IsSaved = true;
-                //ErrorMessage = "Linija je uspešno izmenjena u bazi podataka!";
                 Messenger.Default.Send(("gsp", ""));
-                //ispis da je uspesno
             }
 
-            // Osvezavanje podataka u tabeli
             Messenger.Default.Send('c');
         }
 
@@ -105,7 +98,6 @@ namespace Client.ViewModel
         {
             Messenger.Default.Send(("gsp", ""));
 
-            // Osvezavanje podataka u tabeli
             Messenger.Default.Send('c');
         }
 
