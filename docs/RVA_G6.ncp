@@ -1,0 +1,836 @@
+<Project>
+  <Name>GSP_RVA</Name>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.ClassDiagram" assembly="NClass.DiagramEditor, Version=2.8.0.2, Culture=neutral, PublicKeyToken=null">
+    <Name>Diagram</Name>
+    <Language>CSharp</Language>
+    <Entities>
+      <Entity type="Class">
+        <Name>Vozac</Name>
+        <Access>Public</Access>
+        <Location left="3602" top="1834" />
+        <Size width="163" height="213" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">public int id</Member>
+        <Member type="Field">public string username</Member>
+        <Member type="Field">public string password</Member>
+        <Member type="Field">public string ime</Member>
+        <Member type="Field">public string prezime</Member>
+        <Member type="Field">public UserRoles role</Member>
+        <Member type="Field">public string oznaka</Member>
+        <Member type="Field">public List&lt;Linija&gt; linije</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Enum">
+        <Name>UserRoles</Name>
+        <Access>Public</Access>
+        <Location left="2141" top="381" />
+        <Size width="162" height="95" />
+        <Collapsed>False</Collapsed>
+        <Value>Administrator</Value>
+        <Value>Vozac</Value>
+      </Entity>
+      <Entity type="Class">
+        <Name>Linija</Name>
+        <Access>Public</Access>
+        <Location left="2669" top="1850" />
+        <Size width="163" height="179" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">public int id</Member>
+        <Member type="Field">public string oznaka</Member>
+        <Member type="Field">public string polaziste</Member>
+        <Member type="Field">public string odrediste</Member>
+        <Member type="Field">public List&lt;Vozac&gt; vozaci</Member>
+        <Member type="Field">public List&lt;Autobus&gt; autobusi</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Autobus</Name>
+        <Access>Public</Access>
+        <Location left="2164" top="1864" />
+        <Size width="163" height="145" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">public int id</Member>
+        <Member type="Field">public string oznaka</Member>
+        <Member type="Field">public int idLinije = 0</Member>
+        <Member type="Field">public List&lt;Linija&gt; linije</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>CommandManager</Name>
+        <Access>Public</Access>
+        <Location left="116" top="460" />
+        <Size width="265" height="147" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public void AddAndExecute(ICommand komanda)</Member>
+        <Member type="Method">public void Undo()</Member>
+        <Member type="Method">public void Redo()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Command</Name>
+        <Access>Public</Access>
+        <Location left="163" top="758" />
+        <Size width="163" height="111" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public abstract void Undo()</Member>
+        <Member type="Method">public abstract void Redo()</Member>
+        <Modifier>Abstract</Modifier>
+      </Entity>
+      <Entity type="Comment">
+        <Text>Singletone Pattern - Database
+Strategy Pattern - Filter</Text>
+        <Location left="2041" top="1061" />
+        <Size width="201" height="50" />
+      </Entity>
+      <Entity type="Class">
+        <Name>VozaciTable</Name>
+        <Access>Public</Access>
+        <Location left="3584" top="1529" />
+        <Size width="192" height="162" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">public List&lt;Vozac&gt; Vozaci { get; }</Member>
+        <Member type="Method">public int Create(Vozac novi)</Member>
+        <Member type="Method">public Vozac Read(int id)</Member>
+        <Member type="Method">public int Update(int id, Vozac vozac)</Member>
+        <Member type="Method">public int Delete(int id)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>LinijaCommand</Name>
+        <Access>Public</Access>
+        <Location left="116" top="959" />
+        <Size width="265" height="128" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">protected LinijaDTO LinijaInformation { get; }</Member>
+        <Modifier>Abstract</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>LinijeTable</Name>
+        <Access>Public</Access>
+        <Location left="2654" top="1502" />
+        <Size width="192" height="162" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">public List&lt;Linija&gt; Linije { get; }</Member>
+        <Member type="Method">public int Create(Linija linija)</Member>
+        <Member type="Method">public Linija Read(int id)</Member>
+        <Member type="Method">public int Update(int id, Linija linija)</Member>
+        <Member type="Method">public int Delete(int id)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>EditLinijaCommand</Name>
+        <Access>Public</Access>
+        <Location left="487" top="976" />
+        <Size width="163" height="111" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public override void Undo()</Member>
+        <Member type="Method">public override void Redo()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>DeleteLinijaCommand</Name>
+        <Access>Public</Access>
+        <Location left="487" top="1132" />
+        <Size width="163" height="111" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public override void Undo()</Member>
+        <Member type="Method">public override void Redo()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>AddLinijaCommand</Name>
+        <Access>Public</Access>
+        <Location left="487" top="818" />
+        <Size width="163" height="111" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public override void Undo()</Member>
+        <Member type="Method">public override void Redo()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>AutobusiTable</Name>
+        <Access>Public</Access>
+        <Location left="2142" top="1538" />
+        <Size width="215" height="162" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">public List&lt;Autobus&gt; Autobusi { get; }</Member>
+        <Member type="Method">public int Create(Autobus autobus)</Member>
+        <Member type="Method">public Autbous Read(int id)</Member>
+        <Member type="Method">public int Update(int id, Autobus autobus)</Member>
+        <Member type="Method">public int Delete(int id)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>PretragaPoPolazistu</Name>
+        <Access>Public</Access>
+        <Location left="2972" top="1570" />
+        <Size width="222" height="94" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public List&lt;LinijaDTO&gt; Pretraga(string upit)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Interface">
+        <Name>IPretraga</Name>
+        <Access>Public</Access>
+        <Location left="3126" top="1260" />
+        <Size width="222" height="78" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">List&lt;LinijaDTO&gt; Pretraga(string upit)</Member>
+      </Entity>
+      <Entity type="Class">
+        <Name>PretragaPoOdredistu</Name>
+        <Access>Public</Access>
+        <Location left="3277" top="1570" />
+        <Size width="222" height="94" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public List&lt;LinijaDTO&gt; Pretraga(string upit)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Interface">
+        <Name>IAutobusService</Name>
+        <Access>Public</Access>
+        <Location left="2119" top="614" />
+        <Size width="265" height="146" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">bool DodajAutobus(string oznaka)</Member>
+        <Member type="Method">bool IzmeniAutobus(int id, AutobusDTO data)</Member>
+        <Member type="Method">bool ObrisiAutobus(int id)</Member>
+        <Member type="Method">AutobusDTO Procitaj(int id)</Member>
+        <Member type="Method">List&lt;AutobusDTO&gt; ProcitajSve()</Member>
+      </Entity>
+      <Entity type="Interface">
+        <Name>IVozacService</Name>
+        <Access>Public</Access>
+        <Location left="3560" top="610" />
+        <Size width="265" height="146" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">bool DodajVozaca(VozacDTO data)</Member>
+        <Member type="Method">bool IzmeniVozaca(int id, VozacDTO data)</Member>
+        <Member type="Method">bool ObrisiVozaca(int id)</Member>
+        <Member type="Method">VozacDTO Procitaj(int id)</Member>
+        <Member type="Method">List&lt;VozacDTO&gt; ProcitajSve()</Member>
+      </Entity>
+      <Entity type="Interface">
+        <Name>ILinijaService</Name>
+        <Access>Public</Access>
+        <Location left="2605" top="610" />
+        <Size width="289" height="163" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">bool DodajLiniju(LinijaDTO data)</Member>
+        <Member type="Method">bool IzmeniLiniju(int id, LinijaDTO data)</Member>
+        <Member type="Method">bool ObrisiLiniju(int id)</Member>
+        <Member type="Method">LinijaDTO Procitaj(int id)</Member>
+        <Member type="Method">List&lt;LinijaDTO&gt; ProcitajSve()</Member>
+        <Member type="Method">LinijaDTO Pretraga(bool poOdredistu, string unos)</Member>
+      </Entity>
+      <Entity type="Package">
+        <Name>Client</Name>
+        <Location left="63" top="381" />
+        <Size width="1767" height="1029" />
+      </Entity>
+      <Entity type="Package">
+        <Name>Common</Name>
+        <Location left="2041" top="104" />
+        <Size width="1851" height="749" />
+      </Entity>
+      <Entity type="Package">
+        <Name>Service</Name>
+        <Location left="2041" top="1129" />
+        <Size width="1921" height="971" />
+      </Entity>
+      <Entity type="Class">
+        <Name>VozacDTO</Name>
+        <Access>Public</Access>
+        <Location left="2462" top="188" />
+        <Size width="207" height="213" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">public int Id { get; set; }</Member>
+        <Member type="Property">public string Username { get; set; }</Member>
+        <Member type="Property">public string Password { get; set; }</Member>
+        <Member type="Property">public string Ime { get; set; }</Member>
+        <Member type="Property">public string Prezime { get; set; }</Member>
+        <Member type="Property">public UserRoles Role { get; set; }</Member>
+        <Member type="Property">public string Oznaka { get; set; }</Member>
+        <Member type="Property">public List&lt;LinijaDTO&gt; Linije { get; set; }</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>AutobusDTO</Name>
+        <Access>Public</Access>
+        <Location left="2119" top="188" />
+        <Size width="207" height="145" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">public int Id { get; set; }</Member>
+        <Member type="Property">public string Oznaka { get; set; }</Member>
+        <Member type="Property">public int IdLinije { get; set; }</Member>
+        <Member type="Property">public List&lt;LinijaDTO&gt; Linije { get; set; }</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>LinijaDTO</Name>
+        <Access>Public</Access>
+        <Location left="2809" top="188" />
+        <Size width="237" height="179" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">public int Id { get; set; }</Member>
+        <Member type="Property">public string Oznaka { get; set; }</Member>
+        <Member type="Property">public string Polaziste { get; set; }</Member>
+        <Member type="Property">public string Odrediste { get; set; }</Member>
+        <Member type="Property">public List&lt;VozacDTO&gt; Vozaci { get; set; }</Member>
+        <Member type="Property">public List&lt;AutobusDTO&gt; Autobusi { get; set; }</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>AutobusService</Name>
+        <Access>Public</Access>
+        <Location left="2119" top="1225" />
+        <Size width="265" height="162" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public bool DodajAutobus(string oznaka)</Member>
+        <Member type="Method">public bool IzmeniAutobus(int id, AutobusDTO data)</Member>
+        <Member type="Method">public bool ObrisiAutobus(int id)</Member>
+        <Member type="Method">public AutobusDTO Procitaj(int id)</Member>
+        <Member type="Method">public List&lt;AutobusDTO&gt; ProcitajSve()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>LinijaService</Name>
+        <Access>Public</Access>
+        <Location left="2605" top="1208" />
+        <Size width="290" height="179" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public bool DodajLiniju(LinijaDTO data)</Member>
+        <Member type="Method">public bool IzmeniLiniju(int id, LinijaDTO data)</Member>
+        <Member type="Method">public bool ObrisiLiniju(int id)</Member>
+        <Member type="Method">public LinijaDTO Procitaj(int id)</Member>
+        <Member type="Method">public List&lt;LinijaDTO&gt; ProcitajSve()</Member>
+        <Member type="Method">public LinijaDTO Pretraga(bool poOdredistu, string unos)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>VozacService</Name>
+        <Access>Public</Access>
+        <Location left="3554" top="1217" />
+        <Size width="249" height="162" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public bool DodajVozaca(VozacDTO data)</Member>
+        <Member type="Method">public bool IzmeniVozaca(int id, VozacDTO data)</Member>
+        <Member type="Method">public bool ObrisiVozaca(int id)</Member>
+        <Member type="Method">public VozacDTO Procitaj(int id)</Member>
+        <Member type="Method">public List&lt;VozacDTO&gt; ProcitajSve()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Comment">
+        <Text>Command Pattern - Undo &amp; Redo
+Prototype - Cloneable</Text>
+        <Location left="63" top="308" />
+        <Size width="188" height="50" />
+      </Entity>
+      <Entity type="Interface">
+        <Name>ILogger</Name>
+        <Access>Public</Access>
+        <Location left="3127" top="610" />
+        <Size width="241" height="78" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">void Log(LogLevel level, string message)</Member>
+      </Entity>
+      <Entity type="Class">
+        <Name>FileLogger</Name>
+        <Access>Public</Access>
+        <Location left="3228" top="188" />
+        <Size width="241" height="94" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public void Log(LogLevel level, string message)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>InMemoryLogger</Name>
+        <Access>Public</Access>
+        <Location left="3584" top="188" />
+        <Size width="241" height="94" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public void Log(LogLevel level, string message)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Enum">
+        <Name>LogLevel</Name>
+        <Access>Public</Access>
+        <Location left="2847" top="417" />
+        <Size width="162" height="112" />
+        <Collapsed>False</Collapsed>
+        <Value>INFO</Value>
+        <Value>DEBUG</Value>
+        <Value>WARNING</Value>
+      </Entity>
+      <Entity type="Class">
+        <Name>ServiceProvider</Name>
+        <Access>Public</Access>
+        <Location left="1147" top="457" />
+        <Size width="403" height="145" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">public IAutobusService AutobusService { get; private set; }</Member>
+        <Member type="Property">public IVozacService VozacService { get; private set; }</Member>
+        <Member type="Constructor">public ServiceProvider(IAutobusService _as, IVozacService _vs, ILinijaService _ls)</Member>
+        <Member type="Property">public ILinijaService LinijaService { get; private set; }</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>PretragaCommand</Name>
+        <Access>Public</Access>
+        <Location left="761" top="775" />
+        <Size width="384" height="94" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public void Pretrazi(bool poOdredistu, string unos, ServiceProvider provider)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>UserAction</Name>
+        <Access>Public</Access>
+        <Location left="1229" top="758" />
+        <Size width="217" height="111" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private ServiceProvider provider</Member>
+        <Member type="Constructor">public UserAction(ServiceProvider _provider)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>AutobusCommand</Name>
+        <Access>Public</Access>
+        <Location left="1572" top="1022" />
+        <Size width="226" height="179" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private ServiceProvider provider</Member>
+        <Member type="Constructor">public AutobusCommand(ServiceProvider _p)</Member>
+        <Member type="Method">public bool Dodaj(AutobusDTO data)</Member>
+        <Member type="Method">public bool Izmeni(int id, AutobusDTO data)</Member>
+        <Member type="Method">public bool Obrisi(int id)</Member>
+        <Member type="Method">public object Clone()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Interface">
+        <Name>ICloneable</Name>
+        <Access>Public</Access>
+        <Location left="1624" top="1306" />
+        <Size width="163" height="78" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">object Clone()</Member>
+      </Entity>
+      <Entity type="Class">
+        <Name>VozacCommand</Name>
+        <Access>Public</Access>
+        <Location left="881" top="1022" />
+        <Size width="226" height="179" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private ServiceProvider provider</Member>
+        <Member type="Constructor">public VozacCommand(ServiceProvider _p)</Member>
+        <Member type="Method">public bool Dodaj(VozacDTO data)</Member>
+        <Member type="Method">public bool Izmeni(int id, VozacDTO data)</Member>
+        <Member type="Method">public bool Obrisi(int id)</Member>
+        <Member type="Method">public object Clone()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+    </Entities>
+    <Containers>
+      <Container entityIndex="20">
+        <ChildEntity>4</ChildEntity>
+        <ChildEntity>12</ChildEntity>
+        <ChildEntity>11</ChildEntity>
+        <ChildEntity>5</ChildEntity>
+        <ChildEntity>10</ChildEntity>
+        <ChildEntity>34</ChildEntity>
+        <ChildEntity>35</ChildEntity>
+        <ChildEntity>36</ChildEntity>
+        <ChildEntity>8</ChildEntity>
+        <ChildEntity>37</ChildEntity>
+        <ChildEntity>39</ChildEntity>
+        <ChildEntity>38</ChildEntity>
+      </Container>
+      <Container entityIndex="21">
+        <ChildEntity>17</ChildEntity>
+        <ChildEntity>19</ChildEntity>
+        <ChildEntity>18</ChildEntity>
+        <ChildEntity>23</ChildEntity>
+        <ChildEntity>24</ChildEntity>
+        <ChildEntity>25</ChildEntity>
+        <ChildEntity>1</ChildEntity>
+        <ChildEntity>33</ChildEntity>
+        <ChildEntity>32</ChildEntity>
+        <ChildEntity>31</ChildEntity>
+        <ChildEntity>30</ChildEntity>
+      </Container>
+      <Container entityIndex="22">
+        <ChildEntity>13</ChildEntity>
+        <ChildEntity>2</ChildEntity>
+        <ChildEntity>7</ChildEntity>
+        <ChildEntity>9</ChildEntity>
+        <ChildEntity>28</ChildEntity>
+        <ChildEntity>26</ChildEntity>
+        <ChildEntity>3</ChildEntity>
+        <ChildEntity>0</ChildEntity>
+        <ChildEntity>14</ChildEntity>
+        <ChildEntity>16</ChildEntity>
+        <ChildEntity>27</ChildEntity>
+        <ChildEntity>15</ChildEntity>
+      </Container>
+    </Containers>
+    <Relationships>
+      <Relationship type="Association" first="2" second="3">
+        <Label>ima</Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>2612</X>
+          <Y>1930</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>2360</X>
+          <Y>1930</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+        <StartRole>linija</StartRole>
+        <EndRole>autobusa</EndRole>
+        <StartMultiplicity>0..1</StartMultiplicity>
+        <EndMultiplicity>0..*</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="4" second="5">
+        <Label>ima</Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>248</X>
+          <Y>644</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>248</X>
+          <Y>733</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+        <StartRole>commandManager</StartRole>
+        <EndRole>commands</EndRole>
+        <StartMultiplicity>1</StartMultiplicity>
+        <EndMultiplicity>0..*</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="13" second="3">
+        <Label>ima</Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>2244</X>
+          <Y>1725</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>2244</X>
+          <Y>1838</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+        <StartRole>redUTabeli</StartRole>
+        <EndRole>autobusa</EndRole>
+        <StartMultiplicity>1</StartMultiplicity>
+        <EndMultiplicity>0..*</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="0" second="2">
+        <Label>ima</Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>3573</X>
+          <Y>1934</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>2857</X>
+          <Y>1934</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+        <StartRole>linija</StartRole>
+        <EndRole>vozaca</EndRole>
+        <StartMultiplicity>0..*</StartMultiplicity>
+        <EndMultiplicity>0..*</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="9" second="2">
+        <Label>ima</Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+        <StartRole>redUTabeli</StartRole>
+        <EndRole>linija</EndRole>
+        <StartMultiplicity>1</StartMultiplicity>
+        <EndMultiplicity>0..*</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="7" second="0">
+        <Label>ima</Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+        <StartRole>redUTabeli</StartRole>
+        <EndRole>vozaca</EndRole>
+        <StartMultiplicity>1</StartMultiplicity>
+        <EndMultiplicity>0..*</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Realization" first="26" second="17">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Association" first="26" second="13">
+        <Label>koristi</Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+        <StartRole>servis</StartRole>
+        <EndRole>tabela</EndRole>
+        <StartMultiplicity>1</StartMultiplicity>
+        <EndMultiplicity>1</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Realization" first="27" second="19">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Association" first="27" second="9">
+        <Label>koristi</Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+        <StartRole>servis</StartRole>
+        <EndRole>tabela</EndRole>
+        <StartMultiplicity>1</StartMultiplicity>
+        <EndMultiplicity>1</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="28" second="7">
+        <Label>koristi</Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+        <StartRole>servis</StartRole>
+        <EndRole>tabela</EndRole>
+        <StartMultiplicity>1</StartMultiplicity>
+        <EndMultiplicity>1</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Realization" first="28" second="18">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Realization" first="14" second="15">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Realization" first="16" second="15">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Association" first="27" second="15">
+        <Label>ima</Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+        <StartRole>servis</StartRole>
+        <EndRole>pretraga</EndRole>
+        <StartMultiplicity>1</StartMultiplicity>
+        <EndMultiplicity>0..1</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Generalization" first="8" second="5">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Generalization" first="12" second="8">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+      </Relationship>
+      <Relationship type="Generalization" first="10" second="8">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>406</X>
+          <Y>1023</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Generalization" first="11" second="8">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+      </Relationship>
+      <Relationship type="Realization" first="32" second="30">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>3243</X>
+          <Y>577</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Realization" first="31" second="30">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>3350</X>
+          <Y>312</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>3243</X>
+          <Y>573</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Association" first="34" second="18">
+        <Label>koristi</Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1757</X>
+          <Y>943</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>3457</X>
+          <Y>695</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+        <StartRole>klijenata</StartRole>
+        <EndRole>servis</EndRole>
+        <StartMultiplicity>0..*</StartMultiplicity>
+        <EndMultiplicity>1</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="34" second="30">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1757</X>
+          <Y>528</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>3269</X>
+          <Y>943</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+        <EndRole>loger</EndRole>
+        <EndMultiplicity>1</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="34" second="19">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1757</X>
+          <Y>530</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>2822</X>
+          <Y>944</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+        <EndRole>servis</EndRole>
+        <EndMultiplicity>1</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="34" second="17">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1757</X>
+          <Y>943</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>2196</X>
+          <Y>785</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+        <EndRole>servis</EndRole>
+        <EndMultiplicity>1</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="36" second="34">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="36" second="35">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="36" second="8">
+        <Label>koristi</Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1339</X>
+          <Y>900</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>246</X>
+          <Y>1312</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+        <EndRole>komanda</EndRole>
+        <StartMultiplicity>0..*</StartMultiplicity>
+        <EndMultiplicity>0..1</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Realization" first="37" second="38">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1701</X>
+          <Y>1226</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>1700</X>
+          <Y>1276</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Realization" first="8" second="38">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+      </Relationship>
+      <Relationship type="Association" first="36" second="37">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1339</X>
+          <Y>894</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>1687</X>
+          <Y>995</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="36" second="39">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1339</X>
+          <Y>894</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Realization" first="39" second="38">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>1700</X>
+          <Y>1281</Y>
+        </BendPoint>
+      </Relationship>
+    </Relationships>
+  </ProjectItem>
+</Project>
