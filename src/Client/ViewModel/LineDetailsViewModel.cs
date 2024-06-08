@@ -3,7 +3,6 @@ using Common.DTO;
 using MVVMLight.Messaging;
 using NetworkService.Helpers;
 using System.Collections.ObjectModel;
-using System.Linq;
 
 namespace Client.ViewModel
 {
@@ -44,16 +43,16 @@ namespace Client.ViewModel
         private void SaveChanges()
         {
             // Sacuvaj prvo promene za uparene vozace i liniju koja se trenutno uparuje
-            foreach(VozacDTO vozacDTO in Vozaci) 
+            foreach (VozacDTO vozacDTO in Vozaci)
             {
-                if(vozacDTO.IsChecked == true)
+                if (vozacDTO.IsChecked == true)
                     ServiceProvider.VozaciLinijaService.DodajVozacaNaLiniju(vozacDTO.Id, linije[0].Id);
                 else
                     ServiceProvider.VozaciLinijaService.UkloniVozacaNaLiniji(vozacDTO.Id, linije[0].Id);
             }
 
             // Cuvanje promena za autobuse
-            foreach(AutobusDTO autobusDTO in Autobusi)
+            foreach (AutobusDTO autobusDTO in Autobusi)
             {
                 // Vezivanje linije za autobus
                 if (autobusDTO.IsChecked == true)
@@ -63,7 +62,7 @@ namespace Client.ViewModel
 
                 ServiceProvider.AutobusService.IzmeniAutobus(autobusDTO.Id, autobusDTO);
             }
-            
+
         }
 
         #region PROPERTIES

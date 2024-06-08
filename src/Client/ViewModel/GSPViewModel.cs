@@ -73,7 +73,7 @@ namespace Client.ViewModel
             Messenger.Default.Register<char>(this, RefreshData);
             Messenger.Default.Register<VozacDTO>(this, PodesiUlogovanog);
 
-            LoadData();       
+            LoadData();
         }
 
         public void PodesiUlogovanog(VozacDTO vozacDTO)
@@ -129,7 +129,7 @@ namespace Client.ViewModel
         #endregion
         private void OnRefresh()
         {
-            LoadData();   
+            LoadData();
         }
 
         private void OnLogOut()
@@ -199,21 +199,21 @@ namespace Client.ViewModel
                 Command add = new DeleteLinijaCommand(ServiceProvider.LinijaService, SelectedEntityId);
                 new CommandManager().AddAndExecuteCommand(add);
                 LoadData();
-                SelectedEntityId = 0;    
+                SelectedEntityId = 0;
             }
             else if (SelectedEntity is AutobusDTO)
             {
                 DeleteAutobusCommand add = new DeleteAutobusCommand(ServiceProvider.AutobusService, SelectedEntityId);
                 add.Execute();
                 LoadData();
-                SelectedEntityId = 0;    
+                SelectedEntityId = 0;
             }
             else if (SelectedEntity is VozacDTO)
             {
                 DeleteVozacCommand add = new DeleteVozacCommand(ServiceProvider.VozacService, SelectedEntityId);
                 add.Execute();
                 LoadData();
-                SelectedEntityId = 0;    
+                SelectedEntityId = 0;
             }
             else
             {
@@ -237,21 +237,21 @@ namespace Client.ViewModel
 
         private void OnClone()
         {
-            if(SelectedEntity is LinijaDTO)
+            if (SelectedEntity is LinijaDTO)
             {
                 LinijaDTO oroginalnaLinija = ServiceProvider.LinijaService.Procitaj(SelectedEntityId);
 
                 Command add = new DuplicateLinija(ServiceProvider.LinijaService, oroginalnaLinija);
                 new CommandManager().AddAndExecuteCommand(add);
             }
-            else if(SelectedEntity is VozacDTO)
+            else if (SelectedEntity is VozacDTO)
             {
                 VozacDTO origninal = ServiceProvider.VozacService.Procitaj(SelectedEntityId);
                 var service = new DuplicateVozac(ServiceProvider.VozacService, origninal);
                 var cloned = service.Clone() as VozacDTO;
                 new DuplicateVozac(ServiceProvider.VozacService, cloned).Execute();
             }
-            else if(SelectedEntity is AutobusDTO)
+            else if (SelectedEntity is AutobusDTO)
             {
                 AutobusDTO autobusDTO = ServiceProvider.AutobusService.Procitaj(SelectedEntityId);
                 var service = new DuplicateAutobus(ServiceProvider.AutobusService, autobusDTO);

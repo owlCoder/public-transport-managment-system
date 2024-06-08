@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Client.ViewModel;
+using Common.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using Client.ViewModel;
-using Common.Enums;
 
 namespace Client.Commands.Manager
 {

@@ -63,7 +63,7 @@ namespace Service
                 hostLinija.Close();
                 hostVozac.Close();
             }
-            catch (CommunicationException ce)
+            catch (Exception ce)
             {
                 Console.WriteLine("An exception occurred: {0}", ce.Message);
                 hostAutobus.Abort();

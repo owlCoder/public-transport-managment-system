@@ -1,9 +1,9 @@
-﻿using Common.Contracts;
-using Common.Interfaces;
+﻿using Client.ViewModel;
+using Common.Contracts;
 using Common.Enums;
+using Common.Interfaces;
 using System;
 using System.ServiceModel;
-using Client.ViewModel;
 
 namespace Client.Provider
 {

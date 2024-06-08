@@ -75,7 +75,7 @@ namespace Service.Services.VozacLinijeService
             }
             catch (Exception e)
             {
-                // dodaj log
+                logger.Log(LogTraceLevel.DEBUG, $"Greška prilikom citanja vozaca za liniju. StackTrace: {e.Message}");
                 return false;
             }
         }
@@ -99,7 +99,7 @@ namespace Service.Services.VozacLinijeService
             }
             catch (Exception e)
             {
-                // dodaj log
+                logger.Log(LogTraceLevel.DEBUG, $"Greška prilikom citanja vozaca za liniju. StackTrace: {e.Message}");
                 return false;
             }
         }

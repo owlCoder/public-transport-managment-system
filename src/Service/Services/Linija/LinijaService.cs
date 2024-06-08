@@ -136,11 +136,11 @@ namespace Service.Services.LinijaService
 
                 List<AutobusDTO> busdto = new List<AutobusDTO>();
 
-                foreach(Autobus bus in busevi)
+                foreach (Autobus bus in busevi)
                 {
                     AutobusDTO procitan = new AutobusDTO() { Id = bus.Id, IdLinije = bus.IdLinije, Oznaka = bus.Oznaka };
 
-                    if(bus.IdLinije == id)
+                    if (bus.IdLinije == id)
                         procitan.IsChecked = true;
                     else
                         procitan.IsChecked = false;

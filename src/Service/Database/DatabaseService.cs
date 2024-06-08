@@ -2,12 +2,13 @@
 
 namespace Service.Database
 {
+    /// <summary>
+    /// Represents a singleton service for accessing the database context.
+    /// </summary>
     public class DatabaseService
     {
         private static DatabaseService _instance;
-
         private static readonly object _lock = new object();
-
         private DatabaseContext _context;
 
         private DatabaseService()
@@ -16,6 +17,9 @@ namespace Service.Database
             _context = new DatabaseContext();
         }
 
+        /// <summary>
+        /// Gets the singleton instance of the DatabaseService.
+        /// </summary>
         public static DatabaseService Instance
         {
             get
@@ -32,6 +36,9 @@ namespace Service.Database
             }
         }
 
+        /// <summary>
+        /// Gets the database context.
+        /// </summary>
         public DatabaseContext Context { get => _context; }
     }
 }
