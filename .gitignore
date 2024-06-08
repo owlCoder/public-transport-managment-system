@@ -7,3 +7,15 @@
 /GSP_RVA/Client/bin
 /GSP_RVA/Client/obj/
 /.vs
+/GSP_RVA/Service/.vs
+/src/Client/bin
+/src/Client/obj
+/src/packages
+/src/Service/bin
+/src/Service/obj
+/src/Common/bin
+/src/Common/.vs
+/src/.vs
+/src/Client/.vs
+src/Client/desktop.ini
+/src/Service/.vs
