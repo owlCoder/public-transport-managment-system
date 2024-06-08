@@ -2,6 +2,7 @@
 using Common.DTO;
 using Common.Enums;
 using Common.Interfaces;
+using System;
 
 namespace Client.Commands.LinijaCommands
 {
@@ -20,33 +21,54 @@ namespace Client.Commands.LinijaCommands
 
         public override void Execute()
         {
-            backupLinija = linijaService.Procitaj(linijaId);
-            id = linijaService.ObrisiLiniju(linijaId);
+            try
+            {
+                backupLinija = linijaService.Procitaj(linijaId);
+                bool success = linijaService.ObrisiLiniju(linijaId) != 0;
 
-            if (id == 0)
-                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Brisanje linije sa ID-jem {id} nije uspesno izvrseno!");
-            else
-                MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Brisanje linije sa ID-jem {id} je uspesno izvrseno!");
+                if (!success)
+                    MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Brisanje linije sa ID-jem {linijaId} nije uspesno izvrseno!");
+                else
+                    MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Brisanje linije sa ID-jem {linijaId} je uspesno izvrseno!");
+            }
+            catch (Exception ex)
+            {
+                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Greska prilikom brisanja linije sa ID-jem {linijaId}: {ex.Message}");
+            }
         }
 
         public override void Undo()
         {
-            id = linijaService.DodajLiniju(backupLinija);
+            try
+            {
+                id = linijaService.DodajLiniju(backupLinija);
 
-            if (id == 0)
-                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Brisanje linije sa ID-jem {id} nije uspesno opozvano!");
-            else
-                MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Brisanje linije sa ID-jem {id} je uspesno opozvano!");
+                if (id == 0)
+                    MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Opozivanje brisanja linije sa ID-jem {linijaId} nije uspelo!");
+                else
+                    MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Opozivanje brisanja linije sa ID-jem {linijaId} je uspesno!");
+            }
+            catch (Exception ex)
+            {
+                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Greska prilikom opozivanja brisanja linije sa ID-jem {linijaId}: {ex.Message}");
+            }
         }
 
         public override void Redo()
         {
-            id = linijaService.ObrisiLiniju(linijaId);
+            try
+            {
+                bool success = linijaService.ObrisiLiniju(linijaId) != 0;
 
-            if (id == 0)
-                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Brisanje linije sa ID-jem {id} nije uspesno ponisteno!");
-            else
-                MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Brisanje linije sa ID-jem {id} je uspesno ponisteno!");
+                if (!success)
+                    MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Ponistavanje brisanja linije sa ID-jem {linijaId} nije uspelo!");
+                else
+                    MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Ponistavanje brisanja linije sa ID-jem {linijaId} je uspesno!");
+            }
+            catch (Exception ex)
+            {
+                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Greska prilikom ponistavanja brisanja linije sa ID-jem {linijaId}: {ex.Message}");
+            }
         }
     }
 }

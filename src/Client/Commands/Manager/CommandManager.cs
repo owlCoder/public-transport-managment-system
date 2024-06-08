@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using Client.ViewModel;
+using Common.Enums;
 
 namespace Client.Commands.Manager
 {
@@ -11,10 +14,17 @@ namespace Client.Commands.Manager
 
         public void AddAndExecuteCommand(Command command)
         {
-            commands.Add(command);
-            command.Execute();
-            undoStack.Push(command);
-            redoStack.Clear(); // Clear redo stack when a new command is executed
+            try
+            {
+                commands.Add(command);
+                command.Execute();
+                undoStack.Push(command);
+                redoStack.Clear(); // Clear redo stack when a new command is executed
+            }
+            catch (Exception ex)
+            {
+                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Error executing command: {ex.Message}");
+            }
         }
 
         public void Undo()
@@ -22,8 +32,15 @@ namespace Client.Commands.Manager
             if (undoStack.Any())
             {
                 Command command = undoStack.Pop();
-                command.Undo();
-                redoStack.Push(command);
+                try
+                {
+                    command.Undo();
+                    redoStack.Push(command);
+                }
+                catch (Exception ex)
+                {
+                    MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Error undoing command: {ex.Message}");
+                }
             }
         }
 
@@ -32,8 +49,15 @@ namespace Client.Commands.Manager
             if (redoStack.Any())
             {
                 Command command = redoStack.Pop();
-                command.Redo();
-                undoStack.Push(command);
+                try
+                {
+                    command.Redo();
+                    undoStack.Push(command);
+                }
+                catch (Exception ex)
+                {
+                    MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Error redoing command: {ex.Message}");
+                }
             }
         }
     }

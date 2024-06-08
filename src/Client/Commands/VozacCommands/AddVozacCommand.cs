@@ -2,6 +2,7 @@
 using Common.DTO;
 using Common.Enums;
 using Common.Interfaces;
+using System;
 
 namespace Client.Commands.VozacCommands
 {
@@ -19,33 +20,54 @@ namespace Client.Commands.VozacCommands
 
         public override void Execute()
         {
-            success = vozacService.DodajVozaca(vozac);
+            try
+            {
+                success = vozacService.DodajVozaca(vozac);
 
-            // Logovanje
-            if (!success)
-                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, "Dodavanje novog vozaca nije uspelo!");
-            else
-                MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Vozac oznake {vozac.Oznaka} je uspesno dodat!");
+                // Logging
+                if (!success)
+                    MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, "Dodavanje novog vozača nije uspelo!");
+                else
+                    MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Vozač oznake {vozac.Oznaka} je uspešno dodat!");
+            }
+            catch (Exception ex)
+            {
+                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Greška prilikom izvršavanja komande dodavanja vozača: {ex.Message}");
+            }
         }
 
         public override void Undo()
         {
-            success = vozacService.ObrisiVozaca(vozac.Id);
+            try
+            {
+                success = vozacService.ObrisiVozaca(vozac.Id);
 
-            if (!success)
-                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Dodavanje vozaca sa ID-jem {vozac.Id} nije uspesno opozvano!");
-            else
-                MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Dodavanje vozaca sa ID-jem {vozac.Id} je uspesno opozvano!");
+                if (!success)
+                    MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Opozivanje dodavanja vozača sa ID-jem {vozac.Id} nije uspelo!");
+                else
+                    MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Opozivanje dodavanja vozača sa ID-jem {vozac.Id} je uspešno!");
+            }
+            catch (Exception ex)
+            {
+                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Greška prilikom opozivanja komande dodavanja vozača: {ex.Message}");
+            }
         }
 
         public override void Redo()
         {
-            success = vozacService.DodajVozaca(vozac);
+            try
+            {
+                success = vozacService.DodajVozaca(vozac);
 
-            if (!success)
-                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Dodavanje vozaca sa ID-jem {vozac.Id} nije uspesno ponisteno!");
-            else
-                MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Dodavanje vozaca sa ID-jem {vozac.Id} je uspesno ponisteno!");
+                if (!success)
+                    MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Poništavanje dodavanja vozača sa ID-jem {vozac.Id} nije uspelo!");
+                else
+                    MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Poništavanje dodavanja vozača sa ID-jem {vozac.Id} je uspešno!");
+            }
+            catch (Exception ex)
+            {
+                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Greška prilikom ponavljanja komande dodavanja vozača: {ex.Message}");
+            }
         }
     }
 }

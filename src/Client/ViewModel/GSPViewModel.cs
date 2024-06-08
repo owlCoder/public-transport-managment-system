@@ -52,7 +52,6 @@ namespace Client.ViewModel
 
         public GSPViewModel()
         {
-            // Metoda za prijem logova
             Messenger.Default.Register<string>(this, DodajULog);
 
             EditCommand = new MyICommand(OnEdit);
@@ -66,34 +65,16 @@ namespace Client.ViewModel
             CloneCommand = new MyICommand(OnClone);
             SearchCommand = new MyICommand(OnSearch);
 
-            // pretraga
             PoPolazistuCommand = new MyICommand(PoPolazistuPromena);
             PoOdredistuCommand = new MyICommand(PoOdredistuPromena);
 
             LogEntries = new ObservableCollection<string>();
 
-            // Inicijalizacija metode za osvezavanje podataka
             Messenger.Default.Register<char>(this, RefreshData);
             Messenger.Default.Register<VozacDTO>(this, PodesiUlogovanog);
 
-            LoadData(); //  učitavanje podataka prilikom inicijalizacije pogleda
+            LoadData();       
         }
-
-        //private void PodesiOdabranDodavanje(VozacDTO obj)
-        //{
-        //    //if (obj is LinijaDTO)
-        //    //    SelectedEntity = obj as LinijaDTO;
-        //    //else if (obj is AutobusDTO)
-        //    //    SelectedEntity = obj as AutobusDTO;
-        //    //else
-        //    if (obj is VozacDTO)
-        //        SelectedEntity = obj as VozacDTO;
-        //    else
-        //    {
-        //        SelectedEntityId = 0;
-        //        SelectedEntity = null;
-        //    }
-        //}
 
         public void PodesiUlogovanog(VozacDTO vozacDTO)
         {
@@ -145,93 +126,10 @@ namespace Client.ViewModel
             Autobusi = new ObservableCollection<AutobusDTO>(ServiceProvider.AutobusService.ProcitajSve());
         }
         #region
-        /*
-        private void OnEdit()
-        {
-            if (SelectedEntity == null)
-            {
-                MessageBox.Show("Nije odabran entitet za uređivanje.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
-
-            if (SelectedEntity is Autobus autobus)
-            {
-                // Priprema za uređivanje autobusa
-                // Na primjer: otvaranje dijaloga za uređivanje autobusa
-
-                EditAutobusViewModel editAutobusViewModel = new EditAutobusViewModel(autobus);
-                EditAutobusWindow editAutobusWindow = new EditAutobusWindow(editAutobusViewModel);
-        
-                if (editAutobusWindow.ShowDialog() == true)
-                {
-                    // Ako je uređivanje potvrđeno, ažurirajte entitet u bazi podataka
-                    autobus = editAutobusViewModel.Autobus; // Ažurirajte lokalni entitet
-                    dbContext.SaveChanges(); // Spremi promjene u bazi podataka
-
-                    // Osvježite kolekciju ili dohvatite ponovno podatke iz baze
-                    autobus.Clear(); // Očistite kolekciju autobusa
-                    foreach (var item in dbContext.Autobusi)
-                    {
-                        autobus.Add(item); // Dodajte ponovno entitete u kolekciju
-                    }
-
-                    OnPropertyChanged(nameof(Autobus)); // Osvježite Binding u korisničkom sučelju
-                }
-            }
-            else if (SelectedEntity is Vozac vozac)
-            {
-                // Priprema za uređivanje vozača
-                // Na primjer: otvaranje dijaloga za uređivanje vozača
-
-                EditVozacViewModel editVozacViewModel = new EditVozacViewModel(vozac);
-                EditVozacWindow editVozacWindow = new EditVozacWindow(editVozacViewModel);
-
-                if (editVozacWindow.ShowDialog() == true)
-                {
-                    // Ako je uređivanje potvrđeno, ažurirajte entitet u bazi podataka
-                    vozac = editVozacViewModel.Vozac; // Ažurirajte lokalni entitet
-                    dbContext.SaveChanges(); // Spremi promjene u bazi podataka
-
-                    // Osvježite kolekciju ili dohvatite ponovno podatke iz baze
-                    vozac.Clear(); // Očistite kolekciju vozača
-                    foreach (var item in dbContext.Vozaci)
-                    {
-                        vozac.Add(item); // Dodajte ponovno entitete u kolekciju
-                    }
-
-                    OnPropertyChanged(nameof(Vozac)); // Osvježite Binding u korisničkom sučelju
-                }
-            }
-            else if (SelectedEntity is Linija linija)
-            {
-                // Priprema za uređivanje linije
-                // Na primjer: otvaranje dijaloga za uređivanje linije
-
-                EditLinijaViewModel editLinijaViewModel = new EditLinijaViewModel(linija);
-                EditLinijaWindow editLinijaWindow = new EditLinijaWindow(editLinijaViewModel);
-
-                if (editLinijaWindow.ShowDialog() == true)
-                {
-                    // Ako je uređivanje potvrđeno, ažurirajte entitet u bazi podataka
-                    linija = editLinijaViewModel.Linija; // Ažurirajte lokalni entitet
-                    dbContext.SaveChanges(); // Spremi promjene u bazi podataka
-
-                    // Osvježite kolekciju ili dohvatite ponovno podatke iz baze
-                    linija.Clear(); // Očistite kolekciju linija
-                    foreach (var item in dbContext.Linije)
-                    {
-                        linija.Add(item); // Dodajte ponovno entitete u kolekciju
-                    }
-
-                    OnPropertyChanged(nameof(Linija)); // Osvježite Binding u korisničkom sučelju
-                }
-            }
-        }
-        */
         #endregion
         private void OnRefresh()
         {
-            LoadData(); // Osvježavanje podataka
+            LoadData();   
         }
 
         private void OnLogOut()
@@ -263,8 +161,6 @@ namespace Client.ViewModel
             }
             else
             {
-                // ispisi gresku!!!!
-
                 SelectedEntityId = 0;
                 SelectedEntity = null;
             }
@@ -274,7 +170,7 @@ namespace Client.ViewModel
 
         private void OnEdit()
         {
-            if (SelectedEntityId == 0) // TODO: DODAJ PORUKU NA UI niste odabrali entitet!!!!!!!!!!!
+            if (SelectedEntityId == 0)
                 return;
 
             if (SelectedEntity is LinijaDTO)
@@ -303,27 +199,24 @@ namespace Client.ViewModel
                 Command add = new DeleteLinijaCommand(ServiceProvider.LinijaService, SelectedEntityId);
                 new CommandManager().AddAndExecuteCommand(add);
                 LoadData();
-                SelectedEntityId = 0; // resetovanje odabrane linije
+                SelectedEntityId = 0;    
             }
             else if (SelectedEntity is AutobusDTO)
             {
-                // kasnije dodati
                 DeleteAutobusCommand add = new DeleteAutobusCommand(ServiceProvider.AutobusService, SelectedEntityId);
                 add.Execute();
                 LoadData();
-                SelectedEntityId = 0; // resetovanje odabrane linije
+                SelectedEntityId = 0;    
             }
             else if (SelectedEntity is VozacDTO)
             {
-                // kasnije dodati
                 DeleteVozacCommand add = new DeleteVozacCommand(ServiceProvider.VozacService, SelectedEntityId);
                 add.Execute();
                 LoadData();
-                SelectedEntityId = 0; // resetovanje odabrane linije
+                SelectedEntityId = 0;    
             }
             else
             {
-                // ispisi gresku dodaj
             }
 
             SelectedEntityId = 0;
@@ -332,24 +225,20 @@ namespace Client.ViewModel
 
         private void OnUndo()
         {
-            // Implementacija undo akcije
             CommandManager.Undo();
             LoadData();
         }
 
         private void OnRedo()
         {
-            // Implementacija redo akcije
             CommandManager.Redo();
             LoadData();
         }
 
         private void OnClone()
         {
-            // Implementacija kloniranja podataka
             if(SelectedEntity is LinijaDTO)
             {
-                // Odabrana linija
                 LinijaDTO oroginalnaLinija = ServiceProvider.LinijaService.Procitaj(SelectedEntityId);
 
                 Command add = new DuplicateLinija(ServiceProvider.LinijaService, oroginalnaLinija);
@@ -371,7 +260,6 @@ namespace Client.ViewModel
             }
             else
             {
-                // ispisi gresku
             }
             LoadData();
         }
@@ -381,10 +269,8 @@ namespace Client.ViewModel
             SelectedEntityId = 0;
             SelectedEntity = null;
 
-            // Implementacija pretraživanja
             if (string.IsNullOrEmpty(SearchText))
             {
-                // lupii poruku unesi kriteriju
             }
             else
             {
@@ -458,7 +344,6 @@ namespace Client.ViewModel
                     selectedEntity = value;
                     OnPropertyChanged("SelectedEntity");
 
-                    // Podesi Id objekta trenutno odabranog
                     if (selectedEntity is LinijaDTO)
                         SelectedEntityId = (selectedEntity as LinijaDTO).Id;
                     else if (selectedEntity is AutobusDTO)

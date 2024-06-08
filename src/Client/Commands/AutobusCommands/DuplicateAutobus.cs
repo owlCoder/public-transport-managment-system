@@ -21,28 +21,43 @@ namespace Client.Commands.AutobusCommands
 
         public void Execute()
         {
-            // Add the duplicated AutobusDTO using the service
-            success = autobusService.DodajAutobus(autobus.Oznaka);
+            try
+            {
+                // Add the duplicated AutobusDTO using the service
+                success = autobusService.DodajAutobus(autobus.Oznaka);
 
-            if (!success)
-                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Dupliranje autobusa sa ID-jem {autobus.Id} nije uspelo!");
-            else
-                MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Autobus sa ID-jem {autobus.Id} je uspesno dupliran!");
+                if (!success)
+                    MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Dupliranje autobusa sa ID-jem {autobus.Id} nije uspelo!");
+                else
+                    MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Autobus sa ID-jem {autobus.Id} je uspesno dupliran!");
+            }
+            catch (Exception ex)
+            {
+                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Greska prilikom dupliranja autobusa: {ex.Message}");
+            }
         }
 
         public object Clone()
         {
-            AutobusDTO bus = new AutobusDTO
+            try
             {
-                Id = 0,
-                Oznaka = autobus.Oznaka,
-                IdLinije = autobus.IdLinije,
-                Linije = new List<LinijaDTO>(autobus.Linije ?? new List<LinijaDTO>())
-            };
+                AutobusDTO bus = new AutobusDTO
+                {
+                    Id = 0, // Set to 0 to indicate this is a new entity
+                    Oznaka = autobus.Oznaka,
+                    IdLinije = autobus.IdLinije,
+                    Linije = new List<LinijaDTO>(autobus.Linije ?? new List<LinijaDTO>())
+                };
 
-            MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Kloniranje autobusa sa ID-jem {autobus.Id} uspesno izvrseno!");
+                MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Kloniranje autobusa sa ID-jem {autobus.Id} uspesno izvrseno!");
 
-            return bus;
+                return bus;
+            }
+            catch (Exception ex)
+            {
+                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Greska prilikom kloniranja autobusa: {ex.Message}");
+                return null;
+            }
         }
     }
 }

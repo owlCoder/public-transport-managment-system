@@ -86,7 +86,6 @@
     <Compile Include="Commands\VozacCommands\EditVozacCommand.cs" />
     <Compile Include="Helpers\BindableBase.cs" />
     <Compile Include="Helpers\MyICommand.cs" />
-    <Compile Include="Helpers\PassThroughConverter.cs" />
     <Compile Include="Helpers\ValidationBase.cs" />
     <Compile Include="Loggers\ClientLogger.cs" />
     <Compile Include="Provider\ServiceProvider.cs" />

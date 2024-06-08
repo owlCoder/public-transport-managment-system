@@ -2,6 +2,7 @@
 using Common.DTO;
 using Common.Enums;
 using Common.Interfaces;
+using System;
 
 namespace Client.Commands.AutobusCommands
 {
@@ -19,33 +20,54 @@ namespace Client.Commands.AutobusCommands
 
         public override void Execute()
         {
-            success = autobusService.DodajAutobus(autobus.Oznaka);
+            try
+            {
+                success = autobusService.DodajAutobus(autobus.Oznaka);
 
-            // Logovanje
-            if (!success)
-                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, "Dodavanje novog autobusa nije uspelo!");
-            else
-                MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Autobus sa oznakom {autobus.Oznaka} je uspesno dodat!");
+                // Logovanje
+                if (!success)
+                    MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, "Dodavanje novog autobusa nije uspelo!");
+                else
+                    MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Autobus sa oznakom {autobus.Oznaka} je uspesno dodat!");
+            }
+            catch (Exception ex)
+            {
+                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Greska prilikom dodavanja autobusa: {ex.Message}");
+            }
         }
 
         public override void Undo()
         {
-            success = autobusService.ObrisiAutobus(autobus.Id);
+            try
+            {
+                success = autobusService.ObrisiAutobus(autobus.Id);
 
-            if (!success)
-                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Dodavanje autobusa sa ID-jem {autobus.Id} nije uspesno opozvano!");
-            else
-                MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Dodavanje autobusa sa ID-jem {autobus.Id} je uspesno opozvano!");
+                if (!success)
+                    MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Dodavanje autobusa sa ID-jem {autobus.Id} nije uspesno opozvano!");
+                else
+                    MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Dodavanje autobusa sa ID-jem {autobus.Id} je uspesno opozvano!");
+            }
+            catch (Exception ex)
+            {
+                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Greska prilikom opozivanja dodavanja autobusa: {ex.Message}");
+            }
         }
 
         public override void Redo()
         {
-            success = autobusService.DodajAutobus(autobus.Oznaka);
+            try
+            {
+                success = autobusService.DodajAutobus(autobus.Oznaka);
 
-            if (!success)
-                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Dodavanje autobusa sa ID-jem {autobus.Id} nije uspesno ponisteno!");
-            else
-                MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Dodavanje autobusa sa ID-jem {autobus.Id} je uspesno ponisteno!");
+                if (!success)
+                    MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Dodavanje autobusa sa ID-jem {autobus.Id} nije uspesno ponisteno!");
+                else
+                    MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Dodavanje autobusa sa ID-jem {autobus.Id} je uspesno ponisteno!");
+            }
+            catch (Exception ex)
+            {
+                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Greska prilikom ponistavanja dodavanja autobusa: {ex.Message}");
+            }
         }
     }
 }

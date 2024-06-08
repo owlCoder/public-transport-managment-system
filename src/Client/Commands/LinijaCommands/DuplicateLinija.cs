@@ -22,57 +22,82 @@ namespace Client.Commands.LinijaCommands
 
         public override void Execute()
         {
-            // Create a copy of the original LinijaDTO
-            duplicatedLinija = (LinijaDTO)Clone();
-            // Add the duplicated LinijaDTO using the service
-            duplicatedLinijaId = linijaService.DodajLiniju(duplicatedLinija);
+            try
+            {
+                // Create a copy of the original LinijaDTO
+                duplicatedLinija = (LinijaDTO)Clone();
+                // Add the duplicated LinijaDTO using the service
+                duplicatedLinijaId = linijaService.DodajLiniju(duplicatedLinija);
 
-            // Logovanje
-            if (duplicatedLinijaId == 0)
-                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Dupliranje linije sa ID-jem {originalLinija.Id} nije uspelo!");
-            else
-                MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Linija sa ID-jem {originalLinija.Id} je uspesno duplirana!");
+                // Logovanje
+                if (duplicatedLinijaId == 0)
+                    MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Dupliranje linije sa ID-jem {originalLinija.Id} nije uspelo!");
+                else
+                    MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Linija sa ID-jem {originalLinija.Id} je uspesno duplirana!");
+            }
+            catch (Exception ex)
+            {
+                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Greska prilikom dupliranja linije: {ex.Message}");
+            }
         }
 
         public override void Undo()
         {
-            // Remove the duplicated LinijaDTO
-            linijaService.ObrisiLiniju(duplicatedLinijaId);
+            try
+            {
+                bool success = linijaService.ObrisiLiniju(duplicatedLinijaId) != 0;
 
-            if (duplicatedLinijaId == 0)
-                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Dupliranje linije sa ID-jem {originalLinija.Id} nije uspesno opozvano!");
-            else
-                MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Dupliranje linije sa ID-jem {originalLinija.Id} je uspesno opozvano!");
+                if (!success)
+                    MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Opozivanje dupliranja linije sa ID-jem {duplicatedLinijaId} nije uspelo!");
+                else
+                    MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Opozivanje dupliranja linije sa ID-jem {duplicatedLinijaId} je uspesno!");
+            }
+            catch (Exception ex)
+            {
+                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Greska prilikom opozivanja dupliranja linije: {ex.Message}");
+            }
         }
 
         public override void Redo()
         {
-            // Re-add the duplicated LinijaDTO
-            duplicatedLinijaId = linijaService.DodajLiniju(duplicatedLinija);
+            try
+            {
+                duplicatedLinijaId = linijaService.DodajLiniju(duplicatedLinija);
 
-            if (duplicatedLinijaId == 0)
-                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Dupliranje linije sa ID-jem {originalLinija.Id} nije uspesno ponisteno!");
-            else
-                MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Dupliranje linije sa ID-jem {originalLinija.Id} je uspesno ponisteno!");
+                if (duplicatedLinijaId == 0)
+                    MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Ponistavanje dupliranja linije sa ID-jem {originalLinija.Id} nije uspelo!");
+                else
+                    MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Ponistavanje dupliranja linije sa ID-jem {originalLinija.Id} je uspesno!");
+            }
+            catch (Exception ex)
+            {
+                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Greska prilikom ponistavanja dupliranja linije: {ex.Message}");
+            }
         }
 
         public object Clone()
         {
-            LinijaDTO linija = new LinijaDTO
+            try
             {
-                // Assuming LinijaDTO has a copy constructor or similar mechanism
-                // to create a deep copy of the object
-                Id = 0, // Set ID to 0 or another default value to indicate a new entity
-                Oznaka = originalLinija.Oznaka,
-                Polaziste = originalLinija.Polaziste,
-                Odrediste = originalLinija.Odrediste,
-                Vozaci = new List<VozacDTO>(originalLinija.Vozaci ?? new List<VozacDTO>()),
-                Autobusi = new List<AutobusDTO>(originalLinija.Autobusi ?? new List<AutobusDTO>())
-            };
+                LinijaDTO linija = new LinijaDTO
+                {
+                    Id = 0, // Set ID to 0 or another default value to indicate a new entity
+                    Oznaka = originalLinija.Oznaka,
+                    Polaziste = originalLinija.Polaziste,
+                    Odrediste = originalLinija.Odrediste,
+                    Vozaci = new List<VozacDTO>(originalLinija.Vozaci ?? new List<VozacDTO>()),
+                    Autobusi = new List<AutobusDTO>(originalLinija.Autobusi ?? new List<AutobusDTO>())
+                };
 
-            MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Kloniranje linije sa ID-jem {originalLinija.Id} uspesno izvrseno!");
+                MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Kloniranje linije sa ID-jem {originalLinija.Id} uspesno izvrseno!");
 
-            return linija;
+                return linija;
+            }
+            catch (Exception ex)
+            {
+                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Greska prilikom kloniranja linije: {ex.Message}");
+                return null;
+            }
         }
     }
 }

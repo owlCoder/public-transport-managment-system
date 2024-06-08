@@ -21,33 +21,48 @@ namespace Client.Commands.VozacCommands
 
         public void Execute()
         {
-            // Create a copy of the original VozacDTO
-            // Add the duplicated VozacDTO using the service
-            success = vozacService.DodajVozaca(vozac);
+            try
+            {
+                // Create a copy of the original VozacDTO
+                // Add the duplicated VozacDTO using the service
+                success = vozacService.DodajVozaca(vozac);
 
-            if (!success)
-                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Dupliranje vozaca sa ID-jem {vozac.Id} nije uspelo!");
-            else
-                MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Vozac sa ID-jem {vozac.Id} je uspesno duplirana!");
+                if (!success)
+                    MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Dupliranje vozača sa ID-jem {vozac.Id} nije uspelo!");
+                else
+                    MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Vozač sa ID-jem {vozac.Id} je uspešno dupliran!");
+            }
+            catch (Exception ex)
+            {
+                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Greška prilikom izvršavanja komande dupliranja vozača: {ex.Message}");
+            }
         }
 
         public object Clone()
         {
-            VozacDTO v = new VozacDTO
+            try
             {
-                Id = 0, // Set ID to 0 or another default value to indicate a new entity
-                Username = vozac.Username,
-                Password = vozac.Password,
-                Ime = vozac.Ime,
-                Prezime = vozac.Prezime,
-                Role = vozac.Role,
-                Oznaka = vozac.Oznaka,
-                Linije = new List<LinijaDTO>(vozac.Linije ?? new List<LinijaDTO>())
-            };
+                VozacDTO v = new VozacDTO
+                {
+                    Id = 0, // Set ID to 0 or another default value to indicate a new entity
+                    Username = vozac.Username,
+                    Password = vozac.Password,
+                    Ime = vozac.Ime,
+                    Prezime = vozac.Prezime,
+                    Role = vozac.Role,
+                    Oznaka = vozac.Oznaka,
+                    Linije = new List<LinijaDTO>(vozac.Linije ?? new List<LinijaDTO>())
+                };
 
-            MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Kloniranje vozaca sa ID-jem {vozac.Id} uspesno izvrseno!");
+                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Kloniranje vozača sa ID-jem {vozac.Id} uspešno izvršeno!");
 
-            return v;
+                return v;
+            }
+            catch (Exception ex)
+            {
+                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Greška prilikom kloniranja vozača: {ex.Message}");
+                return null;
+            }
         }
     }
 }

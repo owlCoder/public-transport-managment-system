@@ -2,6 +2,7 @@
 using Common.DTO;
 using Common.Enums;
 using Common.Interfaces;
+using System;
 
 namespace Client.Commands.AutobusCommands
 {
@@ -21,12 +22,19 @@ namespace Client.Commands.AutobusCommands
 
         public void Execute()
         {
-            success = autobusService.IzmeniAutobus(originalAutobus.Id, newAutobus);
+            try
+            {
+                success = autobusService.IzmeniAutobus(originalAutobus.Id, newAutobus);
 
-            if (!success)
-                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Izmena autobusa sa {originalAutobus.Id} nije uspelo!");
-            else
-                MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Autobus sa ID-jem {originalAutobus.Id} je uspesno izmenjen!");
+                if (!success)
+                    MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Izmena autobusa sa ID-jem {originalAutobus.Id} nije uspelo!");
+                else
+                    MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Autobus sa ID-jem {originalAutobus.Id} je uspesno izmenjen!");
+            }
+            catch (Exception ex)
+            {
+                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Greska prilikom izmene autobusa sa ID-jem {originalAutobus.Id}: {ex.Message}");
+            }
         }
     }
 }

@@ -2,6 +2,7 @@
 using Common.DTO;
 using Common.Enums;
 using Common.Interfaces;
+using System;
 
 namespace Client.Commands.LinijaCommands
 {
@@ -11,7 +12,6 @@ namespace Client.Commands.LinijaCommands
         private readonly LinijaDTO newLinija;
         private readonly ILinijaService linijaService;
         private LinijaDTO backupLinija;
-        private int id;
 
         public EditLinijaCommand(ILinijaService linijaService, LinijaDTO originalLinija, LinijaDTO newLinija)
         {
@@ -22,33 +22,54 @@ namespace Client.Commands.LinijaCommands
 
         public override void Execute()
         {
-            backupLinija = linijaService.Procitaj(originalLinija.Id);
-            id = linijaService.IzmeniLiniju(originalLinija.Id, newLinija);
+            try
+            {
+                backupLinija = linijaService.Procitaj(originalLinija.Id);
+                bool success = linijaService.IzmeniLiniju(originalLinija.Id, newLinija) != 0;
 
-            if (id == 0)
-                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Izmena linije sa ID-jem {id} nije uspelo!");
-            else
-                MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Linija sa ID-jem {id} je uspesno izmenjena!");
+                if (!success)
+                    MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Izmena linije sa ID-jem {originalLinija.Id} nije uspela!");
+                else
+                    MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Linija sa ID-jem {originalLinija.Id} je uspesno izmenjena!");
+            }
+            catch (Exception ex)
+            {
+                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Greska prilikom izmene linije sa ID-jem {originalLinija.Id}: {ex.Message}");
+            }
         }
 
         public override void Undo()
         {
-            id = linijaService.IzmeniLiniju(originalLinija.Id, backupLinija);
+            try
+            {
+                bool success = linijaService.IzmeniLiniju(originalLinija.Id, backupLinija) != 0;
 
-            if (id == 0)
-                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Izmena linije sa ID-jem {id} nije uspesno opozvano!");
-            else
-                MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Izmena linije sa ID-jem {id} je uspesno opozvano!");
+                if (!success)
+                    MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Opozivanje izmene linije sa ID-jem {originalLinija.Id} nije uspelo!");
+                else
+                    MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Opozivanje izmene linije sa ID-jem {originalLinija.Id} je uspesno!");
+            }
+            catch (Exception ex)
+            {
+                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Greska prilikom opozivanja izmene linije sa ID-jem {originalLinija.Id}: {ex.Message}");
+            }
         }
 
         public override void Redo()
         {
-            id = linijaService.IzmeniLiniju(originalLinija.Id, newLinija);
+            try
+            {
+                bool success = linijaService.IzmeniLiniju(originalLinija.Id, newLinija) != 0;
 
-            if (id == 0)
-                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Izmena linije sa ID-jem {id} nije uspesno ponisteno!");
-            else
-                MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Izmena linije sa ID-jem {id} je uspesno ponisteno!");
+                if (!success)
+                    MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Ponistavanje izmene linije sa ID-jem {originalLinija.Id} nije uspelo!");
+                else
+                    MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Ponistavanje izmene linije sa ID-jem {originalLinija.Id} je uspesno!");
+            }
+            catch (Exception ex)
+            {
+                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Greska prilikom ponistavanja izmene linije sa ID-jem {originalLinija.Id}: {ex.Message}");
+            }
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Client.ViewModel;
 using Common.Enums;
 using Common.Interfaces;
+using System;
 
 namespace Client.Commands.AutobusCommands
 {
@@ -18,12 +19,19 @@ namespace Client.Commands.AutobusCommands
 
         public void Execute()
         {
-            success = autobusService.ObrisiAutobus(autobusId);
+            try
+            {
+                success = autobusService.ObrisiAutobus(autobusId);
 
-            if (!success)
-                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Brisanje autobusa sa ID-jem {autobusId} nije uspesno izvrseno!");
-            else
-                MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Brisanje linije sa ID-jem {autobusId} je uspesno izvrseno!");
+                if (!success)
+                    MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Brisanje autobusa sa ID-jem {autobusId} nije uspesno izvrseno!");
+                else
+                    MainWindowViewModel.Logger.Log(LogTraceLevel.INFO, $"Brisanje linije sa ID-jem {autobusId} je uspesno izvrseno!");
+            }
+            catch (Exception ex)
+            {
+                MainWindowViewModel.Logger.Log(LogTraceLevel.ERROR, $"Greska prilikom brisanja autobusa sa ID-jem {autobusId}: {ex.Message}");
+            }
         }
     }
 }

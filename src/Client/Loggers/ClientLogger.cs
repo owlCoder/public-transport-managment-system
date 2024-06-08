@@ -5,27 +5,59 @@ using NetworkService.Helpers;
 using System;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Threading;
 
 namespace Common.Loggers
 {
     public class ClientLogger : BindableBase, ILogger
     {
-        public static ObservableCollection<string> logMessages = new ObservableCollection<string>();
+        private static readonly object lockObj = new object();
+        private static readonly string logFilePath = "log.txt";
+
+        public static ObservableCollection<string> LogMessages { get; } = new ObservableCollection<string>();
 
         public void Log(LogTraceLevel level, string message)
         {
-            string timestamp = DateTime.Now.ToString("[dd.MM.yyyy. HH:mm]");
-            string logMessage = $"{timestamp} {level}: {message}";
-
-            // Add to the start of log
-            logMessages.Insert(0, logMessage);
-
-            // Dodavanje u logg na UI
-            Messenger.Default.Send(logMessage);
-
-            using (StreamWriter sw = new StreamWriter("log.txt", append: true))
+            try
             {
-                sw.WriteLine(logMessage);
+                string timestamp = DateTime.Now.ToString("[dd.MM.yyyy. HH:mm]");
+                string logMessage = $"{timestamp} {level}: {message}";
+
+                // Add to the start of log
+                lock (lockObj)
+                {
+                    LogMessages.Insert(0, logMessage);
+                }
+
+                // Broadcast log message
+                Messenger.Default.Send(logMessage);
+
+                // Write to log file
+                WriteToFile(logMessage);
+            }
+            catch (Exception ex)
+            {
+                // Log any exceptions that occur during logging
+                Console.WriteLine($"Error logging message: {ex.Message}");
+            }
+        }
+
+        private void WriteToFile(string message)
+        {
+            try
+            {
+                lock (lockObj)
+                {
+                    using (StreamWriter sw = new StreamWriter(logFilePath, append: true))
+                    {
+                        sw.WriteLine(message);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log any exceptions that occur during file writing
+                Console.WriteLine($"Error writing to log file: {ex.Message}");
             }
         }
     }

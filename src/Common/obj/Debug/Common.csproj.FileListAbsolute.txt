@@ -10,3 +10,15 @@ D:\Faks\rva\projekat_RVA\GSP_RVA\Common\obj\Debug\Common.csproj.CoreCompileInput
 D:\Faks\rva\projekat_RVA\GSP_RVA\Common\obj\Debug\Common.csproj.Up2Date
 D:\Faks\rva\projekat_RVA\GSP_RVA\Common\obj\Debug\Common.dll
 D:\Faks\rva\projekat_RVA\GSP_RVA\Common\obj\Debug\Common.pdb
+D:\Faks\rva\projekat_RVA\src\Common\bin\Debug\Common.dll.config
+D:\Faks\rva\projekat_RVA\src\Common\bin\Debug\Common.dll
+D:\Faks\rva\projekat_RVA\src\Common\bin\Debug\Common.pdb
+D:\Faks\rva\projekat_RVA\src\Common\bin\Debug\EntityFramework.dll
+D:\Faks\rva\projekat_RVA\src\Common\bin\Debug\EntityFramework.SqlServer.dll
+D:\Faks\rva\projekat_RVA\src\Common\bin\Debug\EntityFramework.xml
+D:\Faks\rva\projekat_RVA\src\Common\bin\Debug\EntityFramework.SqlServer.xml
+D:\Faks\rva\projekat_RVA\src\Common\obj\Debug\Common.csproj.AssemblyReference.cache
+D:\Faks\rva\projekat_RVA\src\Common\obj\Debug\Common.csproj.CoreCompileInputs.cache
+D:\Faks\rva\projekat_RVA\src\Common\obj\Debug\Common.csproj.Up2Date
+D:\Faks\rva\projekat_RVA\src\Common\obj\Debug\Common.dll
+D:\Faks\rva\projekat_RVA\src\Common\obj\Debug\Common.pdb
