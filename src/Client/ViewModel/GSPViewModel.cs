@@ -7,7 +7,9 @@ using Client.Provider;
 using Common.DTO;
 using MVVMLight.Messaging;
 using NetworkService.Helpers;
+using System;
 using System.Collections.ObjectModel;
+using System.Timers;
 using System.Windows;
 
 namespace Client.ViewModel
@@ -36,7 +38,7 @@ namespace Client.ViewModel
 
         private Visibility isAdmin { get; set; }
 
-
+        private Timer _timer;
         public MyICommand EditCommand { get; private set; }
         public MyICommand EditProfileCommand { get; private set; }
         public MyICommand RefreshCommand { get; private set; }
@@ -73,6 +75,17 @@ namespace Client.ViewModel
             Messenger.Default.Register<char>(this, RefreshData);
             Messenger.Default.Register<VozacDTO>(this, PodesiUlogovanog);
 
+            // Initialize and start the timer
+            _timer = new Timer(5000); // Interval set to 5000 milliseconds (5 seconds)
+            _timer.Elapsed += OnTimedEvent;
+            _timer.AutoReset = true;
+            _timer.Enabled = true;
+
+            LoadData();
+        }
+
+        private void OnTimedEvent(Object source, ElapsedEventArgs e)
+        {
             LoadData();
         }
 
